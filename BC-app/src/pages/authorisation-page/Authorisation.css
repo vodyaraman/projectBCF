@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
+
+.authorisation-window {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 14pt;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 325px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.95) 100%);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    animation: shimmer 10s infinite;
+}
+
+.authorisation-window:focus-within(not:authorisation-page){
+        border: 2px solid #007bff; 
+}
+    
+@keyframes shimmer {
+    0%, 100% {
+    background-color: rgba(255, 255, 255, 0.95);
+    }
+    50% {
+    background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+#authorisation-page {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+#auth-head-text {
+    font-size: 25pt;
+    margin: 5px;
+    text-align: center;
+}   
+#auth-main-form {
+    display: flex;
+    flex-direction: column;
+}
+#auth-main-div {
+    width: 100%;
+    margin-top: 20%;
+}
+.small-text {
+    display: block;
+    float: right;
+    font-size: 11pt;
+    font-family: "Poppins"
+}
+#code {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+#checkbox-label {
+    display: flex;
+    float: right;
+}
+#checkbox-main {
+    height: 16px;
+    width: 16px;
+    margin: 3px 0 0 5px;
+    display: flex;
+    align-items: center;
+}
+button {
+    margin-top: 20%;
+    padding: 8px 0;
+    background-color: #007bff;
+    color: white;
+    font-size: 14pt;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+

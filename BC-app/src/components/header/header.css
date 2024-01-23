@@ -1,0 +1,7 @@
+* {
+    margin: 0;
+}
+
+#header-base {
+    color: argb(255, 255, 255, 0.2);
+}

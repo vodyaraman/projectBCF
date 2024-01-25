@@ -16,9 +16,9 @@ setIsHovered(false);
 };
 
 return (
-    <div id="header-change-theme-button" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div id="header-change-theme-block" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         {isHovered || (
-        <img src={changeThemeImg} alt="Button 1" className="header-button"/>
+        <img src={changeThemeImg} alt="Button 1"/>
     )}
         {isHovered && (
         <div id="choose-theme">

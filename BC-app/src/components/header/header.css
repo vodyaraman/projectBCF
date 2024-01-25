@@ -1,18 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 * {
-    margin: 0;  
+margin: 0;
 }
 
 #header-base {
-    z-index: 1;
+    z-index: 2;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 35%;
+    height: 40%;
     background-color: rgba(224, 20, 20, 0);
 }
-#function-header{
-    z-index: inherit;
+
+#function-header {
+    z-index: 1;
     position: fixed;
     margin: 0;
     top: 0;
@@ -21,14 +23,28 @@
     height: 10%;
     background-color: rgba(0, 0, 0, 0.5);
 }
-#header-change-theme-button {
+
+#header-change-theme-block {
     top: 100%;
     width: 140px;
     height: 70px;
     display: flex;
+    float: left;
 }
 
-#header-change-theme-button img, #choose-theme img{
+#header-change-language-block {
+    top: 100%;
+    width: 70px;
+    height: 210px;
+    display: block;
+    float: right;
+}
+
+#header-change-theme-block img,
+#choose-theme img,
+#header-change-language-block span, 
+#header-change-language-block img,
+#choose-language span {
     z-index: 1000;
     object-fit: cover;
     position: inline;
@@ -37,32 +53,54 @@
     border-radius: 15%;
     width: 55px;
     height: 50px;
-    margin-right: 10px; /* Настройте отступ между кнопками по вашему усмотрению */
-    opacity: 0.9; /* Полупрозрачность для кнопок */
+    margin-right: 10px;
+    opacity: 0.9;
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
+}
+#header-change-language-block img{
+    object-fit: contain;
 }
 
-#header-change-theme-button img{
-    margin: 4px 10px;
+#choose-theme,
+#choose-language {
+    z-index: 1003;
+    border: 0px;
+    border-radius: 7px;
+    opacity: 0;
 }
-
 
 #choose-theme {
-    z-index: 1000;
     top: 100%;
     width: 140px;
     height: 70px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 0px;
-    border-radius: 7px;
     display: flex;
-    opacity: 0;
+}
+#choose-language {
+    z-index: 1007;
+    width: 70px;
+    height: 210px;
+    text-align: center;
+    display: block;
+}
+
+#choose-theme {
     transform: translateX(-100%);
 }
-    
-#header-change-theme-button:hover #choose-theme {
-    animation: slideIn 0.5s ease forwards;
+
+#choose-language {
+    transform: translateY(-100%);
 }
-    
+
+#header-change-theme-block:hover #choose-theme {
+    animation: slideIn 0.25s ease forwards;
+}
+
+#header-change-language-block:hover #choose-language {
+    animation: slideOut 0.25s ease forwards;
+}
+
 @keyframes slideIn {
     from {
     opacity: 0;
@@ -72,4 +110,23 @@
     opacity: 1;
     transform: translateX(0);
     }
+}
+
+@keyframes slideOut {
+    from {
+    opacity: 0;
+    transform: translateY(-100%);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+
+#header-change-language-block span {
+    align-content: center;
+    font-family: "Anton";
+    font-size: 30pt;
+    color: azure;
+    display: block;
 }

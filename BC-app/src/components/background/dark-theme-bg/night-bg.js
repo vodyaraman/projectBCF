@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useSpring, animated } from 'react-spring';
 import './night-bg.css';
 

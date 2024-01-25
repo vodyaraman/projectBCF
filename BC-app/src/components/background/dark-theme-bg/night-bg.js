@@ -50,7 +50,8 @@ const AnimatedBackgroundNight = () => {
   );
 
   return (
-    <div id="animated-background-night">
+    <div id="animated-background">
+      <div id="animated-background-night">
       {stars.map((star) => (
         <animated.div
           key={star.id}
@@ -63,6 +64,7 @@ const AnimatedBackgroundNight = () => {
         />
       ))}
       <FallingStar />
+      </div>
     </div>
   );
 };

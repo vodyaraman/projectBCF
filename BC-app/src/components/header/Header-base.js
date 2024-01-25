@@ -1,4 +1,5 @@
 import React from "react"
+import ChangeTheme from "./ChangeTheme.js"
 import "./header.css"
 
 class HeaderBase extends React.Component {
@@ -6,9 +7,9 @@ class HeaderBase extends React.Component {
         return(
             <header>
                 <div id="header-base">
-                    <div id="header-change-buttons">
-                        <img src="..//images/moon.jpg" alt="Button 1" className="header-button" />   
-                        <img src="..//images/sun.jpg" alt="Button 2" className="header-button" />
+                    <div id="function-header">
+                        <ChangeTheme/>
+                        <img src="..//images/sun.jpg" alt="Button 2" className="header-button"/>
                     </div>
                 </div>
             </header>

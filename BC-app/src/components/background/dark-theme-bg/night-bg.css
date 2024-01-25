@@ -7,7 +7,7 @@
     100% { opacity: 0.5; }
 }
     
-#animated-background-night {
+#animated-background {
     z-index: 0;
     position: fixed;
     top: 0;
@@ -16,6 +16,9 @@
     height: 100%;
     background: linear-gradient(to bottom, #001e3c, #01446e);
     overflow: hidden;
+}
+#animated-background-night{
+  z-index: 1;
 }
  
 .star {

@@ -1,39 +1,46 @@
-#animated-background {
+* {
+    margin: 0px;
+  } 
+
+#animated-background-base-day{
     position: fixed;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    }
-    
-    #animated-backgound-day {
+    background: linear-gradient(to bottom, #0e659b, #001e3c);
+}
+
+#animated-background-day {
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, #87CEEB, #1E90FF); /* Sky blue gradient */
+    background: linear-gradient(to bottom, #87CEEB, #187bdf);
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    }
-    
-    .sun {
+}
+
+.sun {
     width: 100px;
     height: 100px;
+    top: 30%;
+    right: 30%;
     background: yellow;
     border-radius: 50%;
     margin-bottom: 20px;
     animation: floatSun 5s infinite alternate ease-in-out;
-    }
-    
-    .grass {
+}
+
+.grass {
     width: 100%;
     height: 50px;
-    background: #2E8B57; /* Dark green for grass */
-    }
-    
-    @keyframes floatSun {
+    background: #2E8B57;
+    /* Dark green for grass */
+}
+
+@keyframes floatSun {
     0% {
-    transform: translateY(0);
+        transform: translateY(0);
     }
+
     100% {
-    transform: translateY(-20px);
+        transform: translateY(-20px);
     }
-    }
+}

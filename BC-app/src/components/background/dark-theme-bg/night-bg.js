@@ -34,10 +34,20 @@ const FallingStar = () => {
     return () => clearTimeout(initialTimeout);
   }, [set]);
 
-  return <animated.div className="falling-star" style={{ transform: props.xy.to((x, y) => `translate(${x}px, ${y}px)`), opacity: props.opacity }} />;
+  return <animated.div className="falling-star" style={{
+    transform: props.xy.to((x, y) => `translate(${x}px, ${y}px)`),
+    opacity: props.opacity
+  }} />;
 };
 
-const AnimatedBackgroundNight = () => {
+
+const AnimatedBackgroundNight = () => { 
+  const props = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: { duration: 3000 },
+});
+
   const stars = useMemo(
     () =>
       Array.from({ length: 50 }, (_, index) => ({
@@ -50,21 +60,21 @@ const AnimatedBackgroundNight = () => {
   );
 
   return (
-    <div id="animated-background">
-      <div id="animated-background-night">
-      {stars.map((star) => (
-        <animated.div
-          key={star.id}
-          className="star"
-          style={{
-            left: star.x,
-            top: star.y,
-            opacity: star.opacity,
-          }}
-        />
-      ))}
-      <FallingStar />
-      </div>
+    <div id="animated-background-base-night">
+      <animated.div id="animated-background-night" style={props}>
+        {stars.map((star) => (
+          <animated.div
+            key={star.id}
+            className="star"
+            style={{
+              left: star.x,
+              top: star.y,
+              opacity: star.opacity,
+            }}
+          />
+        ))}
+        <FallingStar />
+      </animated.div>
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import React, { useState, memo, useEffect } from 'react';
 import './Authorisation.css';
+import "../../components/background/dark-theme-bg/night-bg.css";
+import "../../components/background/light-theme-bg/day-bg.css";
 import "../../components/header/header.css";
 import HeaderBase from "../../components/header/Header-base";
 import AnimatedBackgroundNight from "../../components/background/dark-theme-bg/night-bg";

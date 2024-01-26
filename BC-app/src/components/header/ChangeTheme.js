@@ -1,33 +1,47 @@
 import React, { useState } from "react";
-import changeThemeImg from "../images/change-theme.jpg";
 import sunnyImg from "../images/sun.jpg";
 import moonImg from "../images/moon.jpg";
+import changeThemeImg from "../images/change-theme.jpg";
 import "./header.css";
 
-const ChangeThemeWindow = () => {
-const [isHovered, setIsHovered] = useState(false);
+const ChangeThemeWindow = ({ switchBackgroundTheme }) => {
+    const [isHovered, setIsHovered] = useState(false);
 
-const handleMouseEnter = () => {
-setIsHovered(true);
-};
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
 
-const handleMouseLeave = () => {
-setIsHovered(false);
-};
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
 
-return (
-    <div id="header-change-theme-block" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        {isHovered || (
-        <img src={changeThemeImg} alt="Button 1"/>
-    )}
-        {isHovered && (
-        <div id="choose-theme">
-            <img src={sunnyImg} alt="Button 1.1"/>
-            <img src={moonImg} alt="Button 1.2"/>
+    const handleThemeChange = (theme) => {
+        switchBackgroundTheme(theme);
+    };
+
+    return (
+        <div
+            id="header-change-theme-block"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
+            {isHovered || <img src={changeThemeImg} alt="Day Theme" onClick={() => handleThemeChange('day')} />}
+            {isHovered && (
+                <div id="choose-theme">
+                    <img
+                        src={sunnyImg}
+                        alt="Day Theme"
+                        onClick={() => handleThemeChange('day')}
+                    />
+                    <img
+                        src={moonImg}
+                        alt="Night Theme"
+                        onClick={() => handleThemeChange('night')}
+                    />
+                </div>
+            )}
         </div>
-        )}
-    </div>
-);
+    );
 };
 
 export default ChangeThemeWindow;

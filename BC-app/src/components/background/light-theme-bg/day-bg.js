@@ -16,12 +16,29 @@ const AnimatedBackgroundDay = () => {
     return (
         <div id="animated-background-base-day">
             <animated.div id="animated-background-day" style={props}>
-                {/* Your animated day background content goes here */}
-                <div className="sun"></div>
+                <div id="background-wrap">
+                    <div className="x1">
+                        <div className="cloud"></div>
+                    </div>
+
+                    <div className="x2">
+                        <div className="cloud"></div>
+                    </div>
+
+                    <div className="x3">
+                        <div className="cloud"></div>
+                    </div>
+
+                    <div className="x4">
+                        <div className="cloud"></div>
+                    </div>
+                </div>
+                <div className="sun"></div>            
                 {/* Add more elements for the sky, grass, and other details */}
             </animated.div>
         </div>
     );
+
 };
 
 export default AnimatedBackgroundDay;

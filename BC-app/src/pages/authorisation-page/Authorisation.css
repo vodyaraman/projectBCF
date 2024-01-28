@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;1,300&display=swap');
-*{
-    overflow: hidden;
-}
+
 .authorisation-window {
     z-index: 1001;
     font-family: 'Merriweather';
@@ -15,16 +13,16 @@
     transform: translate(-50%, -50%);
     width: 300px;
     height: 290px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0.95) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(255, 255, 255, 0.95) 100%);
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     padding: 20px;
     box-sizing: border-box;
-    animation: shimmer 10s infinite;
+    /*animation: shimmer 10s infinite;*/
 }
 
 .authorisation-window:focus-within(not:authorisation-page){
-        border: 2px solid #007bff; 
+    border: 2px solid #007bff; 
 }
     
 @keyframes shimmer {
@@ -36,12 +34,7 @@
     }
 }
 #authorisation-page {
-    display: flex;
     text-align: center;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
 }
 #auth-head-text {
     font-size: 25pt;

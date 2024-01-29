@@ -7,14 +7,12 @@ import HeaderBase from "../../components/header/Header-base";
 import AnimatedBackgroundNight from "../../components/background/dark-theme-bg/night-bg";
 import AnimatedBackgroundDay from "../../components/background/light-theme-bg/day-bg";
 import { useTranslation } from "react-i18next";
-import i18n from '../../localisation/i18n';
 
 const MemoizedAnimatedBackgroundNight = memo(AnimatedBackgroundNight);
 const MemoizedAnimatedBackgroundDay = memo(AnimatedBackgroundDay);
 
 const Authorisation = () => {
     const { t } = useTranslation();
-    console.log("Language:", i18n.language);
 
     const [code, setCode] = useState('');
     const [rememberMe, setRememberMe] = useState(false);

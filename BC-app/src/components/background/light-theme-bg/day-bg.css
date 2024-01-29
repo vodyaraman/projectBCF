@@ -118,6 +118,7 @@
     height: 120px;
     position: relative;
     width: 350px;
+    opacity: 0.9;
 }
 
 .cloud::after,

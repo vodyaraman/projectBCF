@@ -56,6 +56,9 @@
     font-family: "Poppins";
     font-weight: 200;
 }
+.small-text a {
+    color: #0558b1;
+}
 #code {
     width: 100%;
     padding: 8px;

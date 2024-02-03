@@ -1,7 +1,6 @@
 class CheckAuth {
     static check(code) {
         const cleanedCode = code.replace(/[X\s]/g, '').toUpperCase();
-        console.log(cleanedCode)
         if (cleanedCode.length === 11) {
             return cleanedCode;
         }

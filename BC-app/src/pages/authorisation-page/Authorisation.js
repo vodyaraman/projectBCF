@@ -8,7 +8,8 @@ import AnimatedBackgroundNight from "../../components/background/dark-theme-bg/n
 import AnimatedBackgroundDay from "../../components/background/light-theme-bg/day-bg";
 import { useTranslation } from "react-i18next";
 import AuthCheck from "../../database/check-auth-module";
-import InputMask from "react-input-mask"
+import InputMask from "react-input-mask";
+import axios from 'axios';
 
 const MemoizedAnimatedBackgroundNight = memo(AnimatedBackgroundNight);
 const MemoizedAnimatedBackgroundDay = memo(AnimatedBackgroundDay);
@@ -16,56 +17,74 @@ const MemoizedAnimatedBackgroundDay = memo(AnimatedBackgroundDay);
 const Authorisation = () => {
     const { t } = useTranslation();
 
-    const [code, setCode] = useState('');
-    const [rememberMe, setRememberMe] = useState(false);
-    const [backgroundTheme, setBackgroundTheme] = useState(getStoredBackgroundTheme() || 'day');
-    const [error, setError] = useState(null);
-    const [permission, setPermisson] = useState(false)
+    const [state, setState] = useState({
+        code: '',
+        rememberMe: false,
+        backgroundTheme: getStoredBackgroundTheme() || 'day',
+        error: null,
+        permission: false,
+    });
 
     const handleCodeChanged = (e) => {
         const inputCode = e.target.value;
-        setCode(inputCode);
+        setState((prevState) => ({
+            ...prevState,
+            code: inputCode,
+            permission: false,
+        }));
+
         const formattedCode = AuthCheck.check(inputCode);
         if (formattedCode) {
-            setError("")
-            setPermisson(true)
-            console.log('Code:', code);
-            console.log('Remember Me:', rememberMe);
+            setState((prevState) => ({
+                ...prevState,
+                error: null,
+                permission: true,
+            }));
+        } else if (formattedCode === "") {
+            setState((prevState) => ({ ...prevState, error: null }));
+        } else if (formattedCode === null) {
+            setState((prevState) => ({
+                ...prevState,
+                error: t("error-message-auth"),
+                permission: false,
+            }));
         }
-        else if (formattedCode === "") {
-            setError("")
-            setPermisson(false)
-        }
-        else if (formattedCode === null) {
-            console.log(formattedCode)
-            setError(t("error-message-auth")) //это можно упростить
-            setPermisson(false)
-        }
-    }
+    };
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        if (permission === true) {
-            console.log("let's go")
-        }
-        else {
-            console.log("go away")
+        if (state.permission) {
+            try {
+                const response = await axios.post('http://localhost:3001/submitData', {
+                    code: state.code,
+                    rememberMe: state.rememberMe,
+                });
+                console.log(response.data);
+                // Обработайте ответ от сервера по вашему усмотрению
+            } catch (error) {
+                console.error('Error submitting data', error);
+            }
+        } else {
+            console.log("Permission denied");
         }
     };
 
     useEffect(() => {
-        storeBackgroundTheme(backgroundTheme);
-    }, [backgroundTheme]);
+        storeBackgroundTheme(state.backgroundTheme);
+    }, [state.backgroundTheme]);
 
     const switchBackgroundTheme = (theme) => {
-        setBackgroundTheme(theme);
+        setState((prevState) => ({ ...prevState, backgroundTheme: theme }));
     };
-
 
     return (
         <div id="authorisation-page">
             <HeaderBase switchBackgroundTheme={switchBackgroundTheme} />
-            {backgroundTheme === 'night' ? <MemoizedAnimatedBackgroundNight /> : <MemoizedAnimatedBackgroundDay />}
+            {state.backgroundTheme === 'night' ? (
+                <MemoizedAnimatedBackgroundNight />
+            ) : (
+                <MemoizedAnimatedBackgroundDay />
+            )}
             <div className="authorisation-window">
                 <h2 id="auth-head-text">{t('login-h1')}</h2>
                 <form id="auth-main-form" onSubmit={handleLogin}>
@@ -78,12 +97,12 @@ const Authorisation = () => {
                                 type="text"
                                 id="code"
                                 placeholder={t("placeholder-code")}
-                                value={code}
+                                value={state.code}
                                 onChange={handleCodeChanged}
                             />
                         </label>
                         <div className="small-text">
-                            {error && <span id="error-message">{error}</span>}
+                            {state.error && <span id="error-message">{state.error}</span>}
                             <a href="https://vk.com/rp.vodyaraman">{t("no-code")}</a>
                         </div>
                     </div>
@@ -96,8 +115,13 @@ const Authorisation = () => {
                             <input
                                 type="checkbox"
                                 id="checkbox-main"
-                                checked={rememberMe}
-                                onChange={() => setRememberMe(!rememberMe)}
+                                checked={state.rememberMe}
+                                onChange={() =>
+                                    setState((prevState) => ({
+                                        ...prevState,
+                                        rememberMe: !prevState.rememberMe,
+                                    }))
+                                }
                             />
                         </label>
                     </div>
@@ -116,3 +140,4 @@ const getStoredBackgroundTheme = () => {
 };
 
 export default Authorisation;
+

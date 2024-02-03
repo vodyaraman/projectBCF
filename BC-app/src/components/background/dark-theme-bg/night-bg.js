@@ -8,16 +8,16 @@ const FallingStar = () => {
     xy: [Math.random() * window.innerWidth, -10],
   }));
 
-  const fall = () => {
-    set({ opacity: 1, xy: [Math.random() * window.innerWidth, window.innerHeight + 10] });
-    setTimeout(() => {
-      set({ opacity: 0, xy: [Math.random() * window.innerWidth, -10] });
-    }, Math.random() * 5000);
-  };
-
   useEffect(() => {
     const minInterval = 2000;
     const maxInterval = 7000;
+
+    const fall = () => {
+      set({ opacity: 1, xy: [Math.random() * window.innerWidth, window.innerHeight + 10] });
+      setTimeout(() => {
+        set({ opacity: 0, xy: [Math.random() * window.innerWidth, -10] });
+      }, Math.random() * 5000);
+    };
 
     const animate = () => {
       fall();
@@ -41,12 +41,12 @@ const FallingStar = () => {
 };
 
 
-const AnimatedBackgroundNight = () => { 
+const AnimatedBackgroundNight = () => {
   const props = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
     config: { duration: 3000 },
-});
+  });
 
   const stars = useMemo(
     () =>

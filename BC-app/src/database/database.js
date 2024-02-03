@@ -1,4 +1,4 @@
-import DB from "pg"
+const {DB} = require('pg')
 
 const db = new DB({
     user: "postgres",
@@ -8,4 +8,4 @@ const db = new DB({
     port: 6666,
 })
 
-db.connect()
+module.exports = db

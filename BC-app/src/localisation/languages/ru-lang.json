@@ -1,6 +1,8 @@
 {
     "login-h1": "Вход",
     "enter-code": "Введите код авторизации",
+    "error-message-auth" : "неверный код",
+    "placeholder-code": "введите код здесь",
     "no-code": "у меня нет кода",
     "submit-btn": "Подтвердить",
     "remember-me": "запомнить меня в системе"

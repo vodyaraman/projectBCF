@@ -7,6 +7,8 @@ import HeaderBase from "../../components/header/Header-base";
 import AnimatedBackgroundNight from "../../components/background/dark-theme-bg/night-bg";
 import AnimatedBackgroundDay from "../../components/background/light-theme-bg/day-bg";
 import { useTranslation } from "react-i18next";
+import AuthCheck from "../../database/check-auth-module";
+import InputMask from "react-input-mask"
 
 const MemoizedAnimatedBackgroundNight = memo(AnimatedBackgroundNight);
 const MemoizedAnimatedBackgroundDay = memo(AnimatedBackgroundDay);
@@ -17,11 +19,38 @@ const Authorisation = () => {
     const [code, setCode] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const [backgroundTheme, setBackgroundTheme] = useState(getStoredBackgroundTheme() || 'day');
+    const [error, setError] = useState(null);
+    const [permission, setPermisson] = useState(false)
+
+    const handleCodeChanged = (e) => {
+        const inputCode = e.target.value;
+        setCode(inputCode);
+        const formattedCode = AuthCheck.check(inputCode);
+        if (formattedCode) {
+            setError("")
+            setPermisson(true)
+            console.log('Code:', code);
+            console.log('Remember Me:', rememberMe);
+        }
+        else if (formattedCode === "") {
+            setError("")
+            setPermisson(false)
+        }
+        else if (formattedCode === null) {
+            console.log(formattedCode)
+            setError(t("error-message-auth")) //это можно упростить
+            setPermisson(false)
+        }
+    }
 
     const handleLogin = (e) => {
         e.preventDefault();
-        console.log('Code:', code);
-        console.log('Remember Me:', rememberMe);
+        if (permission === true) {
+            console.log("let's go")
+        }
+        else {
+            console.log("go away")
+        }
     };
 
     useEffect(() => {
@@ -31,7 +60,7 @@ const Authorisation = () => {
     const switchBackgroundTheme = (theme) => {
         setBackgroundTheme(theme);
     };
-    
+
 
     return (
         <div id="authorisation-page">
@@ -43,15 +72,18 @@ const Authorisation = () => {
                     <div id="auth-main-div">
                         <label htmlFor="code" id="code-label">
                             {t('enter-code')}
-                            <input
+                            <InputMask
+                                mask="999-999-999"
+                                maskChar="X"
                                 type="text"
                                 id="code"
-                                placeholder='This_is@my.code'
+                                placeholder={t("placeholder-code")}
                                 value={code}
-                                onChange={(e) => setCode(e.target.value)}
+                                onChange={handleCodeChanged}
                             />
                         </label>
                         <div className="small-text">
+                            {error && <span id="error-message">{error}</span>}
                             <a href="https://vk.com/rp.vodyaraman">{t("no-code")}</a>
                         </div>
                     </div>

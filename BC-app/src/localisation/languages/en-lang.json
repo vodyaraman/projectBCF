@@ -2,6 +2,8 @@
     "login-h1": "Log in",
     "enter-code": "Enter an authorisation code",
     "no-code": "don't have the code?",
+    "placeholder-code": "enter code here",
+    "error-message-auth" : "invalid code",
     "submit-btn": "Submit",
     "remember-me": "remember me, please"
 }

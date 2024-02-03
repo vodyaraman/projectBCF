@@ -7,15 +7,17 @@ import HeaderBase from "../../components/header/Header-base";
 import AnimatedBackgroundNight from "../../components/background/dark-theme-bg/night-bg";
 import AnimatedBackgroundDay from "../../components/background/light-theme-bg/day-bg";
 import { useTranslation } from "react-i18next";
-import AuthCheck from "../../database/check-auth-module";
+import AuthCheck from "./check-auth-module";
 import InputMask from "react-input-mask";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom"
 
 const MemoizedAnimatedBackgroundNight = memo(AnimatedBackgroundNight);
 const MemoizedAnimatedBackgroundDay = memo(AnimatedBackgroundDay);
 
 const Authorisation = () => {
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     const [state, setState] = useState({
         code: '',
@@ -56,11 +58,13 @@ const Authorisation = () => {
         if (state.permission) {
             try {
                 const response = await axios.post('http://localhost:3001/submitData', {
-                    code: state.code,
-                    rememberMe: state.rememberMe,
+                    code: state.code
                 });
                 console.log(response.data);
-                // Обработайте ответ от сервера по вашему усмотрению
+
+                if (response.data.exists) {
+                    navigate("/mainpage");
+                }
             } catch (error) {
                 console.error('Error submitting data', error);
             }

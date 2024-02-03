@@ -19,20 +19,16 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/submitData', async (req, res) => {
-    const code = req.body;
-
+    const {code} = req.body;
     try {
-        // Выполняем запрос к базе данных для проверки данных
         const result = await pool.query('SELECT * FROM accounts WHERE code = $1', [code]);
-        console.log(code)
-
+        
         if (result.rows.length > 0) {
-            // Если есть результат, значит, код существует в базе данных
             const user = result.rows[0];
             res.status(200).json({ exists: true, user });
         } else {
-            // Кода нет в базе данных
-            res.status(200).json({ exists: false, message: 'Код не найден в базе данных' });
+            console.log(code)
+            res.status(200).json({ exists: false, message: 'Код не найден в базе данных'});
         }
     } catch (error) {
         console.error('Ошибка при выполнении запроса', error);

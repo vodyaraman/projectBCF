@@ -30,7 +30,7 @@ const ChangeLanguageWindow = () => {
         >
             {isClicked && (
                 <div id="choose-language">
-                    <img src={ChangeLanImg} alt="CL"></img>
+                    <img src={ChangeLanImg} alt="CL"/>
                     <span
                         className="image-text"
                         onClick={() => handleLanguageChange("RU")}

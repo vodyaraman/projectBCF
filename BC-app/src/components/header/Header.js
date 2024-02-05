@@ -3,7 +3,11 @@ import "./header.css";
 
 const Header = () => {
     return (
-        <span className="header-text" />
+        <header id="page-wrapper">
+            <div id="top-header">
+                <span className="header-text" />
+            </div>
+        </header>
     );
 };
 

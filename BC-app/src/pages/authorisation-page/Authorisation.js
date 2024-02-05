@@ -66,7 +66,7 @@ const Authorisation = () => {
 
     return (
         <div id="authorisation-page">
-            <AnimatedBackground/>
+            <AnimatedBackground />
             <div className="authorisation-window">
                 <h2 id="auth-head-text">{t('login-h1')}</h2>
                 <form id="auth-main-form" onSubmit={handleLogin}>
@@ -84,7 +84,8 @@ const Authorisation = () => {
                             />
                         </label>
                         <div className="small-text">
-                            {/* Error message display */}
+                            {state.error && <span id="error-message">{state.error}</span>}
+                            <a href="https://vk.com/rp.vodyaraman">{t("no-code")}</a>
                         </div>
                     </div>
                     <button type="submit" id="submitButton">

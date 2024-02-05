@@ -5,12 +5,11 @@ import "./header.css";
 
 const HeaderBase = ({ switchBackgroundTheme }) => {
     return (
-            <div id="function-header">
-                <div id="header-base">
-                    <ChangeThemeWindow switchBackgroundTheme={switchBackgroundTheme} />
-                    <ChangeLanguage />
-                </div>
-            </div>
+        <div id="header-base">
+            <ChangeThemeWindow switchBackgroundTheme={switchBackgroundTheme} />
+            <ChangeLanguage />
+        </div>
+
     );
 };
 

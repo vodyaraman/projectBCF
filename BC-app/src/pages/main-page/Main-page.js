@@ -6,6 +6,8 @@ import "./Main-page.css"
 import Header from "../../components/header/Header.js";
 import AnimatedBackground from '../../components/background/AnimatedBackground';
 import SBlock from "../../components/structure-elements/SBlock-main.js"
+import SBlockHeader from "../../components/structure-elements/SBlock-header.js"
+
 
 
 const MainPage = () => {
@@ -14,6 +16,7 @@ const MainPage = () => {
             <AnimatedBackground />
             <Header/>
             <div id="page-scrollbar-container">
+                <SBlockHeader/>
                 <SBlock/>
             </div>
         </div>

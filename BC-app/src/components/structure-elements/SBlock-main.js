@@ -16,6 +16,7 @@ const SBlock = () => {
             <h1>Text</h1>
             <span>{fileContent}</span>
         </div> 
+        
     );
 }
 

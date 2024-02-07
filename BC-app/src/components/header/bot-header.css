@@ -1,0 +1,84 @@
+#bot-header {
+    z-index: 0;
+    position: sticky;
+    padding-top: 20px;
+    width: 103%;
+    background-color: rgba(0, 0, 0, 0.25);
+    display: flex;
+    /* Добавляем flex-контейнер */
+    flex-direction: column;
+    /* Устанавливаем направление колонкой */
+}
+
+#structure-block-header {
+    position: relative;
+    z-index: 1001;
+    width: 90%;
+    height: 35vh;
+    margin: 0 5% 0 5%;
+    max-height: 300px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    overflow: hidden;
+    user-select: none;
+    transition: transform 3s ease;
+    /* Добавляем плавное переходное свойство для transform */
+}
+
+#structure-block-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    /* Сохраняет соотношение сторон и заполняет контейнер, обрезая изображение при необходимости */
+}
+
+#sbh-buttons-panel {
+    display: flex;
+    justify-content: center;
+    margin:  0 0 0 0;
+}
+
+#sbh-buttons-panel button {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    height: 20px;
+    margin: 0;
+    font-size: 9pt;
+    padding: 1px;
+    margin: 5px 0;
+}
+.bot-header-button {
+    width: 80px;
+}
+.bot-header-button-arrow {
+    width: 30px;
+}
+
+#dot-navigation {
+    z-index: 1005;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 60px;
+    height: 20px;
+    padding: 5px;
+    align-items: flex-end;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.dot {
+    z-index: 1005;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: blue;
+    /* Цвет активной точки */
+}

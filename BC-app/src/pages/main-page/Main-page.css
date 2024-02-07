@@ -3,14 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;1,300&display=swap');
 
 #page-scrollbar-container {
+    z-index: 1006;
     position: fixed;
     right: 0;
     top: 65px;
     width: 100%;
     height: 90%;
     overflow-y: scroll;
-    z-index: 1001;
     background-color: rgba(0, 0, 0, 0);
+    scroll-behavior: smooth;
 }
 #page-scrollbar-container::-webkit-scrollbar{
     height: 90%;
@@ -25,11 +26,11 @@
 
 #structure-block-main {
     position: sticky;
-    z-index: 1001;
+    z-index: 5;
     font-family: 'Merriweather';
     font-weight: 300;
-    width: 60%;
-    margin: 5% 0 0 20%;
+    width: 70%;
+    margin: 5% 0 15% 15%;
     font-size: 13pt;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 25px;

@@ -6,6 +6,7 @@ import InputMask from "react-input-mask";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import SettingsWindow from '../../components/structure-elements/SBlock-settings';
 
 const Authorisation = () => {
     const { t } = useTranslation();
@@ -67,6 +68,7 @@ const Authorisation = () => {
     return (
         <div id="authorisation-page">
             <AnimatedBackground />
+            <SettingsWindow />
             <div className="authorisation-window">
                 <h2 id="auth-head-text">{t('login-h1')}</h2>
                 <form id="auth-main-form" onSubmit={handleLogin}>

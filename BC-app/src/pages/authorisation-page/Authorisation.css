@@ -83,7 +83,7 @@
     display: flex;
     align-items: center;
 }
-button {
+.authorisation-window button {
     margin-top: 11%;
     padding: 7px 0;
     background-color: #007bff;
@@ -93,7 +93,7 @@ button {
     border-radius: 10px;
     cursor: pointer;
 }
-button:focus {
+.authorisation-window button:focus {
     border: 1px solid white;
 }
 

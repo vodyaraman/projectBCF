@@ -15,15 +15,15 @@ const MainPage = () => {
     return (
         <div id="main-page">
             <AnimatedBackground />
-            <Header />
             <div id="page-scrollbar-container">
                 <SBlockHeader />
-                <div id='block1'>
+                <div className='block'>
                     <SBlock />
                 </div>
-                <div id='block2'>
+                <div className='block'>
                     <SBlock />
                 </div>
+                <Header />
                 <Footer />
             </div>
         </div>

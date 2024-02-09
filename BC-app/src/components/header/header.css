@@ -1,15 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
-#header-base {
-    z-index: 1002;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 65px;
-    background-color: rgba(224, 20, 20, 0);
-}
-
 #top-header {
     z-index: 1;
     position: fixed;
@@ -22,23 +12,48 @@
 }
 #header-links{
     z-index: 1002;
-    margin: 0 0 0 10%;
+    margin: -3px 0 0 5%;
 }
 .header-text {
     display: inline-block;
     font-size: 20pt;
     font-family: "Anton";
-    padding-top: 5px;
-    margin: 10px;
+    padding: 10px;
     color: aliceblue;
     border: 1 solid black;
     border-radius: 15px;
     font-style: normal;
     cursor: pointer;
 }
+#header-settings-block, #header-account-block{
+    position: fixed;
+}
+#header-account-block {
+    top: 0px;
+    right: 0px;
+}
+
+.settings-content{
+    z-index: 1010;
+    position: fixed;
+    top: 65px;
+    left: 0px;
+    width: 20%;
+    height: 90vh;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+.accountmenu-content {
+    z-index: 1010;
+    position: fixed;
+    top: 65px;
+    right: 0px;
+    width: 20%;
+    height: 90vh;
+    background-color: rgba(0, 0, 0, 0.75);
+}
 
 #header-change-theme-block {
-    z-index: 2;
+    z-index: 5;
     top: 100%;
     width: 140px;
     height: 70px;
@@ -58,7 +73,9 @@
 #choose-theme img,
 #header-change-language-block span, 
 #header-change-language-block img,
-#choose-language span {
+#choose-language span,
+#settings-button,
+#account-button {
     z-index: 1002;
     object-fit: cover;
     margin: 4px;
@@ -74,6 +91,22 @@
     text-align: center;
 }
 #header-change-language-block img{
+    object-fit: contain;
+}
+#settings-button {
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    border: none;
+    object-fit: contain;
+}
+#account-button {
+    display: block;
+    float: right;
+    width: 45px;
+    height: 45px;
+    margin: 7px;
+    border: none;
     object-fit: contain;
 }
 

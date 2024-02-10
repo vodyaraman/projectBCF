@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from 'react';
 import sunnyImg from "../../images/sun.jpg";
 import moonImg from "../../images/moon.jpg";
 import changeThemeImg from "../../images/change-theme.jpg";
 import "../header.css";
+import { ThemeContext } from '../../../contexts/ThemeContext';
 
-const ChangeThemeWindow = ({ switchBackgroundTheme }) => {
+const ChangeThemeWindow = () => {
     const [isHovered, setIsHovered] = useState(false);
+    const { handleThemeChange } = useContext(ThemeContext);
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -15,25 +17,30 @@ const ChangeThemeWindow = ({ switchBackgroundTheme }) => {
         setIsHovered(false);
     };
 
-    const handleThemeChange = (theme) => {
-        switchBackgroundTheme(theme);
-    };
-
     return (
         <div
-            id="header-change-theme-block"
+            className="header-change-theme-block"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            {isHovered || <img src={changeThemeImg} alt="Day Theme" onClick={() => handleThemeChange('day')} />}
+            {isHovered || (
+                <img
+                    className="button-img"
+                    src={changeThemeImg}
+                    alt="Day Theme"
+                    onClick={() => handleThemeChange('day')}
+                />
+            )}
             {isHovered && (
-                <div id="choose-theme">
+                <div className="choose-theme">
                     <img
+                        className="button-img"
                         src={sunnyImg}
                         alt="Day Theme"
                         onClick={() => handleThemeChange('day')}
                     />
                     <img
+                        className="button-img"
                         src={moonImg}
                         alt="Night Theme"
                         onClick={() => handleThemeChange('night')}

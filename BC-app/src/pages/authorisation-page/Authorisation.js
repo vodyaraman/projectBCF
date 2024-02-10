@@ -32,9 +32,10 @@ const Authorisation = () => {
             setState((prevState) => ({
                 ...prevState,
                 permission: true,
+                error: ""
             }));
         } else if (formattedCode === "") {
-            setState((prevState) => ({ ...prevState, error: null }));
+            setState((prevState) => ({ ...prevState, error: "" }));
         } else if (formattedCode === null) {
             setState((prevState) => ({
                 ...prevState,

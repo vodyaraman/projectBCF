@@ -1,81 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;1,300&display=swap');
 
-#top-header {
-    z-index: 1;
+header {
     position: fixed;
-    margin: 0;
     top: 0;
     left: 0;
     width: 100%;
     height: 65px;
     background-color: rgba(0, 0, 0, 0.5);
 }
-#header-links{
-    z-index: 1002;
-    margin: -3px 0 0 5%;
-}
-.header-text {
-    display: inline-block;
-    font-size: 20pt;
-    font-family: "Anton";
-    padding: 10px;
-    color: aliceblue;
-    border: 1 solid black;
-    border-radius: 15px;
-    font-style: normal;
-    cursor: pointer;
-}
-#header-settings-block, #header-account-block{
-    position: fixed;
-}
-#header-account-block {
-    top: 0px;
-    right: 0px;
-}
 
-.settings-content{
-    z-index: 1010;
-    position: fixed;
-    top: 65px;
-    left: 0px;
-    width: 20%;
-    height: 90vh;
-    background-color: rgba(0, 0, 0, 0.75);
-}
-.accountmenu-content {
-    z-index: 1010;
-    position: fixed;
-    top: 65px;
-    right: 0px;
-    width: 20%;
-    height: 90vh;
-    background-color: rgba(0, 0, 0, 0.75);
-}
-
-#header-change-theme-block {
-    z-index: 5;
-    top: 100%;
-    width: 140px;
-    height: 70px;
+.header-links {
+    margin-right: 6.5%;
+    position: relative;
     display: flex;
+    justify-content: center;
+}
+
+.settings-content,
+.accountmenu-content {
+    margin: 3px;
+    z-index: 1010;
+    position: fixed;
+    top: 65px;
+    width: 20%;
+    min-height: 20vh;
+    padding: 5px;
+    background: linear-gradient(to bottom, rgba(14, 101, 155, 1), rgba(0, 30, 60, 0.95));
+    border-radius: 0 20px 20px 20px;
+    opacity: 0;
+    animation: slideIn-left 0.5s ease forwards;
+}
+
+.accountmenu-content {
+    right: 16px;
+    border-radius: 20px 0 20px 20px;
+    animation: slideIn-right 0.5s ease forwards;
+}
+
+.change-theme-block,
+.change-language-block {
+    display: block;
     float: left;
 }
 
-#header-change-language-block {
-    top: 100%;
-    width: 70px;
-    height: 210px;
-    display: block;
-    float: right;
+.change-theme-block {
+    width: 140px;
+    height: 70px;
 }
 
-#header-change-theme-block img,
-#choose-theme img,
-#header-change-language-block span, 
-#header-change-language-block img,
-#choose-language span,
-#settings-button,
-#account-button {
+.change-language-block {
+    width: 70px;
+    height: 210px;
+}
+
+/* Изображения и кнопки */
+.button-img,
+.settings-button,
+.account-button,
+#header-change-language-block {
     z-index: 1002;
     object-fit: cover;
     margin: 4px;
@@ -84,95 +67,124 @@
     width: 55px;
     height: 50px;
     line-height: 50px;
-    margin-right: 10px;
     opacity: 0.9;
     user-select: none;
     cursor: pointer;
     text-align: center;
 }
-#header-change-language-block img{
-    object-fit: contain;
-}
-#settings-button {
-    width: 40px;
+
+.settings-button,
+.account-button {
+    width: 50px;
     height: 40px;
     margin: 10px;
     border: none;
-    object-fit: contain;
-}
-#account-button {
-    display: block;
-    float: right;
-    width: 45px;
-    height: 45px;
-    margin: 7px;
-    border: none;
+    float: left;
     object-fit: contain;
 }
 
-#choose-theme,
-#choose-language {
+.settings-button {
+    transition: transform 0.3s ease;
+    /* добавляем transition для плавности анимации */
+}
+
+.settings-button:active {
+    transform: rotate(180deg);
+    /* вращаем кнопку на 180 градусов при нажатии */
+}
+
+.account-button {
+    float: right;
+    margin-right: 25px;
+}
+
+#header-change-language-block {
+    float: right;
+}
+
+/* Дополнительные стили */
+.choose-block {
     border: 0px;
     border-radius: 7px;
     opacity: 0;
 }
 
-#choose-theme {
+.choose-theme,
+.choose-language {
+    position: relative;
     top: 100%;
+}
+
+.choose-theme {
     width: 140px;
     height: 70px;
-    display: flex;
 }
-#choose-language {
-    z-index: 1007;
+
+.choose-language {
     width: 70px;
     height: 210px;
-    text-align: center;
-    display: block;
 }
 
-#choose-theme {
-    transform: translateX(-100%);
-}
-
-#choose-language {
-    transform: translateY(-100%);
-}
-
-#header-change-theme-block:hover #choose-theme {
-    animation: slideIn 0.25s ease forwards;
-}
-
-#header-change-language-block:hover #choose-language {
-    animation: slideOut 0.25s ease forwards;
-}
-
-@keyframes slideIn {
+/* Анимация */
+@keyframes slideIn-left {
     from {
-    opacity: 0;
-    transform: translateX(-100%);
+        opacity: 0;
+        transform: translateX(-50%);
     }
+
     to {
-    opacity: 1;
-    transform: translateX(0);
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
-@keyframes slideOut {
+@keyframes slideIn-right{
     from {
-    opacity: 0;
-    transform: translateY(-100%);
-    }
-    to {
-    opacity: 1;
-    transform: translateY(0);
-    }
+        opacity: 0;
+        transform: translateX(50%);
     }
 
-#header-change-language-block span {
-    align-content: center;
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Текст */
+.change-language-text {
     font-family: "Anton";
     font-size: 30pt;
     color: azure;
     display: block;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+.header-links-text {
+    color: rgba(168, 169, 170, 0.781);
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    font: 20pt "Anton";
+    color: aliceblue;
+    border-radius: 15px;
+    font-style: normal;
+    cursor: pointer;
+    line-height: 60px;
+}
+
+.header-links-text:hover {
+    color: rgba(240, 248, 255, 1);
+}
+
+.header-text {
+    margin: 15px;
+    font: 15pt "Merriweather";
+    color: rgba(240, 248, 255, 0.897);
+    cursor: pointer;
+}
+
+.header-text:hover {
+    color: aliceblue;
 }

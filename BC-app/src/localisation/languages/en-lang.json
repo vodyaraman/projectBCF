@@ -6,5 +6,9 @@
     "error-message-auth" : "invalid code",
     "submit-btn": "Submit",
     "remember-me": "remember my code",
-    "goto": "Go to"
+    "goto": "Go to",
+    "mainpage": "Main Page",
+    "about": "About Us",
+    "reviews": "Reviews",
+    "articles": "Articles"
 }

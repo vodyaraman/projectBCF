@@ -11,8 +11,8 @@ const AccountMenu = () => {
     };
 
     return (
-        <div id="header-account-block">
-            <img id="account-button"
+        <div className="header-settings">
+            <img className="account-button"
                 src={AccountImg}
                 alt="ACC"
                 onClick={toggleSettings}>

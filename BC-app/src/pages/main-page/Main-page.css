@@ -13,11 +13,13 @@
     background-color: rgba(0, 0, 0, 0);
     scroll-behavior: smooth;
 }
-#page-scrollbar-container::-webkit-scrollbar{
+
+#page-scrollbar-container::-webkit-scrollbar {
     height: 90%;
     background-color: rgba(0, 0, 0, 0.25);
 }
-#page-scrollbar-container::-webkit-scrollbar-thumb{
+
+#page-scrollbar-container::-webkit-scrollbar-thumb {
     background-color: rgba(255, 248, 248, 0.774);
     border: 1px solid black;
     border-radius: 5px;
@@ -32,7 +34,8 @@
     justify-content: center;
 
 }
-#structure-block-main {
+
+.structure-block {
     position: sticky;
     z-index: 5;
     font-family: 'Merriweather';
@@ -43,12 +46,69 @@
     border-radius: 25px;
     padding: 20px;
 }
-#structure-block-main span, #structure-block-main h1 {
+
+.structure-block span,
+.structure-block h1 {
     position: sticky;
     color: white;
     text-align: center;
 }
+
 h1 {
     padding: 0 5px 5px 5px;
     margin: 0px 10px 10px 10px;
+}
+.article-text-title, .article-text-content{
+    position: sticky;
+    display: block;
+    padding: 5px;
+    width: 99%;
+    max-width: 99%;
+    font-size: 13pt;
+    border: none;
+    background-color: transparent;
+    color: white;
+    resize: none;
+    outline: none;
+}
+.article-text-title:focus, .article-text-content:focus{
+    border-color:  rgba(255, 255, 255, 0.75);
+}
+.article-text-content::-webkit-scrollbar {
+    width: 12px;
+    background-color: rgba(0, 0, 0, 0.25);
+    cursor: default;
+}
+
+.article-text-content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 248, 248, 0.774);
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.article-text-title {
+    margin-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.article-text-content {
+    margin-bottom: 15px;
+    min-height: 200px;
+    border: 2px solid rgba(255, 255, 255, 0.5);  
+}
+
+.article-button {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    font-size: 13pt;
+    background-color: rgba(255, 248, 248, 0.774);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.article-button:hover {
+    background-color: rgba(255, 248, 248, 0.9);
 }

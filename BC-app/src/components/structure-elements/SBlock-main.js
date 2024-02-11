@@ -1,23 +1,15 @@
-import { useState, useEffect } from "react";
-import React from 'react';
 import "../../pages/main-page/Main-page.css"
-    
-const SBlock = () => {
-    const [fileContent, setFileContent] = useState('');
-    
-    useEffect(() => {
-    fetch("./texts/fish.txt")
-    .then(response => response.text())
-    .then(data => setFileContent(data))
-    .catch(error => console.error('Ошибка при чтении файла', error));
-    }, []);
-    return(
-        <div id='structure-block-main'>
-            <h1>Text</h1>
-            <span>{fileContent}</span>
-        </div> 
-        
-    );
-}
+import React from 'react';
 
-export default SBlock
+const SBlock = ({ article }) => {
+    return (
+        <div className="structure-block">
+            <h1>{article.title}</h1>
+            <span>{article.article}</span>
+            <p>Автор: {article.userid}</p>
+            <p>Дата публикации: {article.time}</p>
+        </div>
+    );
+};
+
+export default SBlock;

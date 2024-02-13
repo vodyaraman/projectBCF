@@ -4,7 +4,7 @@ import ChangeThemeWindow from "../header/header-components/ChangeTheme.js"
 import "../header/header.css";
 import SettingsImg from "../images/settings.png"
 
-const SettingsWindow = ({ switchBackgroundTheme }) => {
+const SettingsWindow = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleSettings = () => {

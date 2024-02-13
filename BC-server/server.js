@@ -35,6 +35,20 @@ app.post('/submitData', async (req, res) => {
         res.status(500).json({ message: 'Внутренняя ошибка сервера' });
     }
 });
+app.post('/getUserByID', async (req, res) => {
+    const { userid } = req.body;
+
+    try {
+        const result = await pool.query('SELECT * FROM accounts WHERE accounts.accID = $1', [userid]);
+
+        const user = result.rows[0];
+        res.status(200).json({ success: true, user });
+        console.log(user)
+    } catch (error) {
+        console.error('Ошибка при выполнении запроса', error);
+        res.status(500).json({ success: false, message: 'Внутренняя ошибка сервера' });
+    }
+});
 app.post('/addArticle', async (req, res) => {
     const { title, article, userid } = req.body;
 

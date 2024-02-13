@@ -8,22 +8,9 @@ class AnimatedBackground extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            backgroundTheme: this.getStoredBackgroundTheme() || 'day',
+            backgroundTheme:  localStorage.getItem('backgroundTheme') || 'day',
         };
     }
-
-    switchBackgroundTheme = (theme) => {
-        this.setState({ backgroundTheme: theme });
-        this.storeBackgroundTheme(theme);
-    };
-
-    storeBackgroundTheme = (theme) => {
-        localStorage.setItem('backgroundTheme', theme);
-    };
-
-    getStoredBackgroundTheme = () => {
-        return localStorage.getItem('backgroundTheme');
-    };
 
     render() {
         return (

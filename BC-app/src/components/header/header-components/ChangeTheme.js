@@ -9,9 +9,9 @@ const ChangeThemeWindow = () => {
     const [isHovered, setIsHovered] = useState(false);
     const { handleThemeChange } = useContext(ThemeContext);
 
-    const handleMouseEnter = () => {
+    function handleMouseEnter() {
         setIsHovered(true);
-    };
+    }
 
     const handleMouseLeave = () => {
         setIsHovered(false);

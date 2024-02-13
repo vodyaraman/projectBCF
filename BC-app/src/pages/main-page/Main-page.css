@@ -47,18 +47,41 @@
     padding: 20px;
 }
 
-.structure-block span,
+.structure-block-maintext,
 .structure-block h1 {
     position: sticky;
     color: white;
     text-align: center;
 }
 
-h1 {
-    padding: 0 5px 5px 5px;
-    margin: 0px 10px 10px 10px;
+.structure-block-addtext span {
+    font-size: 11pt;
+    color: rgba(218, 242, 247, 0.726);
 }
-.article-text-title, .article-text-content{
+
+.structure-block-addtext {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.structure-block h1 {
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: 15pt;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
+.structure-block-maintext{
+    display: block;
+    text-align: justify;
+}
+.structure-block-maintext::first-letter {
+    margin-left: 20px;
+}
+
+.article-text-title,
+.article-text-content {
     position: sticky;
     display: block;
     padding: 5px;
@@ -71,9 +94,12 @@ h1 {
     resize: none;
     outline: none;
 }
-.article-text-title:focus, .article-text-content:focus{
-    border-color:  rgba(255, 255, 255, 0.75);
+
+.article-text-title:focus,
+.article-text-content:focus {
+    border-color: rgba(255, 255, 255, 0.75);
 }
+
 .article-text-content::-webkit-scrollbar {
     width: 12px;
     background-color: rgba(0, 0, 0, 0.25);
@@ -85,6 +111,7 @@ h1 {
     border: 1px solid black;
     border-radius: 5px;
 }
+
 .article-text-title {
     margin-bottom: 10px;
     border-bottom: 2px solid rgba(255, 255, 255, 0.5);
@@ -93,7 +120,7 @@ h1 {
 .article-text-content {
     margin-bottom: 15px;
     min-height: 200px;
-    border: 2px solid rgba(255, 255, 255, 0.5);  
+    border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .article-button {

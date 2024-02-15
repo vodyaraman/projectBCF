@@ -7,14 +7,18 @@ header {
     left: 0;
     width: 100%;
     min-height: 65px;
+    max-height: 65px;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
 .header-links {
-    margin-right: 6.5%;
-    position: relative;
+    margin: 0 auto;
+    max-height: 65px;
+    min-width: 30vw;
+    position: static;
     display: flex;
     justify-content: center;
+    overflow: hidden;
 }
 
 .settings-content,
@@ -59,6 +63,7 @@ header {
 .settings-button,
 .account-button,
 #header-change-language-block {
+    position: relative;
     z-index: 1002;
     object-fit: cover;
     margin: 4px;
@@ -163,19 +168,19 @@ header {
 
 .header-links-text {
     color: rgba(168, 169, 170, 0.781);
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 0 7px;
     display: inline-block;
-    font: 20pt "Anton";
+    font: 30px "Anton";
     color: aliceblue;
-    border-radius: 15px;
     font-style: normal;
     cursor: pointer;
+    white-space: nowrap;
     line-height: 60px;
 }
 
 .header-links-text:hover {
     color: rgba(240, 248, 255, 1);
+    border-bottom: 1px solid white;
 }
 
 .header-text {

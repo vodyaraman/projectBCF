@@ -10,21 +10,22 @@ import AnimatedBackground from '../../components/background/AnimatedBackground';
 import SBlock from "../../components/structure-elements/SBlock-main.js";
 import SBlockHeader from "../../components/structure-elements/SBlock-header.js";
 import SBlockWrite from '../../components/structure-elements/SBlock-write.js';
+import SBlockLift from '../../components/structure-elements/SBlock-lift.js';
 
 const MainPage = () => {
     const [articles, setArticles] = useState([]);
 
+    const fetchArticles = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/getArticles');
+            const data = await response.json();
+            setArticles(data);
+            console.log("banana")
+        } catch (error) {
+            console.error('Ошибка при загрузке статей', error);
+        }
+    };
     useEffect(() => {
-        const fetchArticles = async () => {
-            try {
-                const response = await fetch('http://localhost:3001/getArticles');
-                const data = await response.json();
-                setArticles(data);
-            } catch (error) {
-                console.error('Ошибка при загрузке статей', error);
-            }
-        };
-
         fetchArticles();
     }, []);
 
@@ -39,9 +40,10 @@ const MainPage = () => {
                     </div>
                 ))}
                 <div className='block'>
-                    <SBlockWrite />
+                    <SBlockWrite fetchArticles={fetchArticles}/>
                 </div>
                 <Header />
+                <SBlockLift />
                 <Footer />
             </div>
         </div>

@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import ChangeLanImg from "../../images/change-language.png";
 import i18n from "../../../localisation/i18n"
-import "../header.css";
+import "./header-component.css";
 import { useTranslation } from "react-i18next";
 
 const ChangeLanguageWindow = () => {
-    const [isClicked, setIsClicked] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     const { t } = useTranslation();
 
-    const handleButtonClick = () => {
-        setIsClicked(!isClicked);
+    function handleMouseEnter() {
+        setIsHovered(true);
+    }
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
     };
 
     const [language, setLanguage] = useState("EN");
@@ -18,34 +21,32 @@ const ChangeLanguageWindow = () => {
     const handleLanguageChange = (selectedLanguage) => {
         setLanguage(selectedLanguage);
         i18n.changeLanguage(selectedLanguage);
-        setIsClicked(false);
     };
 
     return (
         <div
-            id="header-change-language-block"
-            onClick={handleButtonClick}
-            onMouseLeave={() => setIsClicked(false)}
+            className="change-settings-block"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
         >
-            {isClicked && (
-                <div className="choose-language">
-                    <img className="button-img" src={ChangeLanImg} alt="CL" />
-                    <span
-                        className="change-language-text"
+            {!isHovered && (
+                <div className="button-img">{language}</div>
+            )}
+            {isHovered && (
+                <div id="choose-language">
+                    <div
+                        className="button-img"
                         onClick={() => handleLanguageChange("RU")}
                     >
                         {t("RU")}
-                    </span>
-                    <span
-                        className="change-language-text"
+                    </div>
+                    <div
+                        className="button-img"
                         onClick={() => handleLanguageChange("EN")}
                     >
                         {t("EN")}
-                    </span>
+                    </div>
                 </div>
-            )}
-            {!isClicked && (
-                <span className="change-language-text">{language}</span>
             )}
         </div>
     );

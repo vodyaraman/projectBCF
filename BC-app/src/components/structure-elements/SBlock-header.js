@@ -43,6 +43,7 @@ const SBLockHeader = () => {
             <div id="structure-block-header">
                 {images.map((image, index) => (
                     <img
+                        className="structure-block-header-img "
                         key={index}
                         src={image}
                         alt={`carousel-${index}`}

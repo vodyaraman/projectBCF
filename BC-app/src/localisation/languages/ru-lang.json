@@ -10,5 +10,13 @@
     "mainpage": "Главная",
     "about": "Про Нас",
     "reviews": "Оценки",
-    "articles": "Статьи"
+    "articles": "Статьи",
+    "theme" : "Тема сайта",
+    "language": "Выбор языка",
+    "text-opacity": "Яркость теста",
+    "light-edition": "Упрощенный режим",
+    "leave-comment": "Оставить отзыв",
+    "registration": "Зарегистрироваться",
+    "author": "Автор:",
+    "date-publication": "Дата публикации:"
 }

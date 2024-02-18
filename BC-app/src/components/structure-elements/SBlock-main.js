@@ -2,11 +2,13 @@ import "../../pages/main-page/Main-page.css"
 import React from 'react';
 import { useState, useEffect } from "react";
 import { format } from 'date-fns';
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 
 const SBlock = ({ article }) => {
     const dateFromDatabase = article.time;
     const formattedDate = format(dateFromDatabase, "dd.MM.yyyy HH:mm");
+    const { t } = useTranslation();
 
     const [user, setUser] = useState([]);
     const userid = article.userid
@@ -34,8 +36,8 @@ const SBlock = ({ article }) => {
             <h1>{article.title}</h1>
             <p className="structure-block-maintext">{article.article}</p>
             <div className="structure-block-addtext">
-                <span>Автор: {user.login}</span>
-                <span>Дата публикации: {formattedDate} </span>
+                <div id="check-author" >{t("author")} {user.login}</div>
+                <div id="check-date">{t("date-publication")} {formattedDate} </div>
             </div>
         </div>
     );

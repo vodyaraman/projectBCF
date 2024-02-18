@@ -20,7 +20,6 @@ const MainPage = () => {
             const response = await fetch('http://localhost:3001/getArticles');
             const data = await response.json();
             setArticles(data);
-            console.log("banana")
         } catch (error) {
             console.error('Ошибка при загрузке статей', error);
         }

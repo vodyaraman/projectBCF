@@ -54,15 +54,15 @@
     text-align: center;
 }
 
-.structure-block-addtext span {
+.structure-block-addtext {
     font-size: 11pt;
     color: rgba(218, 242, 247, 0.726);
-}
-
-.structure-block-addtext {
-    margin-top: 10px;
+    margin-top: 30px;
     display: flex;
     justify-content: space-between;
+}
+#check-author {
+    cursor: pointer;
 }
 
 .structure-block h1 {

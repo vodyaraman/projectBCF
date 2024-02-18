@@ -1,11 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import ChangeThemeWindow from "../header/header-components/ChangeTheme.js"
+import ChangeLanguageWindow from "../header/header-components/ChangeLanguage.js"
 import "../header/header.css";
 import SettingsImg from "../images/settings.png"
+import { useTranslation } from "react-i18next";
 
 const SettingsWindow = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { t } = useTranslation();
 
     const toggleSettings = () => {
         setIsOpen(!isOpen);
@@ -20,11 +23,10 @@ const SettingsWindow = () => {
             </img>
             {isOpen && (
                 <div className="settings-content">
-                    <div className="header-text">Тема <ChangeThemeWindow /></div>
-                    <p className="header-text">Язык</p>
-                    <p className="header-text">Яркость текста</p>
-                    <p className="header-text">Упрощенный режим</p>
-                    <p></p>
+                    <div className="header-text">{t("theme")} <ChangeThemeWindow /></div>
+                    <div className="header-text">{t("language")} <ChangeLanguageWindow /></div>
+                    <p className="header-text">{t("text-opacity")}</p>
+                    <p className="header-text">{t("light-edition")}</p>
                 </div>
             )}
         </div>

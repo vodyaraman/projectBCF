@@ -10,5 +10,13 @@
     "mainpage": "Main Page",
     "about": "About Us",
     "reviews": "Reviews",
-    "articles": "Articles"
+    "articles": "Articles",
+    "theme" : "Theme",
+    "language": "Language",
+    "text-opacity": "Text opacity",
+    "light-edition": "Light edition",
+    "leave-comment": "Leave comment",
+    "registration": "Sign Up",
+    "author": "Author:",
+    "date-publication": "Date of publication:"
 }

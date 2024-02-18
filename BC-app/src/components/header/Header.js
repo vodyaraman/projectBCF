@@ -12,7 +12,7 @@ const Header = () => {
             <AccountMenu /> 
             <div className="header-links">
                 <Link to="/mainpage"><span className="header-links-text">{t("mainpage")}</span></Link>
-                <Link to="/articles"><span className="header-links-text">{t("Articles")}</span></Link>
+                <Link to="/articles"><span className="header-links-text">{t("articles")}</span></Link>
                 <Link to="/reviews"><span className="header-links-text">{t("reviews")}</span></Link>
                 <Link to="/about"><span className="header-links-text">{t("about")}</span></Link>
             </div>

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 header {
     position: fixed;
@@ -23,46 +24,28 @@ header {
 
 .settings-content,
 .accountmenu-content {
-    margin: 3px;
     z-index: 1010;
     position: fixed;
+    overflow: hidden;
     top: 65px;
     width: 20%;
     min-height: 20vh;
-    padding: 5px;
     background: linear-gradient(to bottom, rgba(14, 101, 155, 1), rgba(0, 30, 60, 0.95));
-    border-radius: 0 20px 20px 20px;
+    border: 1px solid rgb(1, 21, 41);
+    border-radius: 0 0 20px 20px;
     opacity: 0;
     animation: slideIn-left 0.5s ease forwards;
 }
 
 .accountmenu-content {
     right: 16px;
-    border-radius: 20px 0 20px 20px;
+    border-radius: 0 0 20px 20px;
     animation: slideIn-right 0.5s ease forwards;
 }
 
-.change-theme-block,
-.change-language-block {
-    display: block;
-    float: left;
-}
-
-.change-theme-block {
-    width: 140px;
-    height: 70px;
-}
-
-.change-language-block {
-    width: 70px;
-    height: 210px;
-}
-
 /* Изображения и кнопки */
-.button-img,
 .settings-button,
-.account-button,
-#header-change-language-block {
+.account-button {
     position: relative;
     z-index: 1002;
     object-fit: cover;
@@ -103,32 +86,6 @@ header {
     margin-right: 25px;
 }
 
-#header-change-language-block {
-    float: right;
-}
-
-/* Дополнительные стили */
-.choose-block {
-    border: 0px;
-    border-radius: 7px;
-    opacity: 0;
-}
-
-.choose-theme,
-.choose-language {
-    position: relative;
-    top: 100%;
-}
-
-.choose-theme {
-    width: 140px;
-    height: 70px;
-}
-
-.choose-language {
-    width: 70px;
-    height: 210px;
-}
 
 /* Анимация */
 @keyframes slideIn-left {
@@ -156,15 +113,6 @@ header {
 }
 
 /* Текст */
-.change-language-text {
-    font-family: "Anton";
-    font-size: 30pt;
-    color: azure;
-    display: block;
-    text-align: center;
-    user-select: none;
-    cursor: pointer;
-}
 
 .header-links-text {
     color: rgba(168, 169, 170, 0.781);
@@ -184,12 +132,17 @@ header {
 }
 
 .header-text {
-    margin: 15px;
-    font: 15pt "Merriweather";
+    display: block;
+    padding: 14px;
+    font-size: 14pt;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
     color: rgba(240, 248, 255, 0.897);
     cursor: pointer;
 }
 
 .header-text:hover {
     color: aliceblue;
+    background-color: rgba(0, 0, 0, 0.2);
 }

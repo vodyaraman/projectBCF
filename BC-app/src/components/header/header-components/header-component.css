@@ -1,0 +1,19 @@
+.button-img {
+    display: inline-block;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    font-family: "Anton";
+    font-size: 30pt;
+    color: azure;
+    position: relative;
+    z-index: 1002;
+    object-fit: cover;
+    margin: 5px 5px 0 0;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 1);
+    border-radius: 15%;
+    width: 55px;
+    height: 50px;
+    line-height: 50px;
+}

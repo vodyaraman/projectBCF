@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import sunnyImg from "../../images/sun.jpg";
 import moonImg from "../../images/moon.jpg";
 import changeThemeImg from "../../images/change-theme.jpg";
-import "../header.css";
+import "./header-component.css";
 import { ThemeContext } from '../../../contexts/ThemeContext';
 
 const ChangeThemeWindow = () => {
@@ -19,7 +19,7 @@ const ChangeThemeWindow = () => {
 
     return (
         <div
-            className="header-change-theme-block"
+            className="change-settings-block"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
@@ -27,7 +27,7 @@ const ChangeThemeWindow = () => {
                 <img
                     className="button-img"
                     src={changeThemeImg}
-                    alt="Day Theme"
+                    alt="Change Theme"
                     onClick={() => handleThemeChange('day')}
                 />
             )}

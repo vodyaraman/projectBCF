@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import i18n from "../../../localisation/i18n"
 import "./header-component.css";
 import { useTranslation } from "react-i18next";
@@ -7,6 +7,14 @@ const ChangeLanguageWindow = () => {
     const [isHovered, setIsHovered] = useState(false);
 
     const { t } = useTranslation();
+
+    useEffect(() => {
+        const savedLanguage = localStorage.getItem('language');
+        if (savedLanguage) {
+        setLanguage(savedLanguage);
+        i18n.changeLanguage(savedLanguage);
+        }
+        }, []);
 
     function handleMouseEnter() {
         setIsHovered(true);
@@ -21,6 +29,7 @@ const ChangeLanguageWindow = () => {
     const handleLanguageChange = (selectedLanguage) => {
         setLanguage(selectedLanguage);
         i18n.changeLanguage(selectedLanguage);
+        localStorage.setItem('language', selectedLanguage);
     };
 
     return (

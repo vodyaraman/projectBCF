@@ -65,6 +65,11 @@
     color: white;
     text-align: center;
 }
+.structure-block-maintext {
+    white-space: pre-wrap;
+    font-family: 'Merriweather';
+    font-weight: 300;
+}
 
 .structure-block-addtext {
     font-size: 11pt;

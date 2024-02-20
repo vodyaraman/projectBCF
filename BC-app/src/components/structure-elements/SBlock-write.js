@@ -3,9 +3,10 @@ import "../../pages/main-page/Main-page.css";
 import axios from 'axios';
 import xss from 'xss';
 
-const SBlockWrite = ({fetchArticles}) => {
+const SBlockWrite = ({ fetchArticles }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [file, setFile] = useState(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleTitleChange = (e) => {
@@ -16,9 +17,13 @@ const SBlockWrite = ({fetchArticles}) => {
         setContent(e.target.value);
     };
 
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
+    };
+
     const handleSubmit = async () => {
-        if (!title || !content) {
-            alert("Заголовок и статья не могут быть пустыми")
+        if (!title || !content || !file) {
+            alert("Title, content, and file cannot be empty");
             return;
         }
 
@@ -26,22 +31,38 @@ const SBlockWrite = ({fetchArticles}) => {
             const cleanedTitle = xss(title);
             const cleanedContent = xss(content);
 
-            const response = await axios.post('http://localhost:3001/addArticle', {
-                title: cleanedTitle,
-                article: cleanedContent,
-                userid: 2
+            // Create FormData object to append file
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await axios.post('http://localhost:3001/uploadFile', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
 
-            console.log('Article successfully added:', response.data);
-            setIsSubmitted(true);
-            setTimeout(() => setIsSubmitted(false), 4000); // Устанавливаем таймер для сброса состояния isSubmitted через 4 секунды
+            console.log('File successfully uploaded:', response.data); // Можно удалить, если не нужно
+            const filename = response.data.filename; // Получаем имя файла из ответа сервера
 
+            // Затем отправляем остальные данные на сервер для добавления статьи
+            const articleResponse = await axios.post('http://localhost:3001/addArticle', {
+                title: cleanedTitle,
+                article: cleanedContent,
+                userid: 2,
+                file: filename // Передаем имя файла
+            });
+
+            console.log('Article successfully added:', articleResponse.data); // Можно удалить, если не нужно
+            setIsSubmitted(true);
+            setTimeout(() => setIsSubmitted(false), 4000);
             setTitle("");
             setContent("");
+            setFile(null);
             fetchArticles();
-            setTimeout(() =>
-            document.getElementById("page-scrollbar-container").scrollTop =
-            document.getElementById("page-scrollbar-container").scrollHeight, 100)
+            setTimeout(() => {
+                document.getElementById("page-scrollbar-container").scrollTop =
+                    document.getElementById("page-scrollbar-container").scrollHeight;
+            }, 100);
 
         } catch (error) {
             console.error('Error adding article:', error);
@@ -63,10 +84,16 @@ const SBlockWrite = ({fetchArticles}) => {
                 value={content}
                 onChange={handleContentChange}
             />
+            <input
+                className="article-button"
+                type="file"
+                accept="image/*, audio/*"
+                onChange={handleFileChange}
+            />
             <button
                 className="article-button"
                 onClick={handleSubmit}>
-                {isSubmitted ? <span>✓</span> : 'Submit'} {/* Отображаем галочку или текст в зависимости от состояния */}
+                {isSubmitted ? <span>✓</span> : 'Submit'}
             </button>
         </div>
     );

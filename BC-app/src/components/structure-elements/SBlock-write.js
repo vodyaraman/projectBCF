@@ -85,7 +85,7 @@ const SBlockWrite = ({ fetchArticles }) => {
                 onChange={handleContentChange}
             />
             <input
-                className="article-button"
+                className="article-add-button"
                 type="file"
                 accept="image/*, audio/*"
                 onChange={handleFileChange}

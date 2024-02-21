@@ -40,7 +40,8 @@
     z-index: 5;
     font-family: 'Merriweather';
     font-weight: 300;
-    width: 70%;
+    width: 85%;
+    margin: 10px 0 10px 0;
     font-size: 13pt;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 25px;
@@ -52,10 +53,11 @@
     z-index: 5;
     font-family: 'Merriweather';
     font-weight: 300;
-    width: 70%;
+    width: 80%;
     font-size: 13pt;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 0 25px 25px 0;
+    margin-left: 120px;
     padding: 20px;
 }
 
@@ -106,6 +108,9 @@
 .structure-block-maintext {
     display: block;
     text-align: justify;
+    object-fit: cover;
+    width: 100%;
+    margin-top: 20px;
 }
 
 .structure-block-maintext::first-letter {
@@ -157,9 +162,9 @@
 }
 
 .article-button {
-    display: block;
-    margin: auto;
-    padding: 10px 20px;
+    display: inline-flex;
+    float:right;
+    padding: 7px 20px;
     font-size: 13pt;
     background-color: rgba(255, 248, 248, 0.774);
     color: black;
@@ -167,6 +172,12 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+.article-add-button {
+    display: inline-flex;
+    padding: 7px;
+    background-color: rgba(0,0,0,0.25);
+    color: white;
 }
 
 .article-button:hover {
@@ -291,7 +302,7 @@
     border: 1px solid rgba(0, 0, 0, 0);
 }
 
-.structure-block-author {
+.structure-block-editor {
     position: absolute;
     left: -120px;
     top: 0;
@@ -305,6 +316,12 @@
     border-radius: 25px 0 0 25px;
     color: white;
     animation: slideIn-right 0.5s ease forwards;
+}
+.structure-block-editable-text {
+    position: absolute;
+    left: 120px;
+    top: 0px;
+    width: 100%;
 }
 
 @keyframes slideIn-right{

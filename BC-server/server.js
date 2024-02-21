@@ -116,6 +116,30 @@ app.get('/images/:filename', (req, res) => {
     const filePath = path.join(__dirname, 'images', filename);
     res.sendFile(filePath);
 });
+// Обработчик обновления статьи
+app.put('/updateArticle/:id', async (req, res) => {
+    const articleId = req.params.id;
+    const { title, content } = req.body;
+    try {
+        const result = await pool.query('UPDATE articles SET title = $1, article = $2 WHERE id = $3 RETURNING *', [title, content, articleId]);
+        res.status(200).json({ success: true, article: result.rows[0] });
+    } catch (error) {
+        console.error('Ошибка при обновлении статьи', error);
+        res.status(500).json({ success: false, message: 'Внутренняя ошибка сервера' });
+    }
+});
+
+// Обработчик удаления статьи
+app.delete('/deleteArticle/:id', async (req, res) => {
+    const articleId = req.params.id;
+    try {
+        await pool.query('DELETE FROM articles WHERE id = $1', [articleId]);
+        res.status(200).json({ success: true, message: 'Статья успешно удалена' });
+    } catch (error) {
+        console.error('Ошибка при удалении статьи', error);
+        res.status(500).json({ success: false, message: 'Внутренняя ошибка сервера' });
+    }
+});
 app.listen(port, () => {
     console.log(`Сервер запущен на порту ${port}`);
 });

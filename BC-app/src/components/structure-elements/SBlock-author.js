@@ -5,6 +5,7 @@ const SBlockAuthor = (thisAuthor) => {
     return(
         <div className='structure-block-author'>
             <div className="main-text">{thisAuthor.user}</div>
+            
         </div> 
         
     );

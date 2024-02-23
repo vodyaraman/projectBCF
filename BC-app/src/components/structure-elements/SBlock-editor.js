@@ -15,8 +15,8 @@ const SBlockEditor = ({ onSaveArticle, onClose, onDeleteArticle }) => {
 
     return (
         <div className="structure-block-editor">
-            <button className="article-button" onClick={handleSaveClick}>Save</button>
-            <button className="article-button" onClick={handleDeleteClick}>Delete</button>
+            <button className="structure-block-edit-button" onClick={handleSaveClick}>Save</button>
+            <button className="structure-block-edit-button" onClick={handleDeleteClick}>Delete</button>
         </div>
     );
 };

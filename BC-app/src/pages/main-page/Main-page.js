@@ -34,8 +34,8 @@ const MainPage = () => {
             <div id="page-scrollbar-container">
                 <SBlockHeader />
                 {articles.map((article, index) => (
-                    <div className='block' key={index}>
-                        <SBlock article={article} />
+                    <div className='block' key={index} name={article.title}>
+                        <SBlock article={article} fetchArticles={fetchArticles}/>
                     </div>
                 ))}
                 <div className='block'>

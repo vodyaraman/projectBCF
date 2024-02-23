@@ -22,28 +22,29 @@ const SBlockWrite = ({ fetchArticles }) => {
     };
 
     const handleSubmit = async () => {
-        if (!title || !content || !file) {
-            alert("Title, content, and file cannot be empty");
+        if (!title || !content) {
+            alert("Title and content cannot be empty");
             return;
         }
 
         try {
             const cleanedTitle = xss(title);
             const cleanedContent = xss(content);
+            var filename;
 
-            // Create FormData object to append file
-            const formData = new FormData();
-            formData.append('file', file);
+            if (file) {
+                const formData = new FormData();
+                formData.append('file', file);
 
-            const response = await axios.post('http://localhost:3001/uploadFile', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+                const response = await axios.post('http://localhost:3001/uploadFile', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
 
-            console.log('File successfully uploaded:', response.data); // Можно удалить, если не нужно
-            const filename = response.data.filename; // Получаем имя файла из ответа сервера
-
+                console.log('File successfully uploaded:', response.data); // Можно удалить, если не нужно
+                filename = response.data.filename; // Получаем имя файла из ответа сервера
+            }
             // Затем отправляем остальные данные на сервер для добавления статьи
             const articleResponse = await axios.post('http://localhost:3001/addArticle', {
                 title: cleanedTitle,
@@ -57,7 +58,8 @@ const SBlockWrite = ({ fetchArticles }) => {
             setTimeout(() => setIsSubmitted(false), 4000);
             setTitle("");
             setContent("");
-            setFile(null);
+            setFile("");
+            document.getElementById("article-add-image-button").value = "";
             fetchArticles();
             setTimeout(() => {
                 document.getElementById("page-scrollbar-container").scrollTop =
@@ -85,7 +87,7 @@ const SBlockWrite = ({ fetchArticles }) => {
                 onChange={handleContentChange}
             />
             <input
-                className="article-add-button"
+                id="article-add-image-button"
                 type="file"
                 accept="image/*, audio/*"
                 onChange={handleFileChange}

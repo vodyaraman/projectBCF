@@ -104,7 +104,7 @@ app.post('/getUserByID', async (req, res) => {
 });
 app.get('/getArticles', async (req, res) => {
     try {
-        const articles = await pool.query('SELECT * FROM articles');
+        const articles = await pool.query('SELECT * FROM articles ORDER BY time');
         res.json(articles.rows);
     } catch (error) {
         console.error('Ошибка при загрузке статей', error);

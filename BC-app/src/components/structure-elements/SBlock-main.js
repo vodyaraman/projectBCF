@@ -6,7 +6,7 @@ import Calendar from "./SBlock-calendar.js";
 import Editor from "./SBlock-editor.js";
 import "../../pages/main-page/Main-page.css";
 
-const SBlock = ({ article }) => {
+const SBlock = ({ article, fetchArticles }) => {
     const dateFromDatabase = article.time;
     const formattedDate = format(dateFromDatabase, "dd.MM.yyyy HH:mm");
     const { t } = useTranslation();
@@ -18,7 +18,7 @@ const SBlock = ({ article }) => {
     const [showCalendar, setShowCalendar] = useState(false);
     const [editedTitle, setEditedTitle] = useState(article.title);
     const [editedContent, setEditedContent] = useState(article.article);
-
+    
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -37,14 +37,16 @@ const SBlock = ({ article }) => {
 
     useEffect(() => {
         const loadImage = async () => {
-            try {
-                const response = await axios.get(`http://localhost:3001/images/${article.filename}`, {
-                    responseType: "blob",
-                });
-                const imageURL = URL.createObjectURL(response.data);
-                setImageURL(imageURL);
-            } catch (error) {
-                console.error("Ошибка при загрузке изображения", error);
+            if (article.filename) {
+                try {
+                    const response = await axios.get(`http://localhost:3001/images/${article.filename}`, {
+                        responseType: "blob",
+                    });
+                    const imageURL = URL.createObjectURL(response.data);
+                    setImageURL(imageURL);
+                } catch (error) {
+                    console.error("Ошибка при загрузке изображения", error);
+                }
             }
         };
 
@@ -56,7 +58,7 @@ const SBlock = ({ article }) => {
     };
 
     const handleAuthorClick = () => {
-        setIsEditing(true);
+        setIsEditing(!isEditing);
     };
 
     const handleTitleChange = (event) => {
@@ -74,20 +76,22 @@ const SBlock = ({ article }) => {
                 content: editedContent,
             });
             console.log(response)
-            setIsEditing(false); // Exit edit mode
+            setIsEditing(false);
+            fetchArticles();
         } catch (error) {
             console.error("Error updating article:", error);
-            // Handle error updating article
         }
     };
 
     const handleDeleteArticle = async () => {
-        try {
-            const response = await axios.delete(`http://localhost:3001/deleteArticle/${article.id}`);
-            console.log(response)
-        } catch (error) {
-            console.error("Error deleting article:", error);
-            // Handle error deleting article
+        if (window.confirm("Вы удаляете статью?")) {
+            try {
+                const response = await axios.delete(`http://localhost:3001/deleteArticle/${article.id}`);
+                console.log(response)
+                fetchArticles();
+            } catch (error) {
+                console.error("Error deleting article:", error);
+            }
         }
     };
 
@@ -95,8 +99,12 @@ const SBlock = ({ article }) => {
         <div className={`structure-block ${isEditing ? 'rounded' : ''}`}>
             {isEditing ? (
                 <div>
-                    <input className="article-text-title" type="text" value={editedTitle} onChange={handleTitleChange} />
-                    <textarea className="article-text-content" value={editedContent} onChange={handleContentChange} />
+                    <input className="structure-block-editable-title" type="text" value={editedTitle} onChange={handleTitleChange} />
+                    <textarea className="structure-block-editable-content" value={editedContent} onChange={handleContentChange} />
+                    {imageURL &&
+                        <div className="structure-block-edit-image">
+                            <img src={imageURL} alt="Article" className="structure-block-editable-content" />
+                        </div>}
                     <Editor
                         onSaveArticle={handleSaveArticle}
                         onDeleteArticle={handleDeleteArticle}
@@ -110,7 +118,6 @@ const SBlock = ({ article }) => {
                     {imageURL && <img src={imageURL} alt="Article" className="structure-block-maintext" />}
                 </div>
             )}
-
             <div className="structure-block-addtext">
                 <div id="check-author" onClick={handleAuthorClick}>{t("author")} {user}</div>
                 <div id="check-date" onClick={handleDateClick}>{t("date-publication")} {formattedDate}</div>

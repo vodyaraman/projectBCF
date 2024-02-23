@@ -173,7 +173,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-.article-add-button {
+#article-add-image-button {
     display: inline-flex;
     padding: 7px;
     background-color: rgba(0,0,0,0.25);
@@ -304,6 +304,9 @@
 
 .structure-block-editor {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     left: -120px;
     top: 0;
     z-index: 5;
@@ -317,13 +320,66 @@
     color: white;
     animation: slideIn-right 0.5s ease forwards;
 }
-.structure-block-editable-text {
-    position: absolute;
-    left: 120px;
-    top: 0px;
-    width: 100%;
+.structure-block-editable-title,
+.structure-block-editable-content {
+    position: sticky;
+    display: block;
+    padding: 5px;
+    width: 99%;
+    max-width: 99%;
+    font-size: 13pt;
+    font: "Merriweather";
+    font-size: 14pt;
+    border: none;
+    background-color: transparent;
+    color: white;
+    resize: none;
+    outline: none;
+    object-fit: contain;
+}
+.structure-block-editable-title {
+    font-size: 16pt;
+    text-align: center;
+    border-bottom: 1px solid white;
+}
+.structure-block-editable-content {
+    display: flex;
+    min-height: 180px;
+    resize: vertical;
+}
+.structure-block-editable-content::-webkit-scrollbar {
+    width: 12px;
+    background-color: rgba(0, 0, 0, 0.25);
+    cursor: default;
 }
 
+.structure-block-editable-content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 248, 248, 0.774);
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.structure-block-edit-button {
+    position: relative;
+    margin: 0 0 10px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 85%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.structure-block-edit-button:hover {
+    background-color: rgba(0, 0, 0, 0.35);;
+}
+.structure-block-edit-image {
+    position: relative;
+    display: flex;
+    bottom: 20px;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+}
 @keyframes slideIn-right{
     from {
         opacity: 0;

@@ -8,6 +8,8 @@ import "../../pages/main-page/Main-page.css";
 
 const SBlock = ({ article, fetchArticles }) => {
     const dateFromDatabase = article.time;
+    const title = article.title;
+
     const formattedDate = format(dateFromDatabase, "dd.MM.yyyy HH:mm");
     const { t } = useTranslation();
 
@@ -18,7 +20,13 @@ const SBlock = ({ article, fetchArticles }) => {
     const [showCalendar, setShowCalendar] = useState(false);
     const [editedTitle, setEditedTitle] = useState(article.title);
     const [editedContent, setEditedContent] = useState(article.article);
-    
+
+    useEffect(() => {
+        if (isEditing) {
+            const block = document.getElementsByName(title)[0];
+            block.scrollIntoView();
+        }
+    }, [isEditing, title])
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -75,7 +83,6 @@ const SBlock = ({ article, fetchArticles }) => {
                 title: editedTitle,
                 content: editedContent,
             });
-            console.log(response)
             setIsEditing(false);
             fetchArticles();
         } catch (error) {
@@ -87,7 +94,6 @@ const SBlock = ({ article, fetchArticles }) => {
         if (window.confirm("Вы удаляете статью?")) {
             try {
                 const response = await axios.delete(`http://localhost:3001/deleteArticle/${article.id}`);
-                console.log(response)
                 fetchArticles();
             } catch (error) {
                 console.error("Error deleting article:", error);

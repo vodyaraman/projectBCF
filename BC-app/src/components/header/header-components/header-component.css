@@ -5,13 +5,13 @@
     cursor: pointer;
     font-family: "Anton";
     font-size: 30pt;
-    color: azure;
+    color: var(--primary-text-color);
     position: relative;
     z-index: 1002;
     object-fit: cover;
     margin: 5px 5px 0 0;
     padding: 0;
-    border: 1px solid rgba(0, 0, 0, 1);
+    border: 1px solid var(--primary-border-color);
     border-radius: 15%; 
     width: 55px;
     height: 50px;

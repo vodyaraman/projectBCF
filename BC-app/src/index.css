@@ -1,0 +1,12 @@
+:root {
+    --primary-div-color: rgb(255, 255, 255, 0.9);
+    --secondary-div-color: rgba(255, 255, 255, 0.5);
+    --primary-border-color: rgba(174, 175, 177, 0.658);
+    --primary-text-color: black;
+    --secondary-text-color: white;
+    --error-color: red;
+    --link-color: blue;
+    --secondary-button-color: rgba(8, 70, 240, 0.767);
+    --shimmer-light: rgba(255, 255, 255, 0.95);
+    --shimmer-dark: rgba(255, 255, 255, 0.1);
+    }

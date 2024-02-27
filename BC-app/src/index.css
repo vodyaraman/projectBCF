@@ -1,12 +1,14 @@
 :root {
-    --primary-div-color: rgb(255, 255, 255, 0.9);
-    --secondary-div-color: rgba(255, 255, 255, 0.5);
+    --primary-div-color: rgba(0, 0, 0, 0.0);
+    --secondary-div-color: rgba(0, 0, 0, 0.33);
     --primary-border-color: rgba(174, 175, 177, 0.658);
-    --primary-text-color: black;
+    --secondary-border-color: rgba(8, 20, 44, 0.76);
+    --primary-text-color: rgb(192, 192, 192);
+    --primary-text-color-hover: rgb(255, 255, 255);
     --secondary-text-color: white;
-    --error-color: red;
-    --link-color: blue;
+    --error-color: rgb(255, 131, 131);
+    --link-color: rgb(145, 145, 255);
+    --primary-button-color: rgba(15, 15, 15, 0.4);
+    --primary-button-color-hover: rgba(31, 31, 31, 0.38);
     --secondary-button-color: rgba(8, 70, 240, 0.767);
-    --shimmer-light: rgba(255, 255, 255, 0.95);
-    --shimmer-dark: rgba(255, 255, 255, 0.1);
-    }
+}

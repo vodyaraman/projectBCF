@@ -3,6 +3,9 @@ import "../../pages/main-page/Main-page.css";
 import axios from 'axios';
 import xss from 'xss';
 
+const HOST = "192.168.43.134";
+const PORT = 3001;
+
 const SBlockWrite = ({ fetchArticles }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -36,7 +39,7 @@ const SBlockWrite = ({ fetchArticles }) => {
                 const formData = new FormData();
                 formData.append('file', file);
 
-                const response = await axios.post('http://localhost:3001/uploadFile', formData, {
+                const response = await axios.post(`http://${HOST}:${PORT}/uploadFile`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -46,7 +49,7 @@ const SBlockWrite = ({ fetchArticles }) => {
                 filename = response.data.filename; // Получаем имя файла из ответа сервера
             }
             // Затем отправляем остальные данные на сервер для добавления статьи
-            const articleResponse = await axios.post('http://localhost:3001/addArticle', {
+            const articleResponse = await axios.post(`http://${HOST}:${PORT}/addArticle`, {
                 title: cleanedTitle,
                 article: cleanedContent,
                 userid: 2,

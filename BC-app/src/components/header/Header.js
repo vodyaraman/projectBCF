@@ -7,7 +7,7 @@ import "./header.css";
 const Header = () => {
     const { t } = useTranslation();
     return (
-        <header>
+        <header id="header">
             <SettingsWindow />
             <AccountMenu /> 
             <div className="header-links">

@@ -4,6 +4,7 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const { Pool } = require('pg');
+const { Server } = require('http');
 
 const app = express();
 const port = 3001;
@@ -140,6 +141,7 @@ app.delete('/deleteArticle/:id', async (req, res) => {
         res.status(500).json({ success: false, message: 'Внутренняя ошибка сервера' });
     }
 });
-app.listen(port, () => {
-    console.log(`Сервер запущен на порту ${port}`);
+const server = app.listen(port, `192.168.43.134`, () => {
+    const host = server.address().address;
+    console.log(`Сервер запущен на порту ${port} на хосте ${host}`);
 });

@@ -6,6 +6,9 @@ import Calendar from "./SBlock-calendar.js";
 import Editor from "./SBlock-editor.js";
 import "../../pages/main-page/Main-page.css";
 
+const HOST = "192.168.43.134";
+const PORT = 3001;
+
 const SBlock = ({ article, fetchArticles }) => {
     const dateFromDatabase = article.time;
     const title = article.title;
@@ -24,13 +27,14 @@ const SBlock = ({ article, fetchArticles }) => {
     useEffect(() => {
         if (isEditing) {
             const block = document.getElementsByName(title)[0];
-            block.scrollIntoView();
+            block.scrollIntoView({block: "center"
+            });
         }
     }, [isEditing, title])
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.post("http://localhost:3001/getUserByID", {
+                const response = await axios.post(`http://${HOST}:${PORT}/getUserByID`, {
                     userid: userid,
                 });
                 const { login } = response.data;
@@ -47,7 +51,7 @@ const SBlock = ({ article, fetchArticles }) => {
         const loadImage = async () => {
             if (article.filename) {
                 try {
-                    const response = await axios.get(`http://localhost:3001/images/${article.filename}`, {
+                    const response = await axios.get(`http://${HOST}:${PORT}/images/${article.filename}`, {
                         responseType: "blob",
                     });
                     const imageURL = URL.createObjectURL(response.data);
@@ -79,7 +83,7 @@ const SBlock = ({ article, fetchArticles }) => {
 
     const handleSaveArticle = async () => {
         try {
-            const response = await axios.put(`http://localhost:3001/updateArticle/${article.id}`, {
+            const response = await axios.put(`http://${HOST}:${PORT}/updateArticle/${article.id}`, {
                 title: editedTitle,
                 content: editedContent,
             });
@@ -93,7 +97,7 @@ const SBlock = ({ article, fetchArticles }) => {
     const handleDeleteArticle = async () => {
         if (window.confirm("Вы удаляете статью?")) {
             try {
-                const response = await axios.delete(`http://localhost:3001/deleteArticle/${article.id}`);
+                const response = await axios.delete(`http://${HOST}:${PORT}/deleteArticle/${article.id}`);
                 fetchArticles();
             } catch (error) {
                 console.error("Error deleting article:", error);

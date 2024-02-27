@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SettingsWindow from '../../components/structure-elements/SBlock-settings';
 
+const HOST = "192.168.43.134";
+const PORT = 3001;
+
 const Authorisation = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -49,7 +52,7 @@ const Authorisation = () => {
         e.preventDefault();
         if (state.permission) {
             try {
-                const response = await axios.post('http://localhost:3001/submitData', {
+                const response = await axios.post(`http://${HOST}:${PORT}/submitData`, {
                     code: state.code
                 });
 

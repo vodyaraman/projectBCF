@@ -15,22 +15,12 @@
     width: 300px;
     height: 290px;
     background-color: var(--primary-div-color);
+    backdrop-filter: blur(10px);
+    color: var(--primary-text-color);
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     padding: 20px;
     box-sizing: border-box;
-}
-
-@keyframes shimmer {
-
-    0%,
-    100% {
-        background-color: var(--shimmer-light);
-    }
-
-    50% {
-        background-color: var(--shimmer-dark);
-    }
 }
 
 #authorisation-page {

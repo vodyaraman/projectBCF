@@ -36,13 +36,14 @@
 }
 
 #sbh-buttons-panel button {
-    background-color: var(--secondary-button-color);
+    background-color: var(--primary-button-color);
     color: var(--primary-text-color);
     height: 20px;
-    margin: 0;
+    border: none;
+    border-radius: 5px;
     font-size: 9pt;
     padding: 1px;
-    margin: 5px 0;
+    margin: 5px 2px;
 }
 .bot-header-button {
     width: 80px;

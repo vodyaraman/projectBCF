@@ -10,7 +10,22 @@ const AnimatedBackgroundDay = () => {
     });
 
     useEffect(() => {
-        // You can add more animations or logic here if needed
+        const changeColors = () => {
+            document.documentElement.style.setProperty('--primary-div-color', 'rgba(255, 255, 255, 0.86)');
+            document.documentElement.style.setProperty('--secondary-div-color', 'rgba(220, 220, 220, 0.33)');
+            document.documentElement.style.setProperty('--primary-border-color', 'rgba(174, 175, 177, 0.658)');
+            document.documentElement.style.setProperty('--secondary-border-color', 'rgba(8, 20, 44, 0.76)');
+            document.documentElement.style.setProperty('--primary-text-color', 'rgba(0, 0, 0, 0.95)');
+            document.documentElement.style.setProperty('--primary-text-color-hover', 'rgb(255, 255, 255)');
+            document.documentElement.style.setProperty('--secondary-text-color', 'white');
+            document.documentElement.style.setProperty('--error-color', 'red');
+            document.documentElement.style.setProperty('--link-color', 'blue');
+            document.documentElement.style.setProperty('--primary-button-color', 'rgba(15, 15, 15, 0.4)');
+            document.documentElement.style.setProperty('--primary-button-color-hover', 'rgba(31, 31, 31, 0.38)');
+            document.documentElement.style.setProperty('--secondary-button-color', 'rgba(8, 70, 240, 0.767)');
+          };
+        
+          changeColors();
     }, []);
 
     return (
@@ -31,7 +46,6 @@ const AnimatedBackgroundDay = () => {
                     </div>
                 </div>
                 <div className="sun"></div>            
-                {/* Add more elements for the sky, grass, and other details */}
             </animated.div>
         </div>
     );

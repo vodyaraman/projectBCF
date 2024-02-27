@@ -12,12 +12,15 @@ import SBlockHeader from "../../components/structure-elements/SBlock-header.js";
 import SBlockWrite from '../../components/structure-elements/SBlock-write.js';
 import SBlockLift from '../../components/structure-elements/SBlock-lift.js';
 
+const HOST = "192.168.43.134";
+const PORT = 3001;
+
 const MainPage = () => {
     const [articles, setArticles] = useState([]);
 
     const fetchArticles = async () => {
         try {
-            const response = await fetch('http://localhost:3001/getArticles');
+            const response = await fetch(`http://${HOST}:${PORT}/getArticles`);
             const data = await response.json();
             setArticles(data);
         } catch (error) {
@@ -32,16 +35,17 @@ const MainPage = () => {
         <div id="main-page">
             <AnimatedBackground />
             <div id="page-scrollbar-container">
+                <Header />
                 <SBlockHeader />
                 {articles.map((article, index) => (
                     <div className='block' key={index} name={article.title}>
-                        <SBlock article={article} fetchArticles={fetchArticles}/>
+                        <SBlock article={article} fetchArticles={fetchArticles} />
                     </div>
                 ))}
                 <div className='block'>
-                    <SBlockWrite fetchArticles={fetchArticles}/>
+                    <SBlockWrite fetchArticles={fetchArticles} />
                 </div>
-                <Header />
+
                 <SBlockLift />
                 <Footer />
             </div>

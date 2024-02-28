@@ -72,7 +72,7 @@ const AnimatedBackgroundNight = () => {
       document.documentElement.style.setProperty('--link-color', 'rgb(145, 145, 255)');
       document.documentElement.style.setProperty('--primary-button-color', 'rgba(15, 15, 15, 0.4)');
       document.documentElement.style.setProperty('--primary-button-color-hover', 'rgba(31, 31, 31, 0.38)');
-      document.documentElement.style.setProperty('--secondary-button-color', 'rgba(8, 70, 240, 0.767)');
+      document.documentElement.style.setProperty('--secondary-button-color', 'rgba(15, 15, 15, 0.4)');
     };
 
     changeColors();

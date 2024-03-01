@@ -8,6 +8,7 @@
     }
     .structure-block-maintext,
     .structure-block h1,
+    .structure-block h2,
     .article-text-title,
     .article-text-content,
     .structure-block-editable-title,
@@ -41,6 +42,7 @@
     }
     .structure-block-maintext,
     .structure-block h1,
+    .structure-block h2,
     .article-text-title,
     .article-text-content,
     .structure-block-editable-title,
@@ -130,7 +132,8 @@
 }
 
 .structure-block-maintext,
-.structure-block h1 {
+.structure-block h1,
+.structure-block h2 {
     position: sticky;
     color: var(--primary-text-color);
     text-align: center;

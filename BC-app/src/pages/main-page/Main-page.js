@@ -20,7 +20,7 @@ const MainPage = () => {
 
     const fetchArticles = async () => {
         try {
-            const response = await fetch(`http://${HOST}:${PORT}/getArticles`);
+            const response = await fetch(`http://${HOST}:${PORT}/articles/getArticles`);
             const data = await response.json();
             setArticles(data);
         } catch (error) {

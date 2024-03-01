@@ -52,7 +52,7 @@ const Authorisation = () => {
         e.preventDefault();
         if (state.permission) {
             try {
-                const response = await axios.post(`http://${HOST}:${PORT}/submitData`, {
+                const response = await axios.post(`http://${HOST}:${PORT}/users/submitData`, {
                     code: state.code
                 });
 

@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import "../../pages/reviews-page/Reviews.css"
 import "../../pages/main-page/Main-page.css"
+import axios from 'axios';
+
+const HOST = "192.168.43.134";
+const PORT = 3001;
+
 
 const SBlockReview = () => {
     const [rating, setRating] = useState(0);
@@ -9,7 +14,7 @@ const SBlockReview = () => {
 
     const handleMouseOver = (hoveredRating) => {
         if (!selectBlock)
-            setRating(hoveredRating); // Обновляем состояние при наведении на звезду
+            setRating(hoveredRating);
     };
 
     const handleClick = (selectedRating) => {
@@ -21,12 +26,21 @@ const SBlockReview = () => {
         setReviewText(event.target.value);
     }
 
-    const handleSubmit = () => {
-        console.log("Rating: ", rating);
-        console.log("Review: ", reviewText);
-        setRating(0);
-        setReviewText('');
-        setSelectedBlock(false)
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.post(`http://${HOST}:${PORT}/reviews/addReview`, {
+                rating: rating,
+                review_text: reviewText,
+                user_id: 1
+            });
+            console.log('Review added successfully:', response.data);
+            setRating(0);
+            setReviewText('');
+            setSelectedBlock(false)
+        }
+        catch (error) {
+            console.error('Error adding review:', error);
+        }
     }
 
     return (
@@ -34,24 +48,25 @@ const SBlockReview = () => {
             <div className="structure-block-review">
                 <h1>Leave a Review</h1>
                 <div id="rating">
-                    <label className="structure-block-maintext">Rating:
-                    {[...Array(5)].map((_, index) => {
-                        const ratingValue = index + 1;
-                        return (
-                            <span
-                                className='rating-star'
-                                key={ratingValue}
-                                onMouseOver={() => handleMouseOver(ratingValue)}
-                                onClick={() => handleClick(ratingValue)}
-                                style={{
-                                    color: ratingValue <= rating ? 'gold' : 'gray',
-                                }}
-                            >
-                                ★
-                            </span>
-                        );
-                    })}
-                    </label>    
+                    <div>
+                        {[...Array(5)].map((_, index) => {
+                            const ratingValue = index + 1;
+                            return (
+                                <span
+                                    className='rating-star'
+                                    key={ratingValue}
+                                    onMouseOver={() => handleMouseOver(ratingValue)}
+                                    onClick={() => handleClick(ratingValue)}
+                                    style={{
+                                        color: ratingValue <= rating ? 'gold' : 'gray',
+                                    }}
+                                >
+                                    ★
+                                </span>
+                            );
+                        })}
+                    </div>
+                    <h2>Rate: {rating}/5</h2>
                 </div>
                 <div>
                     <label htmlFor="review" className="structure-block-maintext">Your Review:</label>

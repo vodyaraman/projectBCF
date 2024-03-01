@@ -34,7 +34,7 @@ const SBlock = ({ article, fetchArticles }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.post(`http://${HOST}:${PORT}/getUserByID`, {
+                const response = await axios.post(`http://${HOST}:${PORT}/users/getUserByID`, {
                     userid: userid,
                 });
                 const { login } = response.data;
@@ -51,7 +51,7 @@ const SBlock = ({ article, fetchArticles }) => {
         const loadImage = async () => {
             if (article.filename) {
                 try {
-                    const response = await axios.get(`http://${HOST}:${PORT}/images/${article.filename}`, {
+                    const response = await axios.get(`http://${HOST}:${PORT}/files/images/${article.filename}`, {
                         responseType: "blob",
                     });
                     const imageURL = URL.createObjectURL(response.data);
@@ -83,7 +83,7 @@ const SBlock = ({ article, fetchArticles }) => {
 
     const handleSaveArticle = async () => {
         try {
-            const response = await axios.put(`http://${HOST}:${PORT}/updateArticle/${article.id}`, {
+            const response = await axios.put(`http://${HOST}:${PORT}/articles/updateArticle/${article.id}`, {
                 title: editedTitle,
                 content: editedContent,
             });
@@ -97,7 +97,7 @@ const SBlock = ({ article, fetchArticles }) => {
     const handleDeleteArticle = async () => {
         if (window.confirm("Вы удаляете статью?")) {
             try {
-                const response = await axios.delete(`http://${HOST}:${PORT}/deleteArticle/${article.id}`);
+                const response = await axios.delete(`http://${HOST}:${PORT}/articles/deleteArticle/${article.id}`);
                 fetchArticles();
             } catch (error) {
                 console.error("Error deleting article:", error);

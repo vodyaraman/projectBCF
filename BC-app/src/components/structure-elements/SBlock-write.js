@@ -39,7 +39,7 @@ const SBlockWrite = ({ fetchArticles }) => {
                 const formData = new FormData();
                 formData.append('file', file);
 
-                const response = await axios.post(`http://${HOST}:${PORT}/uploadFile`, formData, {
+                const response = await axios.post(`http://${HOST}:${PORT}/files/uploadFile`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -49,7 +49,7 @@ const SBlockWrite = ({ fetchArticles }) => {
                 filename = response.data.filename; // Получаем имя файла из ответа сервера
             }
             // Затем отправляем остальные данные на сервер для добавления статьи
-            const articleResponse = await axios.post(`http://${HOST}:${PORT}/addArticle`, {
+            const articleResponse = await axios.post(`http://${HOST}:${PORT}/articles/addArticle`, {
                 title: cleanedTitle,
                 article: cleanedContent,
                 userid: 2,

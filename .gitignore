@@ -3,3 +3,5 @@ BC-app/node_modules
 # production
 /build
 
+BC-middleware/bot.py
+BC-middleware/chat_id.txt

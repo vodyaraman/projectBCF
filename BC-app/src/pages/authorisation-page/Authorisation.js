@@ -1,59 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Authorisation.css';
 import AnimatedBackground from '../../components/background/AnimatedBackground';
-import AuthCheck from "./check-auth-module";
-import InputMask from "react-input-mask";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import SettingsWindow from '../../components/structure-elements/SBlock-settings';
+import SBlockAuthorisation from '../../components/structure-elements/SBlock-authorisation';
+import SBlockRegistration from '../../components/structure-elements/SBlock-registration';
+import { useTranslation } from 'react-i18next';
 
 const HOST = "192.168.43.134";
 const PORT = 3001;
 
 const Authorisation = () => {
-    const { t } = useTranslation();
     const navigate = useNavigate();
+    const { t }= useTranslation();
+    const [isBackSide, setIsBackSide] = useState(false)
+    const [changeButtonName, setChangeButtonName] = useState('registration-h1')
 
-    const [state, setState] = useState({
-        code: '',
-        rememberMe: false,
-        permission: false,
-    });
+    const handleAuthChange = () => {       
+        setIsBackSide(!isBackSide)
+    }
 
-    const handleCodeChanged = (e) => {
-        const inputCode = e.target.value;
-        setState((prevState) => ({
-            ...prevState,
-            code: inputCode,
-            permission: false,
-        }));
-
-        const formattedCode = AuthCheck.check(inputCode);
-
-        if (formattedCode) {
-            setState((prevState) => ({
-                ...prevState,
-                permission: true,
-                error: ""
-            }));
-        } else if (formattedCode === "") {
-            setState((prevState) => ({ ...prevState, error: "" }));
-        } else if (formattedCode === null) {
-            setState((prevState) => ({
-                ...prevState,
-                error: t("error-message-auth"),
-                permission: false,
-            }));
+    useEffect (() => {
+        const frontSide = document.querySelector('.front');
+        const backSide = document.querySelector('.back');
+        if(isBackSide){
+            frontSide.style.transform = 'rotateY(180deg)';
+            backSide.style.transform = 'rotateY(0deg)';
+            setChangeButtonName("login-h1")
         }
-    };
+        else {
+            frontSide.style.transform = 'rotateY(0deg)';
+            backSide.style.transform = 'rotateY(-180deg)';
+            setChangeButtonName("registration-h1")
+        }; 
+    }, [isBackSide])
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        if (state.permission) {
+    const handleLogin = async (code, permission) => {
+        if (permission) {
             try {
                 const response = await axios.post(`http://${HOST}:${PORT}/users/submitData`, {
-                    code: state.code
+                    code: code
                 });
 
                 console.log(response.data);
@@ -70,54 +57,22 @@ const Authorisation = () => {
     };
 
     return (
-        <div id="authorisation-page">
+        <div className="authorisation-page">
             <AnimatedBackground />
             <SettingsWindow />
-            <div className="authorisation-window">
-                <h2 id="auth-head-text">{t('login-h1')}</h2>
-                <form id="auth-main-form" onSubmit={handleLogin}>
-                    <div id="auth-main-div">
-                        <label htmlFor="code" id="code-label">
-                            {t('enter-code')}
-                            <InputMask
-                                mask="999-999-999"
-                                maskChar="X"
-                                type="text"
-                                id="code"
-                                placeholder={t("placeholder-code")}
-                                value={state.code}
-                                onChange={handleCodeChanged}
-                            />
-                        </label>
-                        <div className="small-text">
-                            {state.error && <span id="error-message">{state.error}</span>}
-                            <a href="https://vk.com/rp.vodyaraman">{t("no-code")}</a>
-                        </div>
-                    </div>
-                    <button type="submit" id="submitButton">
-                        {t('submit-btn')}
-                    </button>
-                    <div className="small-text">
-                        <label htmlFor="checkbox-main" id="checkbox-label">
-                            {t('remember-me')}
-                            <input
-                                type="checkbox"
-                                id="checkbox-main"
-                                checked={state.rememberMe}
-                                onChange={() =>
-                                    setState((prevState) => ({
-                                        ...prevState,
-                                        rememberMe: !prevState.rememberMe,
-                                    }))
-                                }
-                            />
-                        </label>
-                    </div>
-                </form>
+            <button className='changeAuth' onClick={handleAuthChange}>{t(changeButtonName)}</button>
+            <div className='container'>
+                <div className='side front'>
+                    <SBlockAuthorisation handleLogin={handleLogin} handleAuthChange={handleAuthChange}/>
+                </div>
+                <div className='side back'>
+                    <SBlockRegistration />
+                </div>
             </div>
         </div>
     );
 };
+
 
 export default Authorisation;
 

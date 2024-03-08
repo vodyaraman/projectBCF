@@ -3,7 +3,6 @@ const router = express.Router();
 const pool = require('../db');
 const { spawn } = require('child_process');
 const path = require('path');
-const { encode } = require('punycode');
 
 const sendReviewToTelegram = (review_data) => {
     try {

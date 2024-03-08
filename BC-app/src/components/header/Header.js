@@ -1,22 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SettingsWindow from "../structure-elements/SBlock-settings";
 import AccountMenu from "../structure-elements/SBlock-account";
 import "./header.css";
+
 const Header = () => {
     const { t } = useTranslation();
     return (
         <header id="header">
             <SettingsWindow />
-            <AccountMenu /> 
+            <AccountMenu />
             <div className="header-links">
-                <Link to="/mainpage"><span className="header-links-text">{t("mainpage")}</span></Link>
-                <Link to="/articles"><span className="header-links-text">{t("articles")}</span></Link>
-                <Link to="/reviews"><span className="header-links-text">{t("reviews")}</span></Link>
-                <Link to="/about"><span className="header-links-text">{t("about")}</span></Link>
+                <NavLink exact to="/mainpage" className="header-links-text" activeClassName="active-link">{t("mainpage")}</NavLink>
+                <NavLink exact to="/articles" className="header-links-text" activeClassName="active-link">{t("articles")}</NavLink>
+                <NavLink exact to="/reviews" className="header-links-text" activeClassName="active-link">{t("reviews")}</NavLink>
+                <NavLink exact to="/about" className="header-links-text" activeClassName="active-link">{t("about")}</NavLink>
             </div>
-            
         </header>
     );
 };

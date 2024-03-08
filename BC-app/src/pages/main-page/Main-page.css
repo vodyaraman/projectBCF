@@ -6,13 +6,21 @@
     .structure-block {
         width: 100%;
     }
+
+    .auth-head-text {
+        font-size: 20pt;
+    }
+
     .structure-block-maintext,
+    .form-input,
     .structure-block h1,
     .structure-block h2,
     .article-text-title,
     .article-text-content,
     .structure-block-editable-title,
-    .structure-block-editable-content {
+    .structure-block-editable-content,
+    .form-input,
+    .form-label {
         font-size: 10pt;
     }
 
@@ -25,7 +33,8 @@
     }
 
     .article-button,
-    .structure-block-edit-button {
+    .structure-block-edit-button,
+    .changeAuth {
         font-size: 10pt;
         padding: 3px 10px;
     }
@@ -40,13 +49,20 @@
     .structure-block {
         width: 85%;
     }
+
+    .auth-head-text {
+        font-size: 23pt;
+    }
+
     .structure-block-maintext,
     .structure-block h1,
     .structure-block h2,
     .article-text-title,
     .article-text-content,
     .structure-block-editable-title,
-    .structure-block-editable-content {
+    .structure-block-editable-content,
+    .form-input,
+    .form-label {
         font-size: 13pt;
     }
 
@@ -64,7 +80,7 @@
         padding: 5px 20px;
     }
 
-    #article-add-image-button{
+    #article-add-image-button {
         padding: 5px;
     }
 }

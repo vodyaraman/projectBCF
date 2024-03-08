@@ -1,8 +1,11 @@
 {
     "login-h1": "Log in",
-    "enter-code": "Enter an authorisation code",
+    "enter-code": "Enter an authorisation code:",
     "no-code": "don't have the code?",
     "placeholder-code": "enter code here",
+    "placeholder-password": "enter password here",
+    "placeholder-login": "enter login here",
+    "placeholder-confirm": "confirm password here",
     "error-message-auth" : "invalid code",
     "submit-btn": "Submit",
     "remember-me": "remember my code",
@@ -18,5 +21,8 @@
     "leave-comment": "Leave comment",
     "registration": "Sign Up",
     "author": "Author:",
-    "date-publication": "Date of publication:"
+    "date-publication": "Date of publication:",
+    "registration-h1": "Sign In",
+    "enter-login": "Enter login:",
+    "enter-password": "Enter password:"
 }

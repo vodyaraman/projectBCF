@@ -14,7 +14,7 @@
 
     .header-links-text {
         margin: 2px;
-        font: 17px "Anton";
+        font: 16px "Anton";
         line-height: 45px;
     }
 
@@ -24,9 +24,12 @@
     }
 
     .settings-button,
-    .account-button {
-        width: 27px;
-        height: 25px;
+    .account-button,
+    .button-img,
+    .changeAuth{
+        width: 33px;
+        height: 28px;
+        font-size: 15pt;
     }
 
     .settings-content,
@@ -58,15 +61,23 @@
     }
 
     .settings-button,
-    .account-button {
+    .account-button,
+    .button-img,
+    .changeAuth {
         width: 50px;
         height: 40px;
+        font-size: 28pt;
     }
 
     .settings-content,
     .accountmenu-content {
         width: 20%;
         top: 60px;
+    }
+
+    .changeAuth {
+        width: 100px;
+        font-size: 12pt;
     }
 }
 
@@ -123,10 +134,6 @@ header {
     user-select: none;
     cursor: pointer;
     text-align: center;
-}
-
-.settings-button,
-.account-button {
     margin: 10px;
     border: none;
     float: left;
@@ -184,6 +191,11 @@ header {
 
 .header-links-text:hover {
     border-bottom: 1px solid var(--primary-border-color);
+}
+
+.active-link{
+    color: var(primary-text-color-hover);
+    color: white
 }
 
 .header-text {

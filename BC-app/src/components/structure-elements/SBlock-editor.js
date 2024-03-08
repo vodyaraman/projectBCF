@@ -5,12 +5,12 @@ const SBlockEditor = ({ onSaveArticle, onClose, onDeleteArticle }) => {
 
     const handleSaveClick = () => {
         onSaveArticle();
-        onClose(); // Закрываем редактор после сохранения
+        onClose();
     };
 
     const handleDeleteClick = () => {
         onDeleteArticle();
-        onClose(); // Закрываем редактор после удаления
+        onClose();
     };
 
     return (

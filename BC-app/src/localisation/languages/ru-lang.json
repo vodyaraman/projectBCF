@@ -1,8 +1,11 @@
 {
     "login-h1": "Вход",
-    "enter-code": "Введите код авторизации",
+    "enter-code": "Введите код авторизации:",
     "error-message-auth" : "неверный код",
     "placeholder-code": "введите код здесь",
+    "placeholder-password": "введите пароль здесь",
+    "placeholder-login": "введите логин здесь",
+    "placeholder-confirm": "подтвердите пароль",
     "no-code": "у меня нет кода",
     "submit-btn": "Подтвердить",
     "remember-me": "запомнить меня в системе",
@@ -18,5 +21,8 @@
     "leave-comment": "Оставить отзыв",
     "registration": "Зарегистрироваться",
     "author": "Автор:",
-    "date-publication": "Дата публикации:"
+    "date-publication": "Дата публикации:",
+    "registration-h1": "Регистрация",
+    "enter-login": "Введите логин:",
+    "enter-password": "Введите пароль:"
 }

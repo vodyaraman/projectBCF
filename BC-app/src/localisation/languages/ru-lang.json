@@ -24,5 +24,11 @@
     "date-publication": "Дата публикации:",
     "registration-h1": "Регистрация",
     "enter-login": "Введите логин:",
-    "enter-password": "Введите пароль:"
+    "enter-password": "Введите пароль:",
+    "confirm-password": "Подтвердите пароль:",
+    "registration-end": "Окончание регистрации",
+    "send-code-email": "Завершить регистрацию",
+    "enter-email": "Введите эл. почту:",
+    "placeholder-email": "example@gmail.com",
+    "go-back": "Назад"
 }

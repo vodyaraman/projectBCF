@@ -24,5 +24,11 @@
     "date-publication": "Date of publication:",
     "registration-h1": "Sign In",
     "enter-login": "Enter login:",
-    "enter-password": "Enter password:"
+    "enter-password": "Enter password:",
+    "confirm-password": "Confirm password:",
+    "registration-end": "Ending registration",
+    "send-code-email": "End registration",
+    "enter-email": "Enter your email:",
+    "placeholder-email": "enter email here",
+    "go-back": "Go back"
 }

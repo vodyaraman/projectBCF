@@ -13,18 +13,18 @@ const PORT = 3001;
 
 const Authorisation = () => {
     const navigate = useNavigate();
-    const { t }= useTranslation();
+    const { t } = useTranslation();
     const [isBackSide, setIsBackSide] = useState(false)
     const [changeButtonName, setChangeButtonName] = useState('registration-h1')
 
-    const handleAuthChange = () => {       
+    const handleAuthChange = () => {
         setIsBackSide(!isBackSide)
     }
 
-    useEffect (() => {
+    useEffect(() => {
         const frontSide = document.querySelector('.front');
         const backSide = document.querySelector('.back');
-        if(isBackSide){
+        if (isBackSide) {
             frontSide.style.transform = 'rotateY(180deg)';
             backSide.style.transform = 'rotateY(0deg)';
             setChangeButtonName("login-h1")
@@ -33,7 +33,7 @@ const Authorisation = () => {
             frontSide.style.transform = 'rotateY(0deg)';
             backSide.style.transform = 'rotateY(-180deg)';
             setChangeButtonName("registration-h1")
-        }; 
+        };
     }, [isBackSide])
 
     const handleLogin = async (code, permission) => {
@@ -56,6 +56,27 @@ const Authorisation = () => {
         }
     };
 
+    const handleRegistration = async (login, password, permission, email) => {
+        if (permission) {
+            try {
+                const response = await axios.post(`http://${HOST}:${PORT}/users/addUser`, {
+                    login: login,
+                    password: password,
+                    email: email
+                })
+                console.log(response.data)
+                window.location.reload();
+            }
+
+            catch (error) {
+                console.error('Error adding user', error)
+            }
+        }
+        else {
+            console.log('permission denied')
+        }
+    }
+
     return (
         <div className="authorisation-page">
             <AnimatedBackground />
@@ -63,10 +84,10 @@ const Authorisation = () => {
             <button className='changeAuth' onClick={handleAuthChange}>{t(changeButtonName)}</button>
             <div className='container'>
                 <div className='side front'>
-                    <SBlockAuthorisation handleLogin={handleLogin} handleAuthChange={handleAuthChange}/>
+                    <SBlockAuthorisation handleLogin={handleLogin} handleAuthChange={handleAuthChange} />
                 </div>
                 <div className='side back'>
-                    <SBlockRegistration />
+                    <SBlockRegistration handleRegistration={handleRegistration} />
                 </div>
             </div>
         </div>

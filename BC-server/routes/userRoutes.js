@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db');
+const generateAuthorizationCode = require('../middleware/code_generation')
+const sendEmail = require('../middleware/emailSender')
 
 router.post('/submitData', async (req, res) => {
     const { code } = req.body;
@@ -38,17 +40,25 @@ router.post('/getUserByID', async (req, res) => {
 });
 
 router.post('/addUser', async (req, res) => {
-    const { rating, review_text, user_id } = req.body;
+    const { login, password, email} = req.body;
+    const code = generateAuthorizationCode();
+    const mailOptions = {
+        from: 'sevskii.dev@gmail.com',
+        to: email,
+        subject: `Ваш многоразовый код авторизации для saevskii.dev`,
+        text: `Вы получили это письмо, потому что этот адрес электронной почты был указан при регистрации на сайте saevskii.dev. Система аутентификации сайта позволяет использовать для входа только уникальный числовой код. Пожалуйста, запомните и не теряйте этот код: ${code}`
+    };
+    const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     try {
-        const result = await pool.query('INSERT INTO reviews (rating, review_text, user_id) VALUES ($1, $2, $3) RETURNING *', [rating, review_text, user_id]);
-        const review_data = result.rows[0];
+        const result = await pool.query(
+            'INSERT INTO accounts (login, password, code, latest_ip, email) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            [login, password, code, ipAddress, email]
+        );
+        //const user_data = result.rows[0];
 
-        // Вызов функции для отправки отзыва в телеграм
-        sendReviewToTelegram(review_data);
-
-        res.status(200).json({ success: true, review: result.rows[0] });
-    }
-    catch (error) {
+        res.status(200).json({ success: true, user: result.rows[0] });
+        sendEmail(mailOptions)
+    } catch (error) {
         console.error('Ошибка при выполнении запроса', error);
         res.status(500).json({ success: false, message: 'Внутренняя ошибка сервера' });
     }

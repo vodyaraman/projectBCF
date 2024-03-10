@@ -4,7 +4,7 @@
 
 @media only screen and (max-width: 600px) {
     header {
-        height: 45px;
+        max-height: 46px;
     }
 
     .header-links {
@@ -15,7 +15,7 @@
     .header-links-text {
         margin: 2px;
         font: 16px "Anton";
-        line-height: 45px;
+        line-height: 44px;
     }
 
     .header-text {
@@ -41,7 +41,7 @@
 
 @media only screen and (min-width: 601px) {
     header {
-        height: 65px;
+        max-height: 66px;
     }
 
     .header-links-text {
@@ -52,7 +52,7 @@
 
     .header-links {
         min-width: 30vw;
-        max-height: 65px;
+        max-height: 64px;
     }
 
     .header-text {
@@ -187,6 +187,7 @@ header {
     font-style: normal;
     cursor: pointer;
     white-space: nowrap;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.0);
 }
 
 .header-links-text:hover {

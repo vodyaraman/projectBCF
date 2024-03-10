@@ -9,6 +9,7 @@ import i18n from "./localisation/i18n.js";
 import { I18nextProvider } from "react-i18next";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import 'react-tooltip/dist/react-tooltip.css'
 
 class App extends React.Component {
     render() {

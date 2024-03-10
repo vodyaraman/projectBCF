@@ -30,5 +30,12 @@
     "send-code-email": "Завершить регистрацию",
     "enter-email": "Введите эл. почту:",
     "placeholder-email": "example@gmail.com",
-    "go-back": "Назад"
+    "go-back": "Назад",
+    "error-auth-rules": "Правила регистрации?",
+    "error-message-invalid-login": "Не используйте этот логин",
+    "error-message-invalid-password": "Не используйте этот логин",
+    "error-message-password-mismatch": "Пароли не совпадают",
+    "auth-rules1": "Ваш логин должен быть больше 2 символов и меньше 16,",
+    "auth-rules2": "не должен содержать маты и SQL-запросы. Ваш пароль должен быть больше",
+    "auth-rules3": "3 символов, иметь хотя-бы одну букву и хотя-бы одну цифру."
 }

@@ -103,7 +103,7 @@
     cursor: pointer;
 }
 
-#error-message {
+.error-message {
     color: var(--error-color);
     float: left;
 }
@@ -139,7 +139,7 @@
 .submitButton {
     width: 70%;
     padding: 4px 0;
-    margin-top: 3%;
+    margin-top: 2%;
     background-color: var(--secondary-button-color);
     color: var(--secondary-text-color);
     font-size: 14pt;

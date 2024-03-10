@@ -68,7 +68,7 @@ const SBlockAuthorisation = ({ handleLogin, handleAuthChange }) => {
                         />
                     </label>
                     <div className="small-text">
-                        {state.error && <span id="error-message">{state.error}</span>}
+                        {state.error && <span className="error-message">{state.error}</span>}
                         <div className="textlink" onClick={handleNoCodeClick}>{t("no-code")}</div>
                     </div>
                 </div>

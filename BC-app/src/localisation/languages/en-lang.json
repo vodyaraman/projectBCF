@@ -30,5 +30,12 @@
     "send-code-email": "End registration",
     "enter-email": "Enter your email:",
     "placeholder-email": "enter email here",
-    "go-back": "Go back"
+    "go-back": "Go back",
+    "error-auth-rules": "Registration rules?",
+    "error-message-invalid-login": "You can't use this login",
+    "error-message-invalid-password": "You can't use this password",
+    "error-message-password-mismatch": "Passwords mistmach",
+    "auth-rules1": "Your login musn't be less than 2 characters or bigger than 16,",
+    "auth-rules2": "mustn't have swear and SQL-queries. Your password must be bigger than",
+    "auth-rules3": "3 characters and less than 16, and have at least one letter and one number"
 }

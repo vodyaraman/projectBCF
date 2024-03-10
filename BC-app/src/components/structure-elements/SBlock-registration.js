@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import "../../pages/main-page/Main-page.css"
 import "../../pages/authorisation-page/Authorisation.css"
+import { Tooltip } from 'react-tooltip';
 import { useTranslation } from "react-i18next";
+import CheckAuth from '../../pages/authorisation-page/check-auth-module';
 
 const SBlockRegistration = ({ handleRegistration }) => {
     const { t } = useTranslation();
@@ -12,7 +14,7 @@ const SBlockRegistration = ({ handleRegistration }) => {
         email: '',
         confirmPassword: '',
         permission: false,
-        error: ''
+        error: t('error-auth-rules')
     });
 
     useEffect(() => {
@@ -33,20 +35,34 @@ const SBlockRegistration = ({ handleRegistration }) => {
         setState((prevState) => ({
             ...prevState,
             [name]: value,
-            permission: true,
+            error: t("error-auth-rules")
         }));
     };
 
     const handleRegistrationClick = (e) => {
         e.preventDefault();
-        if (state.password === state.confirmPassword) {
-            setBackwards(true)
+
+        let error = "";
+
+        if (!CheckAuth.checkLogin(state.login)) {
+            error = t("error-message-invalid-login");
+        } else if (!CheckAuth.checkPassword(state.password)) {
+            error = t("error-message-invalid-password");
+        } else if (!CheckAuth.checkPasswordMatch(state.password, state.confirmPassword)) {
+            error = t("error-message-password-mismatch");
         } else {
             setState((prevState) => ({
                 ...prevState,
-                error: t("error-message-password-mismatch"),
+                permission: true,
             }));
+            setBackwards(true);
+            return; // После успешной проверки нет необходимости продолжать выполнение функции
         }
+        setState((prevState) => ({
+            ...prevState,
+            permission: false,
+            error: error,
+        }));
     };
 
     const endRegistrationClick = (e) => {
@@ -99,7 +115,15 @@ const SBlockRegistration = ({ handleRegistration }) => {
                             />
                         </label>
                         <div className="small-text">
-                            {state.error && <span id="error-message">{state.error}</span>}
+                            {state.error && <span
+                                className="error-message"
+                                data-tooltip-id="my-tooltip"
+                                //data-tooltip-content=
+                                
+                                data-tooltip-place='right'>
+                                {state.error}
+                            </span>}
+                            <Tooltip id="my-tooltip">{t("auth-rules1")} <br/> {t("auth-rules2")} <br/> {t("auth-rules3")}</Tooltip>
                         </div>
                     </div>
                     <button type="submit" className="submitButton">
@@ -122,11 +146,11 @@ const SBlockRegistration = ({ handleRegistration }) => {
                                 onChange={handleInputChange}
                             />
                         </label>
-                        <button 
-                            className='submitButton' 
+                        <button
+                            className='submitButton'
                             type='submit'
                             onClick={endRegistrationClick}
-                            >{t('send-code-email')}</button>
+                        >{t('send-code-email')}</button>
                         <button className='submitButton' onClick={handleFuckGoBack}>{t("go-back")}</button>
                     </form>
                 </div>

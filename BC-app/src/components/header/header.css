@@ -25,8 +25,7 @@
 
     .settings-button,
     .account-button,
-    .button-img,
-    .changeAuth{
+    .button-img {
         width: 33px;
         height: 28px;
         font-size: 15pt;
@@ -36,6 +35,12 @@
     .accountmenu-content {
         width: 40%;
         top: 45px;
+    }
+
+    .changeAuth {
+        width: 80px;
+        height: 30px;
+        font-size: 10pt;
     }
 }
 
@@ -62,8 +67,7 @@
 
     .settings-button,
     .account-button,
-    .button-img,
-    .changeAuth {
+    .button-img {
         width: 50px;
         height: 40px;
         font-size: 28pt;
@@ -77,6 +81,7 @@
 
     .changeAuth {
         width: 100px;
+        height: 30px;
         font-size: 12pt;
     }
 }
@@ -107,7 +112,7 @@ header {
     z-index: 1005;
     position: fixed;
     overflow: hidden;
-    min-height: 90vh;
+    height: 90vh;
     background: linear-gradient(to bottom, var(--primary-div-color), var(--secondary-div-color));
     border-right: 1px solid var(--secondary-border-color);
     border-top: 1px solid var(--primary-border-color);
@@ -118,6 +123,7 @@ header {
 .accountmenu-content {
     right: 0;
     animation: slideIn-right 0.5s ease forwards;
+    height: auto;
 }
 
 /* Изображения и кнопки */
@@ -194,9 +200,8 @@ header {
     border-bottom: 1px solid var(--primary-border-color);
 }
 
-.active-link{
-    color: var(primary-text-color-hover);
-    color: white
+a.active-link {
+    color: var(--primary-text-color-hover);
 }
 
 .header-text {
@@ -213,6 +218,45 @@ header {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-a, Link {
+a,
+Link {
     text-decoration: none;
+}
+
+.structure-block-toggler {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    background-color: var(--secondary-div-color);
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+    padding: 2px;
+    user-select: none;
+}
+
+.structure-block-toggler .switcher {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(50% - 4px); /* Начальная ширина ползунка */
+    height: calc(100% - 4px); /* Высота ползунка */
+    background-color: var(--primary-div-color);
+    border-radius: 20px;
+    transition: left 0.3s ease, width 0.3s ease;
+}
+
+.structure-block-toggler.active .switcher {
+    left: calc(50% + 2px);
+}
+
+.switchero {
+    position: relative;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    width: 50%;
+    z-index: 1;
+    font-weight: bold;
 }

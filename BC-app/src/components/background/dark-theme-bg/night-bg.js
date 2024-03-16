@@ -61,7 +61,7 @@ const AnimatedBackgroundNight = () => {
 
   useEffect(() => {
     const changeColors = () => {
-      document.documentElement.style.setProperty('--primary-div-color', 'rgba(0, 0, 0, 0.56)');
+      document.documentElement.style.setProperty('--primary-div-color', 'rgba(0, 0, 0, 0.66)');
       document.documentElement.style.setProperty('--secondary-div-color', 'rgba(0, 0, 0, 0.33)');
       document.documentElement.style.setProperty('--primary-border-color', 'rgba(174, 175, 177, 0.658)');
       document.documentElement.style.setProperty('--secondary-border-color', 'rgba(8, 20, 44, 0.76)');

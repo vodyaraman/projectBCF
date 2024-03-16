@@ -12,10 +12,26 @@ const Header = () => {
             <SettingsWindow />
             <AccountMenu />
             <div className="header-links">
-                <NavLink exact to="/mainpage" className="header-links-text" activeClassName="active-link">{t("mainpage")}</NavLink>
-                <NavLink exact to="/articles" className="header-links-text" activeClassName="active-link">{t("articles")}</NavLink>
-                <NavLink exact to="/reviews" className="header-links-text" activeClassName="active-link">{t("reviews")}</NavLink>
-                <NavLink exact to="/about" className="header-links-text" activeClassName="active-link">{t("about")}</NavLink>
+                <NavLink to="/"
+                    className={({ isActive }) =>
+                        isActive ? "header-links-text active-link" : "header-links-text"}>
+                    {t("mainpage")}
+                </NavLink>
+                <NavLink to="/articles"
+                    className={({ isActive }) =>
+                        isActive ? "header-links-text active-link" : "header-links-text"}>
+                    {t("articles")}
+                </NavLink>
+                <NavLink to="/reviews"
+                    className={({ isActive }) =>
+                        isActive ? "header-links-text active-link" : "header-links-text"}>
+                    {t("reviews")}
+                </NavLink>
+                <NavLink to="/about"
+                    className={({ isActive }) =>
+                        isActive ? "header-links-text active-link" : "header-links-text"}>
+                    {t("about")}
+                </NavLink>
             </div>
         </header>
     );

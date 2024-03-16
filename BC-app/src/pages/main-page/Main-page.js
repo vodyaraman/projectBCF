@@ -27,6 +27,7 @@ const MainPage = () => {
             console.error('Ошибка при загрузке статей', error);
         }
     };
+    
     useEffect(() => {
         fetchArticles();
     }, []);
@@ -45,7 +46,6 @@ const MainPage = () => {
                 <div className='block'>
                     <SBlockWrite fetchArticles={fetchArticles} />
                 </div>
-
                 <SBlockLift />
                 <Footer />
             </div>

@@ -110,6 +110,9 @@
     border: var(--primary-border-color);
     border-radius: 5px;
 }
+#page-scrollbar-container::-webkit-scrollbar-track-piece {
+    background-color: var(--secondary-div-color);
+}
 
 .block {
     z-index: 0;
@@ -119,6 +122,19 @@
     display: flex;
     justify-content: center;
 
+}
+
+.micro-block {
+    z-index: 0;
+    position: sticky;
+    padding: 3vw;
+    width: 92%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid var(--primary-border-color);
+    margin-bottom: 20px;
+    border-radius: 25px;
 }
 
 .structure-block {
@@ -201,10 +217,6 @@
     object-fit: cover;
     width: 100%;
     margin-top: 20px;
-}
-
-.structure-block-maintext::first-letter {
-    margin-left: 20px;
 }
 
 .article-text-title,

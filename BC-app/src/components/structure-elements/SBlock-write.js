@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import "../../pages/main-page/Main-page.css";
 import axios from 'axios';
 import xss from 'xss';
+import { AuthContext } from '../../contexts/UserContext';
 
 const HOST = "192.168.43.134";
 const PORT = 3001;
@@ -11,6 +12,7 @@ const SBlockWrite = ({ fetchArticles }) => {
     const [content, setContent] = useState('');
     const [file, setFile] = useState(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const {user} = useContext(AuthContext)
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -45,18 +47,18 @@ const SBlockWrite = ({ fetchArticles }) => {
                     }
                 });
 
-                console.log('File successfully uploaded:', response.data); // Можно удалить, если не нужно
-                filename = response.data.filename; // Получаем имя файла из ответа сервера
+                console.log('File successfully uploaded:', response.data);
+                filename = response.data.filename;
             }
-            // Затем отправляем остальные данные на сервер для добавления статьи
+
             const articleResponse = await axios.post(`http://${HOST}:${PORT}/articles/addArticle`, {
                 title: cleanedTitle,
                 article: cleanedContent,
-                userid: 2,
-                file: filename // Передаем имя файла
+                userid: user.accid,
+                file: filename
             });
 
-            console.log('Article successfully added:', articleResponse.data); // Можно удалить, если не нужно
+            console.log('Article successfully added:', articleResponse.data);
             setIsSubmitted(true);
             setTimeout(() => setIsSubmitted(false), 4000);
             setTitle("");

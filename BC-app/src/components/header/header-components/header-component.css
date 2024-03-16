@@ -16,6 +16,7 @@
     border: 1px solid var(--primary-border-color);
     border-radius: 15%; 
     line-height: 50px;
+    touch-action: manipulation;
 }
 
 .button-img:hover {

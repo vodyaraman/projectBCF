@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Authorisation.css';
-import AnimatedBackground from '../../components/background/AnimatedBackground';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import SettingsWindow from '../../components/structure-elements/SBlock-settings';
 import SBlockAuthorisation from '../../components/structure-elements/SBlock-authorisation';
 import SBlockRegistration from '../../components/structure-elements/SBlock-registration';
 import { useTranslation } from 'react-i18next';
+import { AuthContext } from '../../contexts/UserContext';
 
 const HOST = "192.168.43.134";
 const PORT = 3001;
 
-const Authorisation = () => {
+const Authorisation = ({ cancelAuth }) => {
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const [isBackSide, setIsBackSide] = useState(false)
-    const [changeButtonName, setChangeButtonName] = useState('registration-h1')
+    const [isBackSide, setIsBackSide] = useState(false);
+    const [changeButtonName, setChangeButtonName] = useState('registration-h1');
+    const { handleSetUser } = useContext(AuthContext)
 
     const handleAuthChange = () => {
         setIsBackSide(!isBackSide)
@@ -42,11 +42,9 @@ const Authorisation = () => {
                 const response = await axios.post(`http://${HOST}:${PORT}/users/submitData`, {
                     code: code
                 });
-
-                console.log(response.data);
-
+                handleSetUser(response.data.user)
                 if (response.data.exists) {
-                    navigate("/mainpage");
+                    cancelAuth();
                 }
             } catch (error) {
                 console.error('Error submitting data', error);
@@ -65,7 +63,8 @@ const Authorisation = () => {
                     email: email
                 })
                 console.log(response.data)
-                window.location.reload();
+                setIsBackSide(false)
+                alert("Письмо с кодом авторизации выслано на элетронную почту")
             }
 
             catch (error) {
@@ -79,10 +78,11 @@ const Authorisation = () => {
 
     return (
         <div className="authorisation-page">
-            <AnimatedBackground />
-            <SettingsWindow />
-            <button className='changeAuth' onClick={handleAuthChange}>{t(changeButtonName)}</button>
             <div className='container'>
+                <div className='handleAuth'>
+                    <button className='changeAuth' onClick={handleAuthChange}>{t(changeButtonName)}</button>
+                    <button className='changeAuth auth-cancel' onClick={cancelAuth}> X </button>
+                </div>
                 <div className='side front'>
                     <SBlockAuthorisation handleLogin={handleLogin} handleAuthChange={handleAuthChange} />
                 </div>

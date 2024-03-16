@@ -68,6 +68,15 @@ const SBlockRegistration = ({ handleRegistration }) => {
     const endRegistrationClick = (e) => {
         e.preventDefault();
         handleRegistration(state.login, state.password, state.permission, state.email);
+        setState((prevState) => ({
+            ...prevState,
+            login: '',
+            password: '',
+            email: '',
+            confirmPassword: '',
+            permission: false,
+        }));
+        setBackwards(false)
     }
 
     const handleFuckGoBack = (e) => {
@@ -119,11 +128,11 @@ const SBlockRegistration = ({ handleRegistration }) => {
                                 className="error-message"
                                 data-tooltip-id="my-tooltip"
                                 //data-tooltip-content=
-                                
+
                                 data-tooltip-place='right'>
                                 {state.error}
                             </span>}
-                            <Tooltip id="my-tooltip">{t("auth-rules1")} <br/> {t("auth-rules2")} <br/> {t("auth-rules3")}</Tooltip>
+                            <Tooltip id="my-tooltip">{t("auth-rules1")} <br /> {t("auth-rules2")} <br /> {t("auth-rules3")}</Tooltip>
                         </div>
                     </div>
                     <button type="submit" className="submitButton">

@@ -9,6 +9,7 @@ import i18n from "./localisation/i18n.js";
 import { I18nextProvider } from "react-i18next";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { AuthProvider } from "./contexts/UserContext.js";
 import 'react-tooltip/dist/react-tooltip.css'
 
 class App extends React.Component {
@@ -16,17 +17,19 @@ class App extends React.Component {
         return (
             <I18nextProvider i18n={i18n}>
                 <ThemeProvider>
-                    <div id="mainbody">
-                        <Router>
-                            <Routes>
-                                <Route path="/" element={<Authorisation />} />
-                                <Route path="/mainpage" element={<MainPage />} />
-                                <Route path="/articles" element={<ArticlesPage />} />
-                                <Route path="/about" element={<AboutPage />} />
-                                <Route path="/reviews" element={<ReviewsPage />} />
-                            </Routes>
-                        </Router>
-                    </div>
+                    <AuthProvider>
+                        <div id="mainbody">
+                            <Router>
+                                <Routes>
+                                    <Route path="/user" element={<Authorisation />} />
+                                    <Route path="/" element={<MainPage />} />
+                                    <Route path="/articles" element={<ArticlesPage />} />
+                                    <Route path="/about" element={<AboutPage />} />
+                                    <Route path="/reviews" element={<ReviewsPage />} />
+                                </Routes>
+                            </Router>
+                        </div>
+                    </AuthProvider>
                 </ThemeProvider>
             </I18nextProvider>
         );

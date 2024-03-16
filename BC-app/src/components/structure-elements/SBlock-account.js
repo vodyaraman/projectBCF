@@ -1,30 +1,57 @@
-import React  from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../header/header.css";
 import AccountImg from "../images/account.png"
+import AccountImgBlack from "../images/accountBlack.png"
 import { useTranslation } from "react-i18next";
+import { AuthContext } from "../../contexts/UserContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import Authorisation from "../../pages/authorisation-page/Authorisation.js";
 
 const AccountMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isAuth, setIsAuth] = useState(false)
     const { t } = useTranslation();
+    const { user, handleSetUser } = useContext(AuthContext)
+    const {theme} = useContext(ThemeContext)
 
+    console.log(user)
     const toggleSettings = () => {
         setIsOpen(!isOpen);
     };
 
+    const handleLogOut = () => {
+        handleSetUser(null)
+    }
+
+    const handleLogIn = () => {
+        setIsAuth(!isAuth)
+        setIsOpen(!isOpen)
+    }
+//<Link to="/user"><span className="header-text">{t("login-h1")}</span></Link>
     return (
         <div className="header-settings">
+            {isAuth && (<Authorisation cancelAuth = {handleLogIn}/>)}
             <img className="account-button"
-                src={AccountImg}
+                src={theme==="night" ? AccountImg : AccountImgBlack}
                 alt="ACC"
                 onClick={toggleSettings}>
             </img>
             {isOpen && (
                 <div className="accountmenu-content">
-                    <Link to="/"><span className="header-text">{t("login-h1")}</span></Link>
-                    <span className="header-text">{t("registration")}</span>
-                    <span className="header-text">{t("leave-comment")}</span>
+                    {user ? (
+                        <div>
+                            <span className="header-text">{user.login}</span>
+                            <div className="header-text" onClick={handleLogOut}>Log out</div>
+                        </div>
+                        ) : (
+                        <div>
+                            <span className="header-text" onClick={handleLogIn}>{t("login-h1")}</span>
+                            <span className="header-text">{t("registration")}</span>
+                            <span className="header-text">{t("leave-comment")}</span>
+                        </div>
+                    )}
                 </div>
             )}
         </div>

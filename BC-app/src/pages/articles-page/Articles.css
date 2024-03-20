@@ -1,0 +1,21 @@
+.section {
+    position: relative;
+    display: flex;
+    width: 96%;
+    min-height: 30px;
+    height: auto;
+    padding: 4.5vh 2vw;
+    margin-bottom: 1vh;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 25px;
+}
+
+.section:hover {
+    background-color: var(--secondary-div-color);
+}
+
+.section-text {
+    display: flex;
+    margin-top: 0px;
+}

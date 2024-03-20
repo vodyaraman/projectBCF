@@ -1,6 +1,4 @@
-import React, { useContext } from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import "../header/header.css";
 import AccountImg from "../images/account.png"
 import AccountImgBlack from "../images/accountBlack.png"
@@ -12,11 +10,26 @@ import Authorisation from "../../pages/authorisation-page/Authorisation.js";
 const AccountMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isAuth, setIsAuth] = useState(false)
+    const accountRef = useRef(null)
     const { t } = useTranslation();
     const { user, handleSetUser } = useContext(AuthContext)
     const {theme} = useContext(ThemeContext)
 
     console.log(user)
+
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (accountRef.current && !accountRef.current.contains(e.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     const toggleSettings = () => {
         setIsOpen(!isOpen);
     };
@@ -31,7 +44,7 @@ const AccountMenu = () => {
     }
 //<Link to="/user"><span className="header-text">{t("login-h1")}</span></Link>
     return (
-        <div className="header-settings">
+        <div className="header-settings" ref={accountRef}>
             {isAuth && (<Authorisation cancelAuth = {handleLogIn}/>)}
             <img className="account-button"
                 src={theme==="night" ? AccountImg : AccountImgBlack}

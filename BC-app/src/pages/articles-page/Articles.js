@@ -5,15 +5,15 @@ import "../../components/header/header.css";
 import "../../components/header/bot-header.css";
 import "./Articles.css";
 import Header from "../../components/header/Header.js";
-import AnimatedBackground from '../../components/background/AnimatedBackground';
 import Footer from "../../components/footer/Footer.js";
+import SBlockSections from '../../components/structure-elements/SBlock-sections.js';
 
 const ArticlesPage = () => {
     return (
-        <div id="main-page">
-            <AnimatedBackground />
+        <div id="articles-page">
             <div id="page-scrollbar-container">
                 <Header />
+                <SBlockSections />
                 <Footer />
             </div>
         </div>

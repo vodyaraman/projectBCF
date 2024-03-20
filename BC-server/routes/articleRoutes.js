@@ -54,4 +54,25 @@ router.put('/updateArticle/:id', async (req, res) => {
     }
 });
 
+router.get('/getSections', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM sections');
+        res.json(result.rows);
+    } catch (error) {
+        console.error("Ошибка при загрузке разделов", error)
+        res.status(500).json(message, "Внутренняя ошибка сервера")
+    }
+})
+
+router.post('/getArticlesBySection', async (req, res) => {
+    const {section_id} = req.body;
+    try {
+        const result = await pool.query('SELECT * FROM articles WHERE section_id=$1', [section_id]);
+        res.json(result.rows)
+    } catch (error) {
+        console.error("Ошибка при загрузке статей", error)
+        res.status(500).json(message, "Внутренняя ошибка сервера")
+    }
+})
+
 module.exports = router;

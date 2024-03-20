@@ -11,7 +11,7 @@ const AnimatedBackgroundDay = () => {
 
     useEffect(() => {
         const changeColors = () => {
-            document.documentElement.style.setProperty('--primary-div-color', 'rgba(255, 255, 255, 0.99)');
+            document.documentElement.style.setProperty('--primary-div-color', 'rgba(255, 255, 255, 0.9)');
             document.documentElement.style.setProperty('--secondary-div-color', 'rgba(220, 220, 220, 0.33)');
             document.documentElement.style.setProperty('--primary-border-color', 'rgba(174, 175, 177, 0.658)');
             document.documentElement.style.setProperty('--secondary-border-color', 'rgba(8, 20, 44, 0.76)');

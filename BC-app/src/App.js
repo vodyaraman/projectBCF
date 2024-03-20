@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { AuthProvider } from "./contexts/UserContext.js";
 import 'react-tooltip/dist/react-tooltip.css'
+import AnimatedBackground from "./components/background/AnimatedBackground.js";
 
 class App extends React.Component {
     render() {
@@ -19,6 +20,7 @@ class App extends React.Component {
                 <ThemeProvider>
                     <AuthProvider>
                         <div id="mainbody">
+                            <AnimatedBackground/>
                             <Router>
                                 <Routes>
                                     <Route path="/user" element={<Authorisation />} />

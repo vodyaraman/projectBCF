@@ -61,7 +61,7 @@
     }
 
     .header-text {
-        padding: 14px;
+        padding: 7px 14px 7px 14px;
         font-size: 14pt;
     }
 
@@ -197,7 +197,7 @@ header {
 }
 
 .header-links-text:hover {
-    border-bottom: 1px solid var(--primary-border-color);
+    border-bottom: 2px solid var(--primary-border-color);
 }
 
 a.active-link {
@@ -239,8 +239,9 @@ Link {
     position: absolute;
     top: 2px;
     left: 2px;
-    width: calc(50% - 4px); /* Начальная ширина ползунка */
-    height: calc(100% - 4px); /* Высота ползунка */
+    align-items: center;
+    width: calc(50% - 4px);
+    height: calc(100% - 4px);
     background-color: var(--primary-div-color);
     border-radius: 20px;
     transition: left 0.3s ease, width 0.3s ease;
@@ -256,7 +257,16 @@ Link {
     justify-content: center;
     align-items: center;
     margin-top: 0;
-    width: 50%;
+    width: 100%;
+    height: 100%;
     z-index: 1;
     font-weight: bold;
+    border-radius: 50px;
+    object-fit: cover !important;
+    margin: 0;
+}
+
+.change-settings-block .structure-block-toggler{
+    border: 1px solid var(--primary-border-color);
+    margin-top: 2px;
 }

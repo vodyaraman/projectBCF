@@ -6,7 +6,6 @@ import "../../components/header/bot-header.css";
 import "./Main-page.css";
 import Header from "../../components/header/Header.js";
 import Footer from "../../components/footer/Footer.js";
-import AnimatedBackground from '../../components/background/AnimatedBackground';
 import SBlock from "../../components/structure-elements/SBlock-main.js";
 import SBlockHeader from "../../components/structure-elements/SBlock-header.js";
 import SBlockWrite from '../../components/structure-elements/SBlock-write.js';
@@ -34,7 +33,6 @@ const MainPage = () => {
 
     return (
         <div id="main-page">
-            <AnimatedBackground />
             <div id="page-scrollbar-container">
                 <Header />
                 <SBlockHeader />

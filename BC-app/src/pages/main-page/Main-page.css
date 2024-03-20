@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;1,300&display=swap');
 
+* {
+    -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+}
+
 @media only screen and (max-width: 600px) {
     .structure-block {
         width: 100%;
@@ -214,9 +218,13 @@
 .structure-block-maintext {
     display: block;
     text-align: justify;
-    object-fit: cover;
     width: 100%;
     margin-top: 20px;
+}
+
+.picture {
+    object-fit: contain;
+    max-height: 100vh;
 }
 
 .article-text-title,
@@ -480,10 +488,11 @@
 .structure-block-edit-image {
     position: relative;
     display: flex;
+    object-fit: cover;
     bottom: 20px;
     width: 100px;
-    height: 100px;
-    margin-bottom: 15px;
+    max-height: 150px;
+    overflow: hidden;
 }
 
 @keyframes slideIn-right {

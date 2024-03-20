@@ -10,7 +10,6 @@ import { ThemeContext } from "../../contexts/ThemeContext.js";
 const SettingsWindow = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { t } = useTranslation();
-    const touchStartX = useRef(null);
     const settingsRef = useRef(null);
     const {theme} = useContext(ThemeContext)
 
@@ -31,24 +30,11 @@ const SettingsWindow = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleTouchStart = (e) => {
-        touchStartX.current = e.touches[0].clientX;
-    };
-
-    const handleTouchMove = (e) => {
-        if (touchStartX.current && e.touches.length) {
-            const deltaX = e.touches[0].clientX - touchStartX.current;
-            if (deltaX > 50) { setIsOpen(true); }
-            if (deltaX < 50) { setIsOpen(false) }
-        }
-    };
 
     return (
         <div
             ref={settingsRef}
             className="header-settings"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
         >
             <img
                 className="settings-button"
@@ -59,7 +45,7 @@ const SettingsWindow = () => {
             {isOpen && (
                 <div className="settings-content">
                     <div className="header-text">{t("theme")} <ChangeThemeWindow /></div>
-                    <div className="header-text">{t("language")} <ChangeLanguageWindow /></div>
+                    <div className="header-text">{t("language")} <ChangeLanguageWindow/></div>
                     <p className="header-text">{t("text-opacity")}</p>
                     <p className="header-text">{t("light-edition")}</p>
                 </div>

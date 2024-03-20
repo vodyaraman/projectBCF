@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
-import Calendar from "./SBlock-calendar.js";
+import DatabaseClient from "../../httpRequests.js";
 import Editor from "./SBlock-editor.js";
 import "../../pages/main-page/Main-page.css";
 
-const HOST = "192.168.43.134";
-const PORT = 3001;
 
 const SBlock = ({ article, fetchArticles }) => {
     const dateFromDatabase = article.time;
@@ -15,59 +12,36 @@ const SBlock = ({ article, fetchArticles }) => {
 
     const formattedDate = format(dateFromDatabase, "dd.MM.yyyy HH:mm");
     const { t } = useTranslation();
-
-    const [user, setUser] = useState([]);
-    const userid = article.userid;
+    const [author, setAuthor] = useState("");
     const [imageURL, setImageURL] = useState("");
     const [isEditing, setIsEditing] = useState(false);
-    const [showCalendar, setShowCalendar] = useState(false);
     const [editedTitle, setEditedTitle] = useState(article.title);
     const [editedContent, setEditedContent] = useState(article.article);
+    const dbClient = new DatabaseClient();
 
     useEffect(() => {
         if (isEditing) {
             const block = document.getElementsByName(title)[0];
-            block.scrollIntoView({block: "center"
-            });
+            block.scrollIntoView({ block: "center" });
         }
-    }, [isEditing, title])
+    }, [isEditing, title]);
+
     useEffect(() => {
-        const fetchUser = async () => {
+        const fetchData = async () => {
             try {
-                const response = await axios.post(`http://${HOST}:${PORT}/users/getUserByID`, {
-                    userid: userid,
-                });
-                const { login } = response.data;
-                setUser(login);
-            } catch (error) {
-                console.error("Ошибка при загрузке пользователя", error);
-            }
-        };
+                const user = await dbClient.getUserByID(article.userid);
+                setAuthor(user);
 
-        fetchUser();
-    }, [userid]);
-
-    useEffect(() => {
-        const loadImage = async () => {
-            if (article.filename) {
-                try {
-                    const response = await axios.get(`http://${HOST}:${PORT}/files/images/${article.filename}`, {
-                        responseType: "blob",
-                    });
-                    const imageURL = URL.createObjectURL(response.data);
+                if (article.filename) {
+                    const imageURL = await dbClient.getImage(article.filename);
                     setImageURL(imageURL);
-                } catch (error) {
-                    console.error("Ошибка при загрузке изображения", error);
                 }
+            } catch (error) {
+                console.error("Error fetching data:", error);
             }
         };
-
-        loadImage();
-    }, [article.filename]);
-
-    const handleDateClick = () => {
-        setShowCalendar(!showCalendar);
-    };
+        fetchData();
+    }, [article.userid, article.filename]);
 
     const handleAuthorClick = () => {
         setIsEditing(!isEditing);
@@ -83,10 +57,7 @@ const SBlock = ({ article, fetchArticles }) => {
 
     const handleSaveArticle = async () => {
         try {
-            const response = await axios.put(`http://${HOST}:${PORT}/articles/updateArticle/${article.id}`, {
-                title: editedTitle,
-                content: editedContent,
-            });
+            await dbClient.updateArticle(article.id, editedTitle, editedContent);
             setIsEditing(false);
             fetchArticles();
         } catch (error) {
@@ -97,7 +68,7 @@ const SBlock = ({ article, fetchArticles }) => {
     const handleDeleteArticle = async () => {
         if (window.confirm("Вы удаляете статью?")) {
             try {
-                const response = await axios.delete(`http://${HOST}:${PORT}/articles/deleteArticle/${article.id}`);
+                await dbClient.deleteArticle(article.id);
                 fetchArticles();
             } catch (error) {
                 console.error("Error deleting article:", error);
@@ -125,14 +96,13 @@ const SBlock = ({ article, fetchArticles }) => {
                 <div>
                     <h1>{article.title}</h1>
                     <pre className="structure-block-maintext">{article.article}</pre>
-                    {imageURL && <img src={imageURL} alt="Article" className="structure-block-maintext" />}
+                    {imageURL && <img src={imageURL} alt="Article" className="structure-block-maintext picture" />}
                 </div>
             )}
             <div className="structure-block-addtext">
-                <div id="check-author" onClick={handleAuthorClick}>{t("author")} {user}</div>
-                <div id="check-date" onClick={handleDateClick}>{t("date-publication")} {formattedDate}</div>
+                <div id="check-author" onClick={handleAuthorClick}>{t("author")} {author}</div>
+                <div id="check-date">{t("date-publication")} {formattedDate}</div>
             </div>
-            {showCalendar && <Calendar selectedDate={formattedDate} onClose={() => setShowCalendar(false)} />}
         </div>
     );
 };

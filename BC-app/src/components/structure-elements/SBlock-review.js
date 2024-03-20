@@ -1,18 +1,15 @@
 import React, { useContext, useState } from 'react';
 import "../../pages/reviews-page/Reviews.css"
 import "../../pages/main-page/Main-page.css"
-import axios from 'axios';
+import DatabaseClient from "../../httpRequests"
 import { AuthContext } from '../../contexts/UserContext';
-
-const HOST = "192.168.43.134";
-const PORT = 3001;
-
 
 const SBlockReview = () => {
     const [rating, setRating] = useState(0);
     const [reviewText, setReviewText] = useState('');
     const [selectBlock, setSelectedBlock] = useState(false);
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
+    const dbClient = new DatabaseClient();
 
     const handleMouseOver = (hoveredRating) => {
         if (!selectBlock)
@@ -30,17 +27,11 @@ const SBlockReview = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post(`http://${HOST}:${PORT}/reviews/addReview`, {
-                rating: rating,
-                review_text: reviewText,
-                user_id: user.accid
-            });
-            console.log('Review added successfully:', response.data);
+            await dbClient.addReview(rating, reviewText, user.accid);
             setRating(0);
             setReviewText('');
-            setSelectedBlock(false)
-        }
-        catch (error) {
+            setSelectedBlock(false);
+        } catch (error) {
             console.error('Error adding review:', error);
         }
     }
@@ -71,13 +62,13 @@ const SBlockReview = () => {
                     <h2>Rate: {rating}/5</h2>
                 </div>
                 <div>
-                    <label htmlFor="review" className="structure-block-maintext">Write ur review down below <br/>
-                        Don't forget to mention about: <br/>
-                    - website's design, <br/>
-                    - optimization, <br/>
-                    - user's comfortability <br/>
-                    - routes accesibility <br/>
-                    - what u love and what u hate in this concept
+                    <label htmlFor="review" className="structure-block-maintext">Write ur review down below <br />
+                        Don't forget to mention about: <br />
+                        - website's design, <br />
+                        - optimization, <br />
+                        - user's comfortability <br />
+                        - routes accesibility <br />
+                        - what u love and what u hate in this concept
                     </label>
                     <textarea className="article-text-content" id="review" value={reviewText} onChange={handleReviewTextChange} />
                     <button className="article-button" onClick={handleSubmit}>Submit Review</button>

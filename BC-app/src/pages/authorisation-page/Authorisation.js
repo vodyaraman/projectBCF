@@ -1,25 +1,23 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Authorisation.css';
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import SBlockAuthorisation from '../../components/structure-elements/SBlock-authorisation';
 import SBlockRegistration from '../../components/structure-elements/SBlock-registration';
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from '../../contexts/UserContext';
-
-const HOST = "192.168.43.134";
-const PORT = 3001;
+import DatabaseClient from '../../httpRequests';
 
 const Authorisation = ({ cancelAuth }) => {
     const navigate = useNavigate();
     const { t } = useTranslation();
     const [isBackSide, setIsBackSide] = useState(false);
     const [changeButtonName, setChangeButtonName] = useState('registration-h1');
-    const { handleSetUser } = useContext(AuthContext)
+    const { handleSetUser } = useContext(AuthContext);
+    const dbClient = new DatabaseClient();
 
     const handleAuthChange = () => {
-        setIsBackSide(!isBackSide)
-    }
+        setIsBackSide(!isBackSide);
+    };
 
     useEffect(() => {
         const frontSide = document.querySelector('.front');
@@ -27,27 +25,22 @@ const Authorisation = ({ cancelAuth }) => {
         if (isBackSide) {
             frontSide.style.transform = 'rotateY(180deg)';
             backSide.style.transform = 'rotateY(0deg)';
-            setChangeButtonName("login-h1")
-        }
-        else {
+            setChangeButtonName("login-h1");
+        } else {
             frontSide.style.transform = 'rotateY(0deg)';
             backSide.style.transform = 'rotateY(-180deg)';
-            setChangeButtonName("registration-h1")
-        };
-    }, [isBackSide])
+            setChangeButtonName("registration-h1");
+        }
+    }, [isBackSide]);
 
     const handleLogin = async (code, permission) => {
         if (permission) {
             try {
-                const response = await axios.post(`http://${HOST}:${PORT}/users/submitData`, {
-                    code: code
-                });
-                handleSetUser(response.data.user)
-                if (response.data.exists) {
-                    cancelAuth();
-                }
+                const user = await dbClient.submitData(code);
+                handleSetUser(user);
+                cancelAuth();
             } catch (error) {
-                console.error('Error submitting data', error);
+                console.error('Error submitting data:', error);
             }
         } else {
             console.log("Permission denied");
@@ -57,24 +50,16 @@ const Authorisation = ({ cancelAuth }) => {
     const handleRegistration = async (login, password, permission, email) => {
         if (permission) {
             try {
-                const response = await axios.post(`http://${HOST}:${PORT}/users/addUser`, {
-                    login: login,
-                    password: password,
-                    email: email
-                })
-                console.log(response.data)
-                setIsBackSide(false)
-                alert("Письмо с кодом авторизации выслано на элетронную почту")
+                await dbClient.addUser(login, password, email);
+                setIsBackSide(false);
+                alert("Письмо с кодом авторизации выслано на элетронную почту");
+            } catch (error) {
+                console.error('Error adding user:', error);
             }
-
-            catch (error) {
-                console.error('Error adding user', error)
-            }
+        } else {
+            console.log('Permission denied');
         }
-        else {
-            console.log('permission denied')
-        }
-    }
+    };
 
     return (
         <div className="authorisation-page">
@@ -93,7 +78,6 @@ const Authorisation = ({ cancelAuth }) => {
         </div>
     );
 };
-
 
 export default Authorisation;
 

@@ -1,62 +1,31 @@
 import React, { useState, useEffect } from "react";
 import i18n from "../../../localisation/i18n"
 import "./header-component.css";
-import { useTranslation } from "react-i18next";
+import SBlockToggle from "../../structure-elements/SBlock-toggle";
 
 const ChangeLanguageWindow = () => {
-    const [isHovered, setIsHovered] = useState(false);
-
-    const { t } = useTranslation();
+    const [language, setLanguage] = useState(localStorage.getItem('language'));
+    const isActive = language === 'RU' ? false : true
 
     useEffect(() => {
-        const savedLanguage = localStorage.getItem('language');
-        if (savedLanguage) {
-        setLanguage(savedLanguage);
-        i18n.changeLanguage(savedLanguage);
-        }
-        }, []);
+        language && i18n.changeLanguage(language);
+    }, [language]);
 
-    function handleMouseEnter() {
-        setIsHovered(true);
-    }
-
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    };
-
-    const [language, setLanguage] = useState("EN");
-
-    const handleLanguageChange = (selectedLanguage) => {
-        setLanguage(selectedLanguage);
-        i18n.changeLanguage(selectedLanguage);
-        localStorage.setItem('language', selectedLanguage);
+    const handleLanguageChange = () => {
+        language === "RU" ? setLanguage("EN") : setLanguage("RU");
+        localStorage.setItem('language', language);
     };
 
     return (
-        <div
-            className="change-settings-block"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
-            {!isHovered && (
-                <div className="button-img">{language}</div>
-            )}
-            {isHovered && (
-                <div id="choose-language">
-                    <div
-                        className="button-img"
-                        onClick={() => handleLanguageChange("RU")}
-                    >
-                        {t("RU")}
-                    </div>
-                    <div
-                        className="button-img"
-                        onClick={() => handleLanguageChange("EN")}
-                    >
-                        {t("EN")}
-                    </div>
-                </div>
-            )}
+        <div className="change-settings-block">
+            <SBlockToggle 
+            width="100px" 
+            height="4.3vh" 
+            onClick={handleLanguageChange} 
+            activeOrNot={isActive}
+            labelLeft={"EN"}
+            labelRight={"RU"}
+            />
         </div>
     );
 };

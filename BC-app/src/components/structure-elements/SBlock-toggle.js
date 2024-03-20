@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import "../../pages/main-page/Main-page.css";
 
-const SBlockToggle = ({ width, height, labelFor, labelLeft, labelRight, imageLeft, imageRight, imageSlider, onClick }) => {
-    const [isActive, setIsActive] = useState(false);
+const SBlockToggle = ({ activeOrNot, width, height, labelFor, labelLeft, labelRight, imageLeft, imageRight, imageSlider, onClick }) => {
+    const [isActive, setIsActive] = useState(activeOrNot);
     const [startX, setStartX] = useState(null);
     const [isSwiping, setIsSwiping] = useState(false);
 
@@ -51,12 +51,12 @@ const SBlockToggle = ({ width, height, labelFor, labelLeft, labelRight, imageLef
         >
             {labelFor && <label className='header-text switchero'>{labelFor}</label>}
             {labelLeft && <span className="structure-block-maintext switchero">{labelLeft}</span>}
-            {imageLeft && <img src={imageLeft} alt="left icon" className="settings-button switchero" />}
+            {imageLeft && <img src={imageLeft} alt="left icon" className="account-button switchero" />}
             <div className="switcher">
-                {imageSlider && <img src={imageSlider} alt="toggle icon" className="settings-button switchero" />}
+                {imageSlider && <img src={imageSlider} alt="toggle icon" className="account-button switchero" />}
             </div>
             {labelRight && <span className="structure-block-maintext switchero">{labelRight}</span>}
-            {imageRight && <img src={imageRight} alt="right icon" className="settings-button switchero" />}
+            {imageRight && <img src={imageRight} alt="right icon" className="account-button switchero" />}
         </div >
     );
 }

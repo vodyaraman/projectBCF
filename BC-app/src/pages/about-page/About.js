@@ -5,13 +5,11 @@ import "../../components/header/header.css";
 import "../../components/header/bot-header.css";
 import "./About.css";
 import Header from "../../components/header/Header.js";
-import AnimatedBackground from '../../components/background/AnimatedBackground';
 import Footer from "../../components/footer/Footer.js";
 
 const AboutPage = () => {
     return (
         <div id="main-page">
-            <AnimatedBackground />
             <div id="page-scrollbar-container">
                 <Header />
                 <Footer />

@@ -15,7 +15,25 @@
     background-color: var(--secondary-div-color);
 }
 
-.section-text {
+.section-text, .section-button {
     display: flex;
     margin-top: 0px;
+    float: left;
+}   
+
+.section-navigation {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-left: 10px;
+    width: 99%;
+    cursor: pointer;
+    color: var(--link-color);
+}
+
+.section-navigation .section-text::before {
+    background-color: var(--secondary-text-color);
+    width: 2px;
+    height: 2px;
 }

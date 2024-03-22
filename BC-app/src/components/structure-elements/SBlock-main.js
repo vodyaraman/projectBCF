@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 import DatabaseClient from "../../httpRequests.js";
 import Editor from "./SBlock-editor.js";
 import "../../pages/main-page/Main-page.css";
+import { AuthContext } from "../../contexts/UserContext.js";
 
 
 const SBlock = ({ article, fetchArticles }) => {
     const dateFromDatabase = article.time;
     const title = article.title;
 
+    const { user } = useContext(AuthContext)
     const formattedDate = format(dateFromDatabase, "dd.MM.yyyy HH:mm");
     const { t } = useTranslation();
     const [author, setAuthor] = useState("");
@@ -29,8 +31,8 @@ const SBlock = ({ article, fetchArticles }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const user = await dbClient.getUserByID(article.userid);
-                setAuthor(user);
+                const response = await dbClient.getUserByID(article.userid);
+                setAuthor(response);
 
                 if (article.filename) {
                     const imageURL = await dbClient.getImage(article.filename);
@@ -41,7 +43,7 @@ const SBlock = ({ article, fetchArticles }) => {
             }
         };
         fetchData();
-    }, [article.userid, article.filename]);
+    }, [article.userid, article.filename, user]);
 
     const handleAuthorClick = () => {
         setIsEditing(!isEditing);
@@ -100,7 +102,14 @@ const SBlock = ({ article, fetchArticles }) => {
                 </div>
             )}
             <div className="structure-block-addtext">
-                <div id="check-author" onClick={handleAuthorClick}>{t("author")} {author}</div>
+                {user !== null && user.login == author ?
+                    <div id="check-author" onClick={handleAuthorClick}>
+                        you are an author, edit?
+                    </div>
+                    :
+                    <div>
+                        {t("author")} {author}
+                    </div>}
                 <div id="check-date">{t("date-publication")} {formattedDate}</div>
             </div>
         </div>

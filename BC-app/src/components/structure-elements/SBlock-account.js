@@ -42,7 +42,7 @@ const AccountMenu = () => {
         setIsAuth(!isAuth)
         setIsOpen(!isOpen)
     }
-//<Link to="/user"><span className="header-text">{t("login-h1")}</span></Link>
+
     return (
         <div className="header-settings" ref={accountRef}>
             {isAuth && (<Authorisation cancelAuth = {handleLogIn}/>)}
@@ -61,8 +61,6 @@ const AccountMenu = () => {
                         ) : (
                         <div>
                             <span className="header-text" onClick={handleLogIn}>{t("login-h1")}</span>
-                            <span className="header-text">{t("registration")}</span>
-                            <span className="header-text">{t("leave-comment")}</span>
                         </div>
                     )}
                 </div>

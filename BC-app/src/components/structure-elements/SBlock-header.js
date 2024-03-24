@@ -11,7 +11,7 @@ const SBLockHeader = () => {
         "https://mirpozitiva.ru/wp-content/uploads/2019/11/1477041461_noch_v_lesy.jpg",
         "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDE0fHxza3klMjBuaWdodHxlbnwwfHx8fDE2Njc2NDY4MzU&ixlib=rb-4.0.3&q=80&w=2000"
     ];
-    const anchors = ["#block1", "#block2", "#footer"]; // Массив якорей
+    const anchors = ["#block1", "#block2", "#footer"];
 
     useEffect(() => {
         const timer = setInterval(() => {

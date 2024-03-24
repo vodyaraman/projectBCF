@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState, useEffect } from "react";
+import React, { useContext, useRef, useState, useEffect, memo } from "react";
 import "../header/header.css";
 import AccountImg from "../images/account.png"
 import AccountImgBlack from "../images/accountBlack.png"
@@ -7,15 +7,13 @@ import { AuthContext } from "../../contexts/UserContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import Authorisation from "../../pages/authorisation-page/Authorisation.js";
 
-const AccountMenu = () => {
+const AccountMenu = memo(() => {
     const [isOpen, setIsOpen] = useState(false);
     const [isAuth, setIsAuth] = useState(false)
     const accountRef = useRef(null)
     const { t } = useTranslation();
     const { user, handleSetUser } = useContext(AuthContext)
     const {theme} = useContext(ThemeContext)
-
-    console.log(user)
 
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -67,6 +65,6 @@ const AccountMenu = () => {
             )}
         </div>
     );
-};
+});
 
 export default AccountMenu;

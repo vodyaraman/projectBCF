@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect, useContext, memo } from "react";
 import { useTranslation } from "react-i18next";
 import ChangeThemeWindow from "../header/header-components/ChangeTheme.js";
 import ChangeLanguageWindow from "../header/header-components/ChangeLanguage.js";
@@ -7,7 +7,7 @@ import SettingsImg from "../images/settings.png";
 import SettingsImgBlack from "../images/settingsBlack.png";
 import { ThemeContext } from "../../contexts/ThemeContext.js";
 
-const SettingsWindow = () => {
+const SettingsWindow = memo(() => {
     const [isOpen, setIsOpen] = useState(false);
     const { t } = useTranslation();
     const settingsRef = useRef(null);
@@ -52,6 +52,6 @@ const SettingsWindow = () => {
             )}
         </div>
     );
-};
+});
 
 export default SettingsWindow;

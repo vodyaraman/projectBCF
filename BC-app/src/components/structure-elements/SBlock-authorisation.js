@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import "../../pages/main-page/Main-page.css"
 import "../../pages/authorisation-page/Authorisation.css"
 import { useTranslation } from "react-i18next";
 import InputMask from "react-input-mask";
 import AuthCheck from "../../pages/authorisation-page/check-auth-module";
 
-const SBlockAuthorisation = ({ handleLogin, handleAuthChange }) => {
+const SBlockAuthorisation = memo(({ handleLogin, handleAuthChange }) => {
     const { t } = useTranslation();
     const [state, setState] = useState({
         code: '',
@@ -94,6 +94,6 @@ const SBlockAuthorisation = ({ handleLogin, handleAuthChange }) => {
             </form>
         </div>
     );
-}
+});
 
 export default SBlockAuthorisation;

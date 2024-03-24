@@ -12,7 +12,7 @@ import SBlockToggle from '../../components/structure-elements/SBlock-toggle.js';
 import SBlockReviewsList from '../../components/structure-elements/SBlock-reviewslist.js';
 
 const ReviewsPage = () => {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleSwitchClick = () => {
         setIsOpen(!isOpen)
@@ -23,7 +23,7 @@ const ReviewsPage = () => {
                 <Header />
                 <div className='block'>
                     <div className='review-switcher'>
-                        <SBlockToggle width="80%" height="50px" onClick={handleSwitchClick} labelLeft="Your review" labelRight="Other reviews" />
+                        <SBlockToggle width="80%" height="50px" onClick={handleSwitchClick} labelLeft="Your review" labelRight="Other reviews" activeOrNot={false}/>
                     </div>
                 </div>
                 <div className='block'>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, memo } from 'react';
 import './Authorisation.css';
 import SBlockAuthorisation from '../../components/structure-elements/SBlock-authorisation';
 import SBlockRegistration from '../../components/structure-elements/SBlock-registration';
@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { AuthContext } from '../../contexts/UserContext';
 import DatabaseClient from '../../httpRequests';
 
-const Authorisation = ({ cancelAuth }) => {
+const Authorisation = memo(({ cancelAuth }) => {
     const { t } = useTranslation();
     const [isBackSide, setIsBackSide] = useState(false);
     const [changeButtonName, setChangeButtonName] = useState('registration-h1');
@@ -75,7 +75,7 @@ const Authorisation = ({ cancelAuth }) => {
             </div>
         </div>
     );
-};
+});
 
 export default Authorisation;
 

@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Russo+One&display=swap');
 
 * {
-    -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 @media only screen and (max-width: 600px) {
@@ -13,6 +15,10 @@
 
     .auth-head-text {
         font-size: 20pt;
+    }
+
+    .switchero {
+        font-size: 20px;
     }
 
     .structure-block-maintext,
@@ -56,6 +62,10 @@
 
     .auth-head-text {
         font-size: 23pt;
+    }
+
+    .switchero {
+        font-size: 20px;
     }
 
     .structure-block-maintext,
@@ -114,6 +124,7 @@
     border: var(--primary-border-color);
     border-radius: 5px;
 }
+
 #page-scrollbar-container::-webkit-scrollbar-track-piece {
     background-color: var(--secondary-div-color);
 }
@@ -175,7 +186,19 @@
     text-align: center;
 }
 
+.structure-block h1,
+.structure-block h2 {
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
 .structure-block-maintext {
+    display: flex;
+    text-align: justify;
+    width: 100%;
+    margin-top: 20px;
     white-space: pre-wrap;
     font-family: 'Merriweather';
     font-weight: 300;
@@ -213,13 +236,6 @@
     margin-bottom: 10px;
     font-size: 15pt;
     border-bottom: 2px solid var(--primary-border-color);
-}
-
-.structure-block-maintext {
-    display: block;
-    text-align: justify;
-    width: 100%;
-    margin-top: 20px;
 }
 
 .picture {

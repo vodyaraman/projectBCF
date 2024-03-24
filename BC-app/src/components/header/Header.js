@@ -1,11 +1,11 @@
-import React from "react";
+import React, {memo} from "react";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SettingsWindow from "../structure-elements/SBlock-settings";
 import AccountMenu from "../structure-elements/SBlock-account";
 import "./header.css";
 
-const Header = () => {
+const Header = memo(() => {
     const { t } = useTranslation();
     return (
         <header id="header">
@@ -35,6 +35,6 @@ const Header = () => {
             </div>
         </header>
     );
-};
+});
 
 export default Header;

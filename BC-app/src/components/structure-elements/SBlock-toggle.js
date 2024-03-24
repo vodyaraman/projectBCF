@@ -7,13 +7,15 @@ const SBlockToggle = ({ activeOrNot, width, height, labelFor, labelLeft, labelRi
     const [startX, setStartX] = useState(null);
     const [isSwiping, setIsSwiping] = useState(false);
 
-    const handleClick = () => {
-        setIsActive(!isActive);
-    };
-
     useEffect(() => {
-        onClick && onClick(!isActive)
-    }, [isActive])
+        setIsActive(activeOrNot);
+    }, [activeOrNot]);
+
+    const handleClick = () => {
+        const newActiveState = !isActive;
+        setIsActive(newActiveState);
+        onClick && onClick(newActiveState);
+    };
 
     const handleTouchStart = (e) => {
         setStartX(e.touches[0].clientX);
@@ -27,11 +29,9 @@ const SBlockToggle = ({ activeOrNot, width, height, labelFor, labelLeft, labelRi
         const threshold = 50;
 
         if (deltaX > threshold) {
-            isActive === false &&
-            setIsActive(true);
+            isActive === false && handleClick();
         } else if (deltaX < -threshold) {
-            isActive === true &&
-            setIsActive(false);   
+            isActive === true && handleClick();
         }
     };
 
@@ -71,6 +71,7 @@ SBlockToggle.propTypes = {
     imageRight: PropTypes.string,
     imageSlider: PropTypes.string,
     onClick: PropTypes.func.isRequired,
+    activeOrNot: PropTypes.bool.isRequired
 }
 
 export default SBlockToggle;

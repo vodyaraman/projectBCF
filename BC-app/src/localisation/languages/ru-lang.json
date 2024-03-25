@@ -1,11 +1,14 @@
 {
     "login-h1": "Вход",
+    "logout": "Выйти из аккаунта",
     "enter-code": "Введите код авторизации:",
     "error-message-auth" : "неверный код",
     "placeholder-code": "введите код здесь",
     "placeholder-password": "введите пароль здесь",
     "placeholder-login": "введите логин здесь",
     "placeholder-confirm": "подтвердите пароль",
+    "enter-title": "Введите заголовок",
+    "enter-content": "Введите текст статьи",
     "no-code": "у меня нет кода",
     "submit-btn": "Подтвердить",
     "remember-me": "запомнить меня в системе",
@@ -35,7 +38,21 @@
     "error-message-invalid-login": "Не используйте этот логин",
     "error-message-invalid-password": "Не используйте этот логин",
     "error-message-password-mismatch": "Пароли не совпадают",
+
     "auth-rules1": "Ваш логин должен быть больше 2 символов и меньше 16,",
     "auth-rules2": "не должен содержать маты и SQL-запросы. Ваш пароль должен быть больше",
-    "auth-rules3": "3 символов, иметь хотя-бы одну букву и хотя-бы одну цифру."
+    "auth-rules3": "3 символов, иметь хотя-бы одну букву и хотя-бы одну цифру.",
+    "leave-reaview": "Оставьте отзыв",
+    "rate": "Оценка:",
+    "submit-review": "Подтвердить и отправить",
+    "your-review": "Ваш Отзыв",
+    "other-reviews": "Остальные Отзывы",
+    "sections": "Разделы статей",
+    "section": "Раздел",
+    "articles-in-this-section": "Статей в этом разделе:",
+    "back-to-sections": "Вернуться к списку разделов",
+    "you-are-an-author-edit": "Вы автор, отредактировать?",
+    "choose-file": "Выберите Изображение",
+    "save": "Сохранить",
+    "delete": "Удалить"
 }

@@ -54,7 +54,7 @@ const AccountMenu = memo(() => {
                     {user ? (
                         <div>
                             <span className="header-text">{user.login}</span>
-                            <div className="header-text" onClick={handleLogOut}>Log out</div>
+                            <div className="header-text" onClick={handleLogOut}>{t("logout")}</div>
                         </div>
                         ) : (
                         <div>

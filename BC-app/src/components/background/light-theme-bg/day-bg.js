@@ -13,15 +13,15 @@ const AnimatedBackgroundDay = () => {
         const changeColors = () => {
             document.documentElement.style.setProperty('--primary-div-color', 'rgba(255, 255, 255, 0.9)');
             document.documentElement.style.setProperty('--secondary-div-color', 'rgba(220, 220, 220, 0.33)');
-            document.documentElement.style.setProperty('--primary-border-color', 'rgba(174, 175, 177, 0.658)');
+            document.documentElement.style.setProperty('--primary-border-color', 'rgba(100, 100, 100, 0.658)');
             document.documentElement.style.setProperty('--secondary-border-color', 'rgba(8, 20, 44, 0.76)');
             document.documentElement.style.setProperty('--primary-text-color', 'rgba(24, 24, 24, 0.9)');
             document.documentElement.style.setProperty('--primary-text-color-hover', 'rgba(0, 0, 0, 1)');
-            document.documentElement.style.setProperty('--secondary-text-color', 'rgb(0, 0, 0)');
+            document.documentElement.style.setProperty('--secondary-text-color', 'rgb(255, 255, 255)');
             document.documentElement.style.setProperty('--error-color', 'red');
             document.documentElement.style.setProperty('--link-color', 'blue');
-            document.documentElement.style.setProperty('--primary-button-color', 'rgba(15, 15, 15, 0.4)');
-            document.documentElement.style.setProperty('--primary-button-color-hover', 'rgba(31, 31, 31, 0.38)');
+            document.documentElement.style.setProperty('--primary-button-color', 'rgba(230, 230, 230, 0.7)');
+            document.documentElement.style.setProperty('--primary-button-color-hover', 'rgba(255, 255, 255, 0.99)');
             document.documentElement.style.setProperty('--secondary-button-color', 'rgba(8, 70, 240, 0.767)');
           };
         

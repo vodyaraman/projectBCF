@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import "../../components/background/dark-theme-bg/night-bg.css";
 import "../../components/background/light-theme-bg/day-bg.css";
 import "../../components/header/header.css";
@@ -13,7 +13,7 @@ import DatabaseClient from '../../httpRequests.js';
 const ArticlesPage = () => {
     const [sections, setSections] = useState([]);
     const [articles, setArticles] = useState([]);
-    const dbClient = new DatabaseClient();
+    const dbClient = useMemo(() => { return new DatabaseClient() }, []);
     const [isOpen, setIsOpen] = useState(true);
     const [thisSection, setThisSection] = useState(null)
 
@@ -28,7 +28,7 @@ const ArticlesPage = () => {
             }
         }
         fetchSections();
-    }, []);
+    }, [dbClient]);
 
     const fetchArticles = async (idSection) => {
         try {
@@ -47,15 +47,17 @@ const ArticlesPage = () => {
     }
 
     return (
-        <>
-            <Header/>
-            {isOpen ? (
-                <SBlockSections sections={sections} handleOpenSection={handleOpenSection} />
-            ) : (
-                <SBlockSection articles={articles} section={thisSection} isOpen={setIsOpen}/>
-            )}
-            <Footer/>
-        </>
+        <div id='articles-page'>
+            <div id='page-scrollbar-container'>
+                <Header />
+                {isOpen ? (
+                    <SBlockSections sections={sections} handleOpenSection={handleOpenSection} />
+                ) : (
+                    <SBlockSection articles={articles} section={thisSection} isOpen={setIsOpen} />
+                )}
+                <Footer />
+            </div>
+        </div>
     );
 }
 

@@ -1,8 +1,9 @@
 import React from "react";
 import "../../pages/main-page/Main-page.css";
+import { useTranslation } from "react-i18next";
 
 const SBlockEditor = ({ onSaveArticle, onClose, onDeleteArticle }) => {
-
+    const { t } = useTranslation();
     const handleSaveClick = () => {
         onSaveArticle();
         onClose();
@@ -15,8 +16,8 @@ const SBlockEditor = ({ onSaveArticle, onClose, onDeleteArticle }) => {
 
     return (
         <div className="structure-block-editor">
-            <button className="structure-block-edit-button" onClick={handleSaveClick}>Save</button>
-            <button className="structure-block-edit-button" onClick={handleDeleteClick}>Delete</button>
+            <button className="structure-block-edit-button sb-button" onClick={handleSaveClick}>{t("save")}</button>
+            <button className="structure-block-edit-button sb-button " onClick={handleDeleteClick}>{t("delete")}</button>
         </div>
     );
 };

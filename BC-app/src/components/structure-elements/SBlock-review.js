@@ -3,12 +3,14 @@ import "../../pages/reviews-page/Reviews.css"
 import "../../pages/main-page/Main-page.css"
 import DatabaseClient from "../../httpRequests"
 import { AuthContext } from '../../contexts/UserContext';
+import { useTranslation } from "react-i18next";
 
 const SBlockReview = () => {
     const [rating, setRating] = useState(0);
     const [reviewText, setReviewText] = useState('');
     const [selectBlock, setSelectedBlock] = useState(false);
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
+    const { t } = useTranslation();
     const dbClient = new DatabaseClient();
 
     const handleMouseOver = (hoveredRating) => {
@@ -39,7 +41,7 @@ const SBlockReview = () => {
     return (
         <div className='structure-block'>
             <div className="structure-block-review">
-                <h1>Leave a Review</h1>
+                <h1>{t("leave-reaview")}</h1>
                 <div id="rating">
                     <div>
                         {[...Array(5)].map((_, index) => {
@@ -59,19 +61,13 @@ const SBlockReview = () => {
                             );
                         })}
                     </div>
-                    <h2>Rate: {rating}/5</h2>
+                    <h2>{t("rate")} {rating}/5</h2>
                 </div>
                 <div>
-                    <label htmlFor="review" className="structure-block-maintext">Write ur review down below <br />
-                        Don't forget to mention about: <br />
-                        - website's design, <br />
-                        - optimization, <br />
-                        - user's comfortability <br />
-                        - routes accesibility <br />
-                        - what u love and what u hate in this concept
+                    <label htmlFor="review" className="structure-block-maintext">
                     </label>
                     <textarea className="article-text-content" id="review" value={reviewText} onChange={handleReviewTextChange} />
-                    <button className="article-button" onClick={handleSubmit}>Submit Review</button>
+                    <button className="article-button sb-button" onClick={handleSubmit}>{t("submit-review")}</button>
                 </div>
             </div>
         </div>

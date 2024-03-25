@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 import DatabaseClient from "../../httpRequests.js";
@@ -19,7 +19,7 @@ const SBlock = ({ article, fetchArticles }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedTitle, setEditedTitle] = useState(article.title);
     const [editedContent, setEditedContent] = useState(article.article);
-    const dbClient = new DatabaseClient();
+    const dbClient = useMemo(()=>(new DatabaseClient()), []);
 
     useEffect(() => {
         if (isEditing) {
@@ -43,7 +43,7 @@ const SBlock = ({ article, fetchArticles }) => {
             }
         };
         fetchData();
-    }, [article.userid, article.filename, user]);
+    }, [article.userid, article.filename, user, dbClient]);
 
     const handleAuthorClick = () => {
         setIsEditing(!isEditing);
@@ -102,9 +102,9 @@ const SBlock = ({ article, fetchArticles }) => {
                 </div>
             )}
             <div className="structure-block-addtext">
-                {user !== null && user.login == author ?
+                {user !== null && user.login === author ?
                     <div id="check-author" onClick={handleAuthorClick}>
-                        you are an author, edit?
+                        {t("you-are-an-author-edit")}
                     </div>
                     :
                     <div>

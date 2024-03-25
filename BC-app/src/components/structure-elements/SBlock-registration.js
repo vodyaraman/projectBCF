@@ -56,7 +56,7 @@ const SBlockRegistration = ({ handleRegistration }) => {
                 permission: true,
             }));
             setBackwards(true);
-            return; // После успешной проверки нет необходимости продолжать выполнение функции
+            return;
         }
         setState((prevState) => ({
             ...prevState,
@@ -127,8 +127,6 @@ const SBlockRegistration = ({ handleRegistration }) => {
                             {state.error && <span
                                 className="error-message"
                                 data-tooltip-id="my-tooltip"
-                                //data-tooltip-content=
-
                                 data-tooltip-place='right'>
                                 {state.error}
                             </span>}

@@ -58,16 +58,16 @@ const AnimatedBackgroundNight = () => {
       })),
     []
   );
-
+ 
   useEffect(() => {
     const changeColors = () => {
       document.documentElement.style.setProperty('--primary-div-color', 'rgba(0, 0, 0, 0.66)');
       document.documentElement.style.setProperty('--secondary-div-color', 'rgba(0, 0, 0, 0.33)');
-      document.documentElement.style.setProperty('--primary-border-color', 'rgba(174, 175, 177, 0.658)');
+      document.documentElement.style.setProperty('--primary-border-color', 'rgba(174, 175, 177, 0.358)');
       document.documentElement.style.setProperty('--secondary-border-color', 'rgba(8, 20, 44, 0.76)');
-      document.documentElement.style.setProperty('--primary-text-color', 'rgb(192, 192, 192)');
+      document.documentElement.style.setProperty('--primary-text-color', 'rgba(192, 192, 192, 0.8)');
       document.documentElement.style.setProperty('--primary-text-color-hover', 'rgb(255, 255, 255)');
-      document.documentElement.style.setProperty('--secondary-text-color', 'white');
+      document.documentElement.style.setProperty('--secondary-text-color', 'rgba(174, 175, 177, 0.358)');
       document.documentElement.style.setProperty('--error-color', 'rgb(255, 131, 131)');
       document.documentElement.style.setProperty('--link-color', 'rgb(145, 145, 255)');
       document.documentElement.style.setProperty('--primary-button-color', 'rgba(15, 15, 15, 0.4)');

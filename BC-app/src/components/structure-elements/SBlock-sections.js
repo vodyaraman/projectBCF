@@ -1,19 +1,21 @@
 import React from 'react';
 import "../../pages/articles-page/Articles.css"
+import { useTranslation } from "react-i18next";
 
 const SBlockSections = ({ sections, handleOpenSection }) => {
+    const { t } = useTranslation();
     return (
         <div className='block'>
             <div className='structure-block'>
-                <h1>Sections</h1>
+                <h1>{t("sections")}</h1>
                 {sections.map((section, index) => (
                     <div
                         key={index}
                         className="section"
                         onClick={() => handleOpenSection(section)}
                     >
-                        <div className='structure-block-maintext section-text'>{section.section}</div>
-                        <div className='structure-block-addtext section-text'>Atricles in this section: {section.article_count}</div>
+                        <h2 className='structure-block-maintext section-text'>{t(section.section)}</h2>
+                        <div className='structure-block-addtext section-text'>{t("articles-in-this-section")} {section.article_count}</div>
                     </div>
                 ))}
             </div>

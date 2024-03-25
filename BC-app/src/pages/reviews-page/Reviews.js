@@ -10,8 +10,11 @@ import SBlockReview from "../../components/structure-elements/SBlock-review.js"
 import Footer from "../../components/footer/Footer.js";
 import SBlockToggle from '../../components/structure-elements/SBlock-toggle.js';
 import SBlockReviewsList from '../../components/structure-elements/SBlock-reviewslist.js';
+import SBlockLift from "../../components/structure-elements/SBlock-lift.js"
+import { useTranslation } from "react-i18next";
 
 const ReviewsPage = () => {
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
 
     const handleSwitchClick = () => {
@@ -23,14 +26,17 @@ const ReviewsPage = () => {
                 <Header />
                 <div className='block'>
                     <div className='review-switcher'>
-                        <SBlockToggle width="80%" height="50px" onClick={handleSwitchClick} labelLeft="Your review" labelRight="Other reviews" activeOrNot={false}/>
+                        <SBlockToggle width="80%" height="50px" onClick={handleSwitchClick} labelLeft={t("your-review")} labelRight={t("other-reviews")} activeOrNot={false}/>
                     </div>
                 </div>
                 <div className='block'>
                     {!isOpen ? (
                         <SBlockReview />
-                    ) : (<SBlockReviewsList/>)}
+                    ) : (
+                    <SBlockReviewsList/>
+                    )}
                 </div>
+                <SBlockLift/>
                 <Footer />
             </div>
         </div>

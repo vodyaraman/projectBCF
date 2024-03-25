@@ -3,6 +3,7 @@ import "../../pages/main-page/Main-page.css";
 import axios from 'axios';
 import xss from 'xss';
 import { AuthContext } from '../../contexts/UserContext';
+import { useTranslation } from "react-i18next";
 
 const HOST = "192.168.43.134";
 const PORT = 3001;
@@ -12,7 +13,8 @@ const SBlockWrite = ({ fetchArticles }) => {
     const [content, setContent] = useState('');
     const [file, setFile] = useState(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
+    const { t } = useTranslation();
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -64,7 +66,6 @@ const SBlockWrite = ({ fetchArticles }) => {
             setTitle("");
             setContent("");
             setFile("");
-            document.getElementById("article-add-image-button").value = "";
             fetchArticles();
             setTimeout(() => {
                 document.getElementById("page-scrollbar-container").scrollTop =
@@ -81,26 +82,29 @@ const SBlockWrite = ({ fetchArticles }) => {
             <input
                 className="article-text-title"
                 type='text'
-                placeholder='Enter title'
+                placeholder={t('enter-title')}
                 value={title}
                 onChange={handleTitleChange}
             />
             <textarea
                 className="article-text-content"
-                placeholder='Enter content'
+                placeholder={t('enter-content')}
                 value={content}
                 onChange={handleContentChange}
             />
-            <input
-                id="article-add-image-button"
-                type="file"
-                accept="image/*, audio/*"
-                onChange={handleFileChange}
-            />
+            <label className='article-add-image-button'>
+                <input
+                    type="file"
+                    name='file'
+                    accept="image/*, audio/*"
+                    onChange={handleFileChange}
+                />
+                <span className="sb-button article-button">{file ? file.name : t("choose-file")}</span>
+            </label>
             <button
-                className="article-button"
+                className="article-button sb-button"
                 onClick={handleSubmit}>
-                {isSubmitted ? <span>✓</span> : 'Submit'}
+                {isSubmitted ? <span>✓</span> : t("submit-btn")}
             </button>
         </div>
     );

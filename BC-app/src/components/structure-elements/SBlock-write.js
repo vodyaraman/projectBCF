@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 const HOST = "192.168.43.134";
 const PORT = 3001;
 
-const SBlockWrite = ({ fetchArticles }) => {
+const SBlockWrite = ({ fetchArticles, isMain, sectionid }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [file, setFile] = useState(null);
@@ -33,7 +33,6 @@ const SBlockWrite = ({ fetchArticles }) => {
             alert("Title and content cannot be empty");
             return;
         }
-
         try {
             const cleanedTitle = xss(title);
             const cleanedContent = xss(content);
@@ -57,7 +56,9 @@ const SBlockWrite = ({ fetchArticles }) => {
                 title: cleanedTitle,
                 article: cleanedContent,
                 userid: user.accid,
-                file: filename
+                file: filename,
+                isMain: isMain,
+                sectionid: sectionid
             });
 
             console.log('Article successfully added:', articleResponse.data);

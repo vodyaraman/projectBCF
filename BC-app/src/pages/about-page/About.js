@@ -6,16 +6,25 @@ import "../../components/header/bot-header.css";
 import "./About.css";
 import Header from "../../components/header/Header.js";
 import Footer from "../../components/footer/Footer.js";
+import { useTranslation } from "react-i18next";
 
-const AboutPage = () => {
+
+const InfoPage = () => {
+    const { t } = useTranslation();
     return (
         <div id="main-page">
             <div id="page-scrollbar-container">
                 <Header />
+                <div className='block'>
+                    <div className='structure-block half'>
+                        <h1>{t("sources")}</h1>
+                            
+                    </div>
+                </div>
                 <Footer />
             </div>
         </div>
     )
 };
 
-export default AboutPage;
+export default InfoPage;

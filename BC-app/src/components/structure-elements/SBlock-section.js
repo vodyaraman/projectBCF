@@ -3,7 +3,7 @@ import SBlock from '../structure-elements/SBlock-main';
 import SBlockWrite from "../structure-elements/SBlock-write";
 import { useTranslation } from "react-i18next";
 
-const SBlockSection = ({ section, articles, isOpen }) => {
+const SBlockSection = ({fetchArticles, section, articles, isOpen }) => {
     const { t } = useTranslation();
     const scrollToArticle = (index) => {
         const articleElement = document.getElementById(`article-${index}`);
@@ -18,7 +18,7 @@ const SBlockSection = ({ section, articles, isOpen }) => {
                 <div className='structure-block'>
                     <h1>{t("section")} "{t(section.section)}"</h1>
                     <button onClick={isOpen} className='sb-button section-button'>{t("back-to-sections")}</button>
-                    <list className='section-navigation'>
+                    <div className='section-navigation'>
                         {articles.map((article, index) => (
                             <ul
                                 className="section-navigation"
@@ -27,16 +27,16 @@ const SBlockSection = ({ section, articles, isOpen }) => {
                                 - {article.title}
                             </ul>
                         ))}
-                    </list>
+                    </div>
                 </div>
             </div>
             {articles.map((article, index) => (
-                <div className='block' id={`article-${index}`} key={index}>
+                <div className='block' id={`article-${index}`} key={index} name={article.title}>
                     <SBlock article={article} />
                 </div>
             ))}
             <div className='block'>
-                <SBlockWrite />
+                <SBlockWrite fetchArticles={fetchArticles} sectionid={section.id}/>
             </div>
         </>
     );

@@ -36,13 +36,13 @@ const MainPage = () => {
             <div id="page-scrollbar-container">
                 <Header />
                 <SBlockHeader />
-                {articles.map((article, index) => (
+                {articles.map((article, index) => article.ismain && (
                     <div className='block' key={index} name={article.title}>
-                        <SBlock article={article} fetchArticles={fetchArticles} />
+                        <SBlock article={article} fetchArticles={fetchArticles}/>
                     </div>
                 ))}
                 <div className='block'>
-                    <SBlockWrite fetchArticles={fetchArticles} />
+                    <SBlockWrite fetchArticles={fetchArticles} isMain={true} sectionid={4}/>
                 </div>
                 <SBlockLift />
                 <Footer />

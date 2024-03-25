@@ -14,7 +14,7 @@
     "remember-me": "remember my code",
     "goto": "Go to",
     "mainpage": "Home",
-    "about": "About Us",
+    "about": "About",
     "reviews": "Reviews",
     "articles": "Articles",
     "theme" : "Theme",
@@ -53,5 +53,6 @@
     "you-are-an-author-edit": "You're an author, edit?",
     "choose-file": "Choose An Image",
     "save": "Save",
-    "delete": "Delete"
+    "delete": "Delete",
+    "sources": "Sources"
 }

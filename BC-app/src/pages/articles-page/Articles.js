@@ -53,7 +53,7 @@ const ArticlesPage = () => {
                 {isOpen ? (
                     <SBlockSections sections={sections} handleOpenSection={handleOpenSection} />
                 ) : (
-                    <SBlockSection articles={articles} section={thisSection} isOpen={setIsOpen} />
+                    <SBlockSection fetchArticles={fetchArticles} articles={articles} section={thisSection} isOpen={setIsOpen} />
                 )}
                 <Footer />
             </div>

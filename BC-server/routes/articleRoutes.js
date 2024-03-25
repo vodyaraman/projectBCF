@@ -4,7 +4,8 @@ const upload = require('../middleware/multerStorage')
 const pool = require('../db');
 
 router.post('/addArticle', upload.single('file'), async (req, res) => {
-    const { title, article, userid, file } = req.body;
+    const { title, article, userid, file, isMain, sectionid } = req.body;
+    console.log(sectionid)
     try {
         if (req.file) {
             let filename = req.file.filename;
@@ -12,7 +13,7 @@ router.post('/addArticle', upload.single('file'), async (req, res) => {
         } else {
             console.log('No file uploaded');
         }
-        const result = await pool.query('INSERT INTO articles (title, article, userid, filename) VALUES ($1, $2, $3, $4) RETURNING *', [title, article, userid, file]);
+        const result = await pool.query('INSERT INTO articles (title, article, userid, filename, ismain, section_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [title, article, userid, file, isMain, sectionid]);
 
         res.status(200).json({ success: true, article: result.rows[0] });
     } catch (error) {

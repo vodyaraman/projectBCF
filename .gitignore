@@ -1,5 +1,7 @@
 env.
-BC-app/node_modules
+/BC-app/node_modules/
+/BC-server/node_modules/
+
 # production
 /build
 

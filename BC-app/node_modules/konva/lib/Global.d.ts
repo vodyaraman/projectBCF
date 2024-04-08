@@ -26,6 +26,7 @@ export declare const Konva: {
     showWarnings: boolean;
     dragButtons: number[];
     isDragging(): any;
+    isTransforming(): any;
     isDragReady(): boolean;
     releaseCanvasOnDestroy: boolean;
     document: any;

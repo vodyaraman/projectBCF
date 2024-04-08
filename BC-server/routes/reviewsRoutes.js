@@ -6,7 +6,7 @@ const path = require('path');
 
 const sendReviewToTelegram = (export_review) => {
     try {
-        const pythonScriptPath = path.join(__dirname, '../../BC-middleware/reviews.py');
+        const pythonScriptPath = path.join(__dirname, '../BC-middleware/reviews.py');
         const dataToSend = `${export_review.login} оставил отзыв: ${export_review.review_text} Оценка: ${export_review.rating} звезд!`
         const pythonProcess = spawn('python', [pythonScriptPath]);
 

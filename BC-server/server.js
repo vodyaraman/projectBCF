@@ -7,8 +7,10 @@ const fileRoutes = require('./routes/fileRoutes');
 const reviewsRoutes = require('./routes/reviewsRoutes');
 
 const app = express();
-const HOST = "192.168.43.134";
+const HOST = "89.111.170.13";
 const PORT = 3001;
+
+console.log("Update")
 
 app.use(corsMiddleware);
 app.use(bodyParserMiddleware);

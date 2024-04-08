@@ -1,0 +1,37 @@
+version: '3'
+services:
+  bc-app:
+    image: vodyaraman/bc-app-image
+    ports:
+      - "80:80"
+    networks:
+      - backend
+
+  bc-server:
+    image: vodyaraman/bc-server-image
+    ports:
+      - "3001:3001"
+    networks:
+      - backend
+  
+  bc-database:
+    image: postgres
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: projectBC-pgdb
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  db-data
+

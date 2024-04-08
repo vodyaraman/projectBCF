@@ -46,6 +46,7 @@ export declare class Transformer extends Group {
     sin: number;
     cos: number;
     _cursorChange: boolean;
+    static isTransforming: () => boolean;
     constructor(config?: TransformerConfig);
     attachTo(node: Node): this;
     setNode(node: Node): this;

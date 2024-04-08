@@ -346,7 +346,7 @@ class Stage extends Container_1.Container {
         }
         this.setPointersPositions(evt);
         var targetShape = this._getTargetShape(eventType);
-        var eventsEnabled = !DragAndDrop_1.DD.isDragging || Global_1.Konva.hitOnDragEnabled;
+        var eventsEnabled = !(Global_1.Konva.isDragging() || Global_1.Konva.isTransforming()) || Global_1.Konva.hitOnDragEnabled;
         if (targetShape && eventsEnabled) {
             targetShape._fireAndBubble(events.pointerout, { evt: evt });
             targetShape._fireAndBubble(events.pointerleave, { evt: evt });
@@ -416,11 +416,11 @@ class Stage extends Container_1.Container {
         if (!events) {
             return;
         }
-        if (DragAndDrop_1.DD.isDragging && DragAndDrop_1.DD.node.preventDefault() && evt.cancelable) {
+        if (Global_1.Konva.isDragging() && DragAndDrop_1.DD.node.preventDefault() && evt.cancelable) {
             evt.preventDefault();
         }
         this.setPointersPositions(evt);
-        var eventsEnabled = !DragAndDrop_1.DD.isDragging || Global_1.Konva.hitOnDragEnabled;
+        var eventsEnabled = !(Global_1.Konva.isDragging() || Global_1.Konva.isTransforming()) || Global_1.Konva.hitOnDragEnabled;
         if (!eventsEnabled) {
             return;
         }

@@ -11,7 +11,7 @@ import SBlockHeader from "../../components/structure-elements/SBlock-header.js";
 import SBlockWrite from '../../components/structure-elements/SBlock-write.js';
 import SBlockLift from '../../components/structure-elements/SBlock-lift.js';
 
-const HOST = "192.168.43.134";
+const HOST = "saevskii.space";
 const PORT = 3001;
 
 const MainPage = () => {

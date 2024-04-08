@@ -2,7 +2,7 @@ import HttpClient from './httpClientAxios';
 
 class DatabaseClient {
     constructor() {
-        this.httpClient = new HttpClient('http://192.168.43.134:3001');
+        this.httpClient = new HttpClient('http://saevskii.space:3001');
     }
 
     async submitData(code) {
